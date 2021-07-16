@@ -1,0 +1,487 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>4. 状态模式 &mdash; Graphic Design Patterns</title>
+  
+
+  
+  
+
+  
+  <link href="../_static/css/font_lato_googleapi.css" type='text/css'>
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  
+
+  
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  
+    <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  
+        <link rel="index" title="Index"
+              href="../genindex.html"/>
+        <link rel="search" title="Search" href="../search.html"/>
+    <link rel="top" title="Graphic Design Patterns" href="../index.html"/>
+        <link rel="up" title="行为型模式" href="behavioral.html"/>
+        <link rel="next" title="5. 策略模式" href="strategy.html"/>
+        <link rel="prev" title="3. 观察者模式" href="observer.html"/> 
+
+  
+  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-nav-search">
+        
+          <a href="../index.html" class="fa fa-home"> Graphic Design Patterns</a>
+        
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+        
+        
+            <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../read_uml.html">看懂UML类图和时序图</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../read_uml.html#id1">从一个示例开始</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../read_uml.html#id2">类之间的关系</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../read_uml.html#id3">时序图</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../read_uml.html#id4">附录</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../creational_patterns/creational.html">创建型模式</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../creational_patterns/simple_factory.html">1. 简单工厂模式( Simple Factory Pattern )</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../creational_patterns/factory_method.html">2. 工厂方法模式(Factory Method Pattern)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../creational_patterns/abstract_factory.html">3. 抽象工厂模式(Abstract Factory)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../creational_patterns/builder.html">4. 建造者模式</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../creational_patterns/singleton.html">5. 单例模式</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../structural_patterns/structural.html">结构型模式</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../structural_patterns/adapter.html">1. 适配器模式</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../structural_patterns/bridge.html">2. 桥接模式</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../structural_patterns/decorator.html">3. 装饰模式</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../structural_patterns/facade.html">4. 外观模式</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../structural_patterns/flyweight.html">5. 享元模式</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../structural_patterns/proxy.html">6. 代理模式</a></li>
+</ul>
+</li>
+<li class="toctree-l1 current"><a class="reference internal" href="behavioral.html">行为型模式</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="command.html">1. 命令模式</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mediator.html">2. 中介者模式</a></li>
+<li class="toctree-l2"><a class="reference internal" href="observer.html">3. 观察者模式</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">4. 状态模式</a></li>
+<li class="toctree-l2"><a class="reference internal" href="strategy.html">5. 策略模式</a></li>
+</ul>
+</li>
+</ul>
+
+        
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../index.html">Graphic Design Patterns</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../index.html">Docs</a> &raquo;</li>
+      
+          <li><a href="behavioral.html">行为型模式</a> &raquo;</li>
+      
+    <li><span class="section-number">4. </span>状态模式</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          <a href="../_sources/behavioral_patterns/state.rst.txt" rel="nofollow"> View page source</a>
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document">
+            
+  <section id="state">
+<span id="id1"></span><h1><a class="toc-backref" href="#id16"><span class="section-number">4. </span>状态模式</a><a class="headerlink" href="#state" title="Permalink to this headline">¶</a></h1>
+<div class="contents topic" id="id2">
+<p class="topic-title">目录</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="#state" id="id16">状态模式</a></p>
+<ul>
+<li><p><a class="reference internal" href="#id3" id="id17">模式动机</a></p></li>
+<li><p><a class="reference internal" href="#id4" id="id18">模式定义</a></p></li>
+<li><p><a class="reference internal" href="#id5" id="id19">模式结构</a></p></li>
+<li><p><a class="reference internal" href="#id6" id="id20">时序图</a></p></li>
+<li><p><a class="reference internal" href="#id7" id="id21">代码分析</a></p></li>
+<li><p><a class="reference internal" href="#id8" id="id22">模式分析</a></p></li>
+<li><p><a class="reference internal" href="#id9" id="id23">实例</a></p></li>
+<li><p><a class="reference internal" href="#id10" id="id24">优点</a></p></li>
+<li><p><a class="reference internal" href="#id11" id="id25">缺点</a></p></li>
+<li><p><a class="reference internal" href="#id12" id="id26">适用环境</a></p></li>
+<li><p><a class="reference internal" href="#id13" id="id27">模式应用</a></p></li>
+<li><p><a class="reference internal" href="#id14" id="id28">模式扩展</a></p></li>
+<li><p><a class="reference internal" href="#id15" id="id29">总结</a></p></li>
+</ul>
+</li>
+</ul>
+</div>
+<section id="id3">
+<h2><a class="toc-backref" href="#id17"><span class="section-number">4.1. </span>模式动机</a><a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>在很多情况下，一个对象的行为取决于一个或多个动态变化的属性，这样的属性叫做状态，这样的对象叫做有状态的(stateful)对象，这样的对象状态是从事先定义好的一系列值中取出的。当一个这样的对象与外部事件产生互动时，其内部状态就会改变，从而使得系统的行为也随之发生变化。</p></li>
+<li><p>在UML中可以使用状态图来描述对象状态的变化。</p></li>
+</ul>
+</section>
+<section id="id4">
+<h2><a class="toc-backref" href="#id18"><span class="section-number">4.2. </span>模式定义</a><a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h2>
+<p>状态模式(State Pattern) ：允许一个对象在其内部状态改变时改变它的行为，对象看起来似乎修改了它的类。其别名为状态对象(Objects for States)，状态模式是一种对象行为型模式。</p>
+</section>
+<section id="id5">
+<h2><a class="toc-backref" href="#id19"><span class="section-number">4.3. </span>模式结构</a><a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h2>
+<p>状态模式包含如下角色：</p>
+<ul class="simple">
+<li><p>Context: 环境类</p></li>
+<li><p>State: 抽象状态类</p></li>
+<li><p>ConcreteState: 具体状态类</p></li>
+</ul>
+<img alt="../_images/State.jpg" src="../_images/State.jpg" />
+</section>
+<section id="id6">
+<h2><a class="toc-backref" href="#id20"><span class="section-number">4.4. </span>时序图</a><a class="headerlink" href="#id6" title="Permalink to this headline">¶</a></h2>
+<img alt="../_images/seq_State.jpg" src="../_images/seq_State.jpg" />
+<p>既然是状态模式，加上状态图，对状态转换间的理解会清晰很多：</p>
+<img alt="_static/State1.png" src="_static/State1.png" />
+</section>
+<section id="id7">
+<h2><a class="toc-backref" href="#id21"><span class="section-number">4.5. </span>代码分析</a><a class="headerlink" href="#id7" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="cp">#include</span> <span class="cpf">&lt;iostream&gt;</span><span class="cp"></span>
+<span class="linenos"> 2</span><span class="cp">#include</span> <span class="cpf">&quot;Context.h&quot;</span><span class="cp"></span>
+<span class="linenos"> 3</span><span class="cp">#include</span> <span class="cpf">&quot;ConcreteStateA.h&quot;</span><span class="cp"></span>
+<span class="linenos"> 4</span><span class="cp">#include</span> <span class="cpf">&quot;ConcreteStateB.h&quot;</span><span class="cp"></span>
+<span class="linenos"> 5</span>
+<span class="linenos"> 6</span><span class="k">using</span> <span class="k">namespace</span> <span class="nn">std</span><span class="p">;</span>
+<span class="linenos"> 7</span>
+<span class="linenos"> 8</span><span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">int</span> <span class="n">argc</span><span class="p">,</span> <span class="kt">char</span> <span class="o">*</span><span class="n">argv</span><span class="p">[])</span>
+<span class="linenos"> 9</span><span class="p">{</span>
+<span class="linenos">10</span>	<span class="kt">char</span> <span class="n">a</span> <span class="o">=</span> <span class="sc">&#39;0&#39;</span><span class="p">;</span>
+<span class="linenos">11</span>	<span class="k">if</span><span class="p">(</span><span class="sc">&#39;0&#39;</span> <span class="o">==</span> <span class="n">a</span><span class="p">)</span>
+<span class="linenos">12</span>		<span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&quot;yes&quot;</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+<span class="linenos">13</span>	<span class="k">else</span>
+<span class="linenos">14</span>		<span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&quot;no&quot;</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+<span class="linenos">15</span>	
+<span class="linenos">16</span>	<span class="n">Context</span> <span class="o">*</span> <span class="n">c</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Context</span><span class="p">();</span>
+<span class="linenos">17</span>	<span class="n">c</span><span class="o">-&gt;</span><span class="n">request</span><span class="p">();</span>
+<span class="linenos">18</span>	<span class="n">c</span><span class="o">-&gt;</span><span class="n">request</span><span class="p">();</span>
+<span class="linenos">19</span>	<span class="n">c</span><span class="o">-&gt;</span><span class="n">request</span><span class="p">();</span>
+<span class="linenos">20</span>
+<span class="linenos">21</span>	<span class="k">delete</span> <span class="n">c</span><span class="p">;</span>
+<span class="linenos">22</span>	<span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="linenos">23</span><span class="p">}</span>
+</pre></div>
+</div>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="c1">///////////////////////////////////////////////////////////</span>
+<span class="linenos"> 2</span><span class="c1">//  Context.h</span>
+<span class="linenos"> 3</span><span class="c1">//  Implementation of the Class Context</span>
+<span class="linenos"> 4</span><span class="c1">//  Created on:      09-十月-2014 17:20:59</span>
+<span class="linenos"> 5</span><span class="c1">//  Original author: colin</span>
+<span class="linenos"> 6</span><span class="c1">///////////////////////////////////////////////////////////</span>
+<span class="linenos"> 7</span>
+<span class="linenos"> 8</span><span class="cp">#if !defined(EA_F245CF81_2A68_4461_B039_2B901BD5A126__INCLUDED_)</span>
+<span class="linenos"> 9</span><span class="cp">#define EA_F245CF81_2A68_4461_B039_2B901BD5A126__INCLUDED_</span>
+<span class="linenos">10</span>
+<span class="linenos">11</span><span class="cp">#include</span> <span class="cpf">&quot;State.h&quot;</span><span class="cp"></span>
+<span class="linenos">12</span>
+<span class="linenos">13</span><span class="k">class</span> <span class="nc">Context</span>
+<span class="linenos">14</span><span class="p">{</span>
+<span class="linenos">15</span>
+<span class="linenos">16</span><span class="k">public</span><span class="o">:</span>
+<span class="linenos">17</span>	<span class="n">Context</span><span class="p">();</span>
+<span class="linenos">18</span>	<span class="k">virtual</span> <span class="o">~</span><span class="n">Context</span><span class="p">();</span>
+<span class="linenos">19</span>
+<span class="hll"><span class="linenos">20</span>	<span class="kt">void</span> <span class="nf">changeState</span><span class="p">(</span><span class="n">State</span> <span class="o">*</span> <span class="n">st</span><span class="p">);</span>
+</span><span class="hll"><span class="linenos">21</span>	<span class="kt">void</span> <span class="nf">request</span><span class="p">();</span>
+</span><span class="hll"><span class="linenos">22</span>
+</span><span class="hll"><span class="linenos">23</span><span class="k">private</span><span class="o">:</span>
+</span><span class="hll"><span class="linenos">24</span>	<span class="n">State</span> <span class="o">*</span><span class="n">m_pState</span><span class="p">;</span>
+</span><span class="linenos">25</span><span class="p">};</span>
+<span class="linenos">26</span><span class="cp">#endif </span><span class="c1">// !defined(EA_F245CF81_2A68_4461_B039_2B901BD5A126__INCLUDED_)</span>
+</pre></div>
+</div>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="c1">///////////////////////////////////////////////////////////</span>
+<span class="linenos"> 2</span><span class="c1">//  Context.cpp</span>
+<span class="linenos"> 3</span><span class="c1">//  Implementation of the Class Context</span>
+<span class="linenos"> 4</span><span class="c1">//  Created on:      09-十月-2014 17:20:59</span>
+<span class="linenos"> 5</span><span class="c1">//  Original author: colin</span>
+<span class="linenos"> 6</span><span class="c1">///////////////////////////////////////////////////////////</span>
+<span class="linenos"> 7</span>
+<span class="linenos"> 8</span><span class="cp">#include</span> <span class="cpf">&quot;Context.h&quot;</span><span class="cp"></span>
+<span class="linenos"> 9</span><span class="cp">#include</span> <span class="cpf">&quot;ConcreteStateA.h&quot;</span><span class="cp"></span>
+<span class="linenos">10</span>
+<span class="linenos">11</span><span class="n">Context</span><span class="o">::</span><span class="n">Context</span><span class="p">(){</span>
+<span class="linenos">12</span>	<span class="c1">//default is a</span>
+<span class="linenos">13</span>	<span class="n">m_pState</span> <span class="o">=</span> <span class="n">ConcreteStateA</span><span class="o">::</span><span class="n">Instance</span><span class="p">();</span>
+<span class="linenos">14</span><span class="p">}</span>
+<span class="linenos">15</span>
+<span class="linenos">16</span><span class="n">Context</span><span class="o">::~</span><span class="n">Context</span><span class="p">(){</span>
+<span class="linenos">17</span><span class="p">}</span>
+<span class="linenos">18</span>
+<span class="hll"><span class="linenos">19</span><span class="kt">void</span> <span class="n">Context</span><span class="o">::</span><span class="n">changeState</span><span class="p">(</span><span class="n">State</span> <span class="o">*</span> <span class="n">st</span><span class="p">){</span>
+</span><span class="hll"><span class="linenos">20</span>	<span class="n">m_pState</span> <span class="o">=</span> <span class="n">st</span><span class="p">;</span>
+</span><span class="hll"><span class="linenos">21</span><span class="p">}</span>
+</span><span class="hll"><span class="linenos">22</span>
+</span><span class="hll"><span class="linenos">23</span><span class="kt">void</span> <span class="n">Context</span><span class="o">::</span><span class="n">request</span><span class="p">(){</span>
+</span><span class="hll"><span class="linenos">24</span>	<span class="n">m_pState</span><span class="o">-&gt;</span><span class="n">handle</span><span class="p">(</span><span class="k">this</span><span class="p">);</span>
+</span><span class="hll"><span class="linenos">25</span><span class="p">}</span>
+</span></pre></div>
+</div>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="c1">///////////////////////////////////////////////////////////</span>
+<span class="linenos"> 2</span><span class="c1">//  ConcreteStateA.h</span>
+<span class="linenos"> 3</span><span class="c1">//  Implementation of the Class ConcreteStateA</span>
+<span class="linenos"> 4</span><span class="c1">//  Created on:      09-十月-2014 17:20:58</span>
+<span class="linenos"> 5</span><span class="c1">//  Original author: colin</span>
+<span class="linenos"> 6</span><span class="c1">///////////////////////////////////////////////////////////</span>
+<span class="linenos"> 7</span>
+<span class="linenos"> 8</span><span class="cp">#if !defined(EA_84158F08_E96A_4bdb_89A1_4BE2E633C3EE__INCLUDED_)</span>
+<span class="linenos"> 9</span><span class="cp">#define EA_84158F08_E96A_4bdb_89A1_4BE2E633C3EE__INCLUDED_</span>
+<span class="linenos">10</span>
+<span class="linenos">11</span><span class="cp">#include</span> <span class="cpf">&quot;State.h&quot;</span><span class="cp"></span>
+<span class="linenos">12</span>
+<span class="linenos">13</span><span class="k">class</span> <span class="nc">ConcreteStateA</span> <span class="o">:</span> <span class="k">public</span> <span class="n">State</span>
+<span class="linenos">14</span><span class="p">{</span>
+<span class="linenos">15</span>
+<span class="linenos">16</span><span class="k">public</span><span class="o">:</span>
+<span class="linenos">17</span>	<span class="k">virtual</span> <span class="o">~</span><span class="n">ConcreteStateA</span><span class="p">();</span>
+<span class="linenos">18</span>	
+<span class="linenos">19</span>	<span class="k">static</span> <span class="n">State</span> <span class="o">*</span> <span class="nf">Instance</span><span class="p">();</span>
+<span class="linenos">20</span>	
+<span class="linenos">21</span>	<span class="k">virtual</span> <span class="kt">void</span> <span class="nf">handle</span><span class="p">(</span><span class="n">Context</span> <span class="o">*</span> <span class="n">c</span><span class="p">);</span>
+<span class="linenos">22</span>
+<span class="linenos">23</span><span class="k">private</span><span class="o">:</span>
+<span class="linenos">24</span>	<span class="n">ConcreteStateA</span><span class="p">();</span>
+<span class="linenos">25</span>	<span class="k">static</span> <span class="n">State</span> <span class="o">*</span> <span class="n">m_pState</span><span class="p">;</span>
+<span class="linenos">26</span><span class="p">};</span>
+<span class="linenos">27</span><span class="cp">#endif </span><span class="c1">// !defined(EA_84158F08_E96A_4bdb_89A1_4BE2E633C3EE__INCLUDED_)</span>
+</pre></div>
+</div>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="c1">///////////////////////////////////////////////////////////</span>
+<span class="linenos"> 2</span><span class="c1">//  ConcreteStateA.cpp</span>
+<span class="linenos"> 3</span><span class="c1">//  Implementation of the Class ConcreteStateA</span>
+<span class="linenos"> 4</span><span class="c1">//  Created on:      09-十月-2014 17:20:58</span>
+<span class="linenos"> 5</span><span class="c1">//  Original author: colin</span>
+<span class="linenos"> 6</span><span class="c1">///////////////////////////////////////////////////////////</span>
+<span class="linenos"> 7</span>
+<span class="linenos"> 8</span><span class="cp">#include</span> <span class="cpf">&quot;ConcreteStateA.h&quot;</span><span class="cp"></span>
+<span class="linenos"> 9</span><span class="cp">#include</span> <span class="cpf">&quot;ConcreteStateB.h&quot;</span><span class="cp"></span>
+<span class="linenos">10</span><span class="cp">#include</span> <span class="cpf">&quot;Context.h&quot;</span><span class="cp"></span>
+<span class="linenos">11</span><span class="cp">#include</span> <span class="cpf">&lt;iostream&gt;</span><span class="cp"></span>
+<span class="linenos">12</span><span class="k">using</span> <span class="k">namespace</span> <span class="nn">std</span><span class="p">;</span>
+<span class="linenos">13</span>
+<span class="linenos">14</span><span class="n">State</span> <span class="o">*</span> <span class="n">ConcreteStateA</span><span class="o">::</span><span class="n">m_pState</span> <span class="o">=</span> <span class="nb">NULL</span><span class="p">;</span>
+<span class="linenos">15</span><span class="n">ConcreteStateA</span><span class="o">::</span><span class="n">ConcreteStateA</span><span class="p">(){</span>
+<span class="linenos">16</span><span class="p">}</span>
+<span class="linenos">17</span>
+<span class="linenos">18</span><span class="n">ConcreteStateA</span><span class="o">::~</span><span class="n">ConcreteStateA</span><span class="p">(){</span>
+<span class="linenos">19</span><span class="p">}</span>
+<span class="linenos">20</span>
+<span class="linenos">21</span><span class="n">State</span> <span class="o">*</span> <span class="n">ConcreteStateA</span><span class="o">::</span><span class="n">Instance</span><span class="p">()</span>
+<span class="linenos">22</span><span class="p">{</span>
+<span class="linenos">23</span>	<span class="k">if</span> <span class="p">(</span> <span class="nb">NULL</span> <span class="o">==</span> <span class="n">m_pState</span><span class="p">)</span>
+<span class="linenos">24</span>	<span class="p">{</span>
+<span class="linenos">25</span>		<span class="n">m_pState</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ConcreteStateA</span><span class="p">();</span>
+<span class="linenos">26</span>	<span class="p">}</span>
+<span class="linenos">27</span>	<span class="k">return</span> <span class="n">m_pState</span><span class="p">;</span>
+<span class="linenos">28</span><span class="p">}</span>
+<span class="linenos">29</span>
+<span class="hll"><span class="linenos">30</span><span class="kt">void</span> <span class="n">ConcreteStateA</span><span class="o">::</span><span class="n">handle</span><span class="p">(</span><span class="n">Context</span> <span class="o">*</span> <span class="n">c</span><span class="p">){</span>
+</span><span class="hll"><span class="linenos">31</span>	<span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&quot;doing something in State A.</span><span class="se">\n</span><span class="s"> done,change state to B&quot;</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+</span><span class="hll"><span class="linenos">32</span>	<span class="n">c</span><span class="o">-&gt;</span><span class="n">changeState</span><span class="p">(</span><span class="n">ConcreteStateB</span><span class="o">::</span><span class="n">Instance</span><span class="p">());</span>
+</span><span class="hll"><span class="linenos">33</span><span class="p">}</span>
+</span></pre></div>
+</div>
+<p>运行结果：</p>
+<img alt="../_images/State_run.jpg" src="../_images/State_run.jpg" />
+</section>
+<section id="id8">
+<h2><a class="toc-backref" href="#id22"><span class="section-number">4.6. </span>模式分析</a><a class="headerlink" href="#id8" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>状态模式描述了对象状态的变化以及对象如何在每一种状态下表现出不同的行为。</p></li>
+<li><p>状态模式的关键是引入了一个抽象类来专门表示对象的状态，这个类我们叫做抽象状态类，而对象的每一种具体状态类都继承了该类，并在不同具体状态类中实现了不同状态的行为，包括各种状态之间的转换。</p></li>
+</ul>
+<p>在状态模式结构中需要理解环境类与抽象状态类的作用：</p>
+<ul class="simple">
+<li><p>环境类实际上就是拥有状态的对象，环境类有时候可以充当状态管理器(State Manager)的角色，可以在环境类中对状态进行切换操作。</p></li>
+<li><p>抽象状态类可以是抽象类，也可以是接口，不同状态类就是继承这个父类的不同子类，状态类的产生是由于环境类存在多个状态，同时还满足两个条件： 这些状态经常需要切换，在不同的状态下对象的行为不同。因此可以将不同对象下的行为单独提取出来封装在具体的状态类中，使得环境类对象在其内部状态改变时可以改变它的行为，对象看起来似乎修改了它的类，而实际上是由于切换到不同的具体状态类实现的。由于环境类可以设置为任一具体状态类，因此它针对抽象状态类进行编程，在程序运行时可以将任一具体状态类的对象设置到环境类中，从而使得环境类可以改变内部状态，并且改变行为。</p></li>
+</ul>
+</section>
+<section id="id9">
+<h2><a class="toc-backref" href="#id23"><span class="section-number">4.7. </span>实例</a><a class="headerlink" href="#id9" title="Permalink to this headline">¶</a></h2>
+<p>TCPConnection</p>
+<p>这个示例来自《设计模式》,展示了一个简化版的TCP协议实现;
+TCP连接的状态有多种可能，状态之间的转换有相应的逻辑前提；
+这是使用状态模式的场合；</p>
+<p>状态图：</p>
+<img alt="_static/State2.png" src="_static/State2.png" />
+<p>结构图：</p>
+<img alt="../_images/State_eg.jpg" src="../_images/State_eg.jpg" />
+<p>时序图：</p>
+<img alt="../_images/seq_State_eg.jpg" src="../_images/seq_State_eg.jpg" />
+</section>
+<section id="id10">
+<h2><a class="toc-backref" href="#id24"><span class="section-number">4.8. </span>优点</a><a class="headerlink" href="#id10" title="Permalink to this headline">¶</a></h2>
+<p>状态模式的优点</p>
+<ul class="simple">
+<li><p>封装了转换规则。</p></li>
+<li><p>枚举可能的状态，在枚举状态之前需要确定状态种类。</p></li>
+<li><p>将所有与某个状态有关的行为放到一个类中，并且可以方便地增加新的状态，只需要改变对象状态即可改变对象的行为。</p></li>
+<li><p>允许状态转换逻辑与状态对象合成一体，而不是某一个巨大的条件语句块。</p></li>
+<li><p>可以让多个环境对象共享一个状态对象，从而减少系统中对象的个数。</p></li>
+</ul>
+</section>
+<section id="id11">
+<h2><a class="toc-backref" href="#id25"><span class="section-number">4.9. </span>缺点</a><a class="headerlink" href="#id11" title="Permalink to this headline">¶</a></h2>
+<p>状态模式的缺点</p>
+<ul class="simple">
+<li><p>状态模式的使用必然会增加系统类和对象的个数。</p></li>
+<li><p>状态模式的结构与实现都较为复杂，如果使用不当将导致程序结构和代码的混乱。</p></li>
+<li><p>状态模式对“开闭原则”的支持并不太好，对于可以切换状态的状态模式，增加新的状态类需要修改那些负责状态转换的源代码，否则无法切换到新增状态；而且修改某个状态类的行为也需修改对应类的源代码。</p></li>
+</ul>
+</section>
+<section id="id12">
+<h2><a class="toc-backref" href="#id26"><span class="section-number">4.10. </span>适用环境</a><a class="headerlink" href="#id12" title="Permalink to this headline">¶</a></h2>
+<p>在以下情况下可以使用状态模式：</p>
+<ul class="simple">
+<li><p>对象的行为依赖于它的状态（属性）并且可以根据它的状态改变而改变它的相关行为。</p></li>
+<li><p>代码中包含大量与对象状态有关的条件语句，这些条件语句的出现，会导致代码的可维护性和灵活性变差，不能方便地增加和删除状态，使客户类与类库之间的耦合增强。在这些条件语句中包含了对象的行为，而且这些条件对应于对象的各种状态。</p></li>
+</ul>
+</section>
+<section id="id13">
+<h2><a class="toc-backref" href="#id27"><span class="section-number">4.11. </span>模式应用</a><a class="headerlink" href="#id13" title="Permalink to this headline">¶</a></h2>
+<p>状态模式在工作流或游戏等类型的软件中得以广泛使用，甚至可以用于这些系统的核心功能设计，如在政府OA办公系统中，一个批文的状态有多种：尚未办理；正在办理；正在批示；正在审核；已经完成等各种状态，而且批文状态不同时对批文的操作也有所差异。使用状态模式可以描述工作流对象（如批文）的状态转换以及不同状态下它所具有的行为。</p>
+</section>
+<section id="id14">
+<h2><a class="toc-backref" href="#id28"><span class="section-number">4.12. </span>模式扩展</a><a class="headerlink" href="#id14" title="Permalink to this headline">¶</a></h2>
+<p>共享状态</p>
+<ul class="simple">
+<li><p>在有些情况下多个环境对象需要共享同一个状态，如果希望在系统中实现多个环境对象实例共享一个或多个状态对象，那么需要将这些状态对象定义为环境的静态成员对象。</p></li>
+</ul>
+<dl class="simple">
+<dt>简单状态模式与可切换状态的状态模式</dt><dd><ol class="arabic simple">
+<li><p>简单状态模式：简单状态模式是指状态都相互独立，状态之间无须进行转换的状态模式，这是最简单的一种状态模式。对于这种状态模式，每个状态类都封装与状态相关的操作，而无须关心状态的切换，可以在客户端直接实例化状态类，然后将状态对象设置到环境类中。如果是这种简单的状态模式，它遵循“开闭原则”，在客户端可以针对抽象状态类进行编程，而将具体状态类写到配置文件中，同时增加新的状态类对原有系统也不造成任何影响。</p></li>
+<li><p>可切换状态的状态模式：大多数的状态模式都是可以切换状态的状态模式，在实现状态切换时，在具体状态类内部需要调用环境类Context的setState()方法进行状态的转换操作，在具体状态类中可以调用到环境类的方法，因此状态类与环境类之间通常还存在关联关系或者依赖关系。通过在状态类中引用环境类的对象来回调环境类的setState()方法实现状态的切换。在这种可以切换状态的状态模式中，增加新的状态类可能需要修改其他某些状态类甚至环境类的源代码，否则系统无法切换到新增状态。</p></li>
+</ol>
+</dd>
+</dl>
+</section>
+<section id="id15">
+<h2><a class="toc-backref" href="#id29"><span class="section-number">4.13. </span>总结</a><a class="headerlink" href="#id15" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>状态模式允许一个对象在其内部状态改变时改变它的行为，对象看起来似乎修改了它的类。其别名为状态对象，状态模式是一种对象行为型模式。</p></li>
+<li><p>状态模式包含三个角色：环境类又称为上下文类，它是拥有状态的对象，在环境类中维护一个抽象状态类State的实例，这个实例定义当前状态，在具体实现时，它是一个State子类的对象，可以定义初始状态；抽象状态类用于定义一个接口以封装与环境类的一个特定状态相关的行为；具体状态类是抽象状态类的子类，每一个子类实现一个与环境类的一个状态相关的行为，每一个具体状态类对应环境的一个具体状态，不同的具体状态类其行为有所不同。</p></li>
+<li><p>状态模式描述了对象状态的变化以及对象如何在每一种状态下表现出不同的行为。</p></li>
+<li><p>状态模式的主要优点在于封装了转换规则，并枚举可能的状态，它将所有与某个状态有关的行为放到一个类中，并且可以方便地增加新的状态，只需要改变对象状态即可改变对象的行为，还可以让多个环境对象共享一个状态对象，从而减少系统中对象的个数；其缺点在于使用状态模式会增加系统类和对象的个数，且状态模式的结构与实现都较为复杂，如果使用不当将导致程序结构和代码的混乱，对于可以切换状态的状态模式不满足“开闭原则”的要求。</p></li>
+<li><p>状态模式适用情况包括：对象的行为依赖于它的状态（属性）并且可以根据它的状态改变而改变它的相关行为；代码中包含大量与对象状态有关的条件语句，这些条件语句的出现，会导致代码的可维护性和灵活性变差，不能方便地增加和删除状态，使客户类与类库之间的耦合增强。</p></li>
+</ul>
+</section>
+</section>
+
+
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="strategy.html" class="btn btn-neutral float-right" title="5. 策略模式">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="observer.html" class="btn btn-neutral" title="3. 观察者模式"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2014, Colin http://blog.me115.com.
+    </p>
+  </div>
+
+  <a href="https://github.com/snide/sphinx_rtd_theme">Sphinx theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../',
+            VERSION:'0.1',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="../_static/documentation_options.js"></script>
+      <script type="text/javascript" src="../_static/jquery.js"></script>
+      <script type="text/javascript" src="../_static/underscore.js"></script>
+      <script type="text/javascript" src="../_static/doctools.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

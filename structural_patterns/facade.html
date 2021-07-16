@@ -1,0 +1,394 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>4. 外观模式 &mdash; Graphic Design Patterns</title>
+  
+
+  
+  
+
+  
+  <link href="../_static/css/font_lato_googleapi.css" type='text/css'>
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  
+
+  
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  
+    <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  
+        <link rel="index" title="Index"
+              href="../genindex.html"/>
+        <link rel="search" title="Search" href="../search.html"/>
+    <link rel="top" title="Graphic Design Patterns" href="../index.html"/>
+        <link rel="up" title="结构型模式" href="structural.html"/>
+        <link rel="next" title="5. 享元模式" href="flyweight.html"/>
+        <link rel="prev" title="3. 装饰模式" href="decorator.html"/> 
+
+  
+  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-nav-search">
+        
+          <a href="../index.html" class="fa fa-home"> Graphic Design Patterns</a>
+        
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+        
+        
+            <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../read_uml.html">看懂UML类图和时序图</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../read_uml.html#id1">从一个示例开始</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../read_uml.html#id2">类之间的关系</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../read_uml.html#id3">时序图</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../read_uml.html#id4">附录</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../creational_patterns/creational.html">创建型模式</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../creational_patterns/simple_factory.html">1. 简单工厂模式( Simple Factory Pattern )</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../creational_patterns/factory_method.html">2. 工厂方法模式(Factory Method Pattern)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../creational_patterns/abstract_factory.html">3. 抽象工厂模式(Abstract Factory)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../creational_patterns/builder.html">4. 建造者模式</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../creational_patterns/singleton.html">5. 单例模式</a></li>
+</ul>
+</li>
+<li class="toctree-l1 current"><a class="reference internal" href="structural.html">结构型模式</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="adapter.html">1. 适配器模式</a></li>
+<li class="toctree-l2"><a class="reference internal" href="bridge.html">2. 桥接模式</a></li>
+<li class="toctree-l2"><a class="reference internal" href="decorator.html">3. 装饰模式</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">4. 外观模式</a></li>
+<li class="toctree-l2"><a class="reference internal" href="flyweight.html">5. 享元模式</a></li>
+<li class="toctree-l2"><a class="reference internal" href="proxy.html">6. 代理模式</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../behavioral_patterns/behavioral.html">行为型模式</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../behavioral_patterns/command.html">1. 命令模式</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../behavioral_patterns/mediator.html">2. 中介者模式</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../behavioral_patterns/observer.html">3. 观察者模式</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../behavioral_patterns/state.html">4. 状态模式</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../behavioral_patterns/strategy.html">5. 策略模式</a></li>
+</ul>
+</li>
+</ul>
+
+        
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../index.html">Graphic Design Patterns</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../index.html">Docs</a> &raquo;</li>
+      
+          <li><a href="structural.html">结构型模式</a> &raquo;</li>
+      
+    <li><span class="section-number">4. </span>外观模式</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          <a href="../_sources/structural_patterns/facade.rst.txt" rel="nofollow"> View page source</a>
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document">
+            
+  <section id="facade">
+<span id="id1"></span><h1><a class="toc-backref" href="#id16"><span class="section-number">4. </span>外观模式</a><a class="headerlink" href="#facade" title="Permalink to this headline">¶</a></h1>
+<div class="contents topic" id="id2">
+<p class="topic-title">目录</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="#facade" id="id16">外观模式</a></p>
+<ul>
+<li><p><a class="reference internal" href="#id3" id="id17">模式动机</a></p></li>
+<li><p><a class="reference internal" href="#id4" id="id18">模式定义</a></p></li>
+<li><p><a class="reference internal" href="#id5" id="id19">模式结构</a></p></li>
+<li><p><a class="reference internal" href="#id6" id="id20">时序图</a></p></li>
+<li><p><a class="reference internal" href="#id7" id="id21">代码分析</a></p></li>
+<li><p><a class="reference internal" href="#id8" id="id22">模式分析</a></p></li>
+<li><p><a class="reference internal" href="#id9" id="id23">实例</a></p></li>
+<li><p><a class="reference internal" href="#id10" id="id24">优点</a></p></li>
+<li><p><a class="reference internal" href="#id11" id="id25">缺点</a></p></li>
+<li><p><a class="reference internal" href="#id12" id="id26">适用环境</a></p></li>
+<li><p><a class="reference internal" href="#id13" id="id27">模式应用</a></p></li>
+<li><p><a class="reference internal" href="#id14" id="id28">模式扩展</a></p></li>
+<li><p><a class="reference internal" href="#id15" id="id29">总结</a></p></li>
+</ul>
+</li>
+</ul>
+</div>
+<section id="id3">
+<h2><a class="toc-backref" href="#id17"><span class="section-number">4.1. </span>模式动机</a><a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="id4">
+<h2><a class="toc-backref" href="#id18"><span class="section-number">4.2. </span>模式定义</a><a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h2>
+<p>外观模式(Facade Pattern)：外部与一个子系统的通信必须通过一个统一的外观对象进行，为子系统中的一组接口提供一个一致的界面，外观模式定义了一个高层接口，这个接口使得这一子系统更加容易使用。外观模式又称为门面模式，它是一种对象结构型模式。</p>
+</section>
+<section id="id5">
+<h2><a class="toc-backref" href="#id19"><span class="section-number">4.3. </span>模式结构</a><a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h2>
+<p>外观模式包含如下角色：</p>
+<ul class="simple">
+<li><p>Facade: 外观角色</p></li>
+<li><p>SubSystem:子系统角色</p></li>
+</ul>
+<img alt="../_images/Facade.jpg" src="../_images/Facade.jpg" />
+</section>
+<section id="id6">
+<h2><a class="toc-backref" href="#id20"><span class="section-number">4.4. </span>时序图</a><a class="headerlink" href="#id6" title="Permalink to this headline">¶</a></h2>
+<img alt="../_images/seq_Facade.jpg" src="../_images/seq_Facade.jpg" />
+</section>
+<section id="id7">
+<h2><a class="toc-backref" href="#id21"><span class="section-number">4.5. </span>代码分析</a><a class="headerlink" href="#id7" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="cp">#include</span> <span class="cpf">&lt;iostream&gt;</span><span class="cp"></span>
+<span class="linenos"> 2</span><span class="cp">#include</span> <span class="cpf">&quot;Facade.h&quot;</span><span class="cp"></span>
+<span class="linenos"> 3</span><span class="k">using</span> <span class="k">namespace</span> <span class="nn">std</span><span class="p">;</span>
+<span class="linenos"> 4</span>
+<span class="linenos"> 5</span><span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">int</span> <span class="n">argc</span><span class="p">,</span> <span class="kt">char</span> <span class="o">*</span><span class="n">argv</span><span class="p">[])</span>
+<span class="linenos"> 6</span><span class="p">{</span>
+<span class="hll"><span class="linenos"> 7</span>	<span class="n">Facade</span> <span class="n">fa</span><span class="p">;</span>
+</span><span class="hll"><span class="linenos"> 8</span>	<span class="n">fa</span><span class="p">.</span><span class="n">wrapOpration</span><span class="p">();</span>
+</span><span class="linenos"> 9</span>	
+<span class="linenos">10</span>	<span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="linenos">11</span><span class="p">}</span>
+</pre></div>
+</div>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="c1">///////////////////////////////////////////////////////////</span>
+<span class="linenos"> 2</span><span class="c1">//  Facade.h</span>
+<span class="linenos"> 3</span><span class="c1">//  Implementation of the Class Facade</span>
+<span class="linenos"> 4</span><span class="c1">//  Created on:      06-十月-2014 19:10:44</span>
+<span class="linenos"> 5</span><span class="c1">//  Original author: colin</span>
+<span class="linenos"> 6</span><span class="c1">///////////////////////////////////////////////////////////</span>
+<span class="linenos"> 7</span>
+<span class="linenos"> 8</span><span class="cp">#if !defined(EA_FD130A87_92A9_4168_9B33_7A925C47AFD5__INCLUDED_)</span>
+<span class="linenos"> 9</span><span class="cp">#define EA_FD130A87_92A9_4168_9B33_7A925C47AFD5__INCLUDED_</span>
+<span class="linenos">10</span>
+<span class="linenos">11</span><span class="cp">#include</span> <span class="cpf">&quot;SystemC.h&quot;</span><span class="cp"></span>
+<span class="linenos">12</span><span class="cp">#include</span> <span class="cpf">&quot;SystemA.h&quot;</span><span class="cp"></span>
+<span class="linenos">13</span><span class="cp">#include</span> <span class="cpf">&quot;SystemB.h&quot;</span><span class="cp"></span>
+<span class="linenos">14</span>
+<span class="linenos">15</span><span class="k">class</span> <span class="nc">Facade</span>
+<span class="linenos">16</span><span class="p">{</span>
+<span class="linenos">17</span>
+<span class="linenos">18</span><span class="k">public</span><span class="o">:</span>
+<span class="linenos">19</span>	<span class="n">Facade</span><span class="p">();</span>
+<span class="linenos">20</span>	<span class="k">virtual</span> <span class="o">~</span><span class="n">Facade</span><span class="p">();</span>
+<span class="linenos">21</span>
+<span class="linenos">22</span>	<span class="kt">void</span> <span class="nf">wrapOpration</span><span class="p">();</span>
+<span class="linenos">23</span>
+<span class="linenos">24</span><span class="k">private</span><span class="o">:</span>
+<span class="linenos">25</span>	<span class="n">SystemC</span> <span class="o">*</span><span class="n">m_SystemC</span><span class="p">;</span>
+<span class="linenos">26</span>	<span class="n">SystemA</span> <span class="o">*</span><span class="n">m_SystemA</span><span class="p">;</span>
+<span class="linenos">27</span>	<span class="n">SystemB</span> <span class="o">*</span><span class="n">m_SystemB</span><span class="p">;</span>
+<span class="linenos">28</span><span class="p">};</span>
+<span class="linenos">29</span><span class="cp">#endif </span><span class="c1">// !defined(EA_FD130A87_92A9_4168_9B33_7A925C47AFD5__INCLUDED_)</span>
+</pre></div>
+</div>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="c1">///////////////////////////////////////////////////////////</span>
+<span class="linenos"> 2</span><span class="c1">//  Facade.cpp</span>
+<span class="linenos"> 3</span><span class="c1">//  Implementation of the Class Facade</span>
+<span class="linenos"> 4</span><span class="c1">//  Created on:      06-十月-2014 19:10:44</span>
+<span class="linenos"> 5</span><span class="c1">//  Original author: colin</span>
+<span class="linenos"> 6</span><span class="c1">///////////////////////////////////////////////////////////</span>
+<span class="linenos"> 7</span>
+<span class="linenos"> 8</span><span class="cp">#include</span> <span class="cpf">&quot;Facade.h&quot;</span><span class="cp"></span>
+<span class="linenos"> 9</span>
+<span class="linenos">10</span>
+<span class="linenos">11</span><span class="n">Facade</span><span class="o">::</span><span class="n">Facade</span><span class="p">(){</span>
+<span class="linenos">12</span>	<span class="n">m_SystemA</span>  <span class="o">=</span> <span class="k">new</span> <span class="n">SystemA</span><span class="p">();</span>
+<span class="linenos">13</span>	<span class="n">m_SystemB</span> <span class="o">=</span> <span class="k">new</span> <span class="n">SystemB</span><span class="p">();</span>
+<span class="linenos">14</span>	<span class="n">m_SystemC</span> <span class="o">=</span> <span class="k">new</span> <span class="n">SystemC</span><span class="p">();</span>
+<span class="linenos">15</span><span class="p">}</span>
+<span class="linenos">16</span>
+<span class="linenos">17</span>
+<span class="linenos">18</span>
+<span class="linenos">19</span><span class="n">Facade</span><span class="o">::~</span><span class="n">Facade</span><span class="p">(){</span>
+<span class="linenos">20</span>	<span class="k">delete</span> <span class="n">m_SystemA</span><span class="p">;</span>
+<span class="linenos">21</span>	<span class="k">delete</span> <span class="n">m_SystemB</span><span class="p">;</span>
+<span class="linenos">22</span>	<span class="k">delete</span> <span class="n">m_SystemC</span><span class="p">;</span>
+<span class="linenos">23</span><span class="p">}</span>
+<span class="linenos">24</span>
+<span class="hll"><span class="linenos">25</span><span class="kt">void</span> <span class="n">Facade</span><span class="o">::</span><span class="n">wrapOpration</span><span class="p">(){</span>
+</span><span class="hll"><span class="linenos">26</span>	<span class="n">m_SystemA</span><span class="o">-&gt;</span><span class="n">operationA</span><span class="p">();</span>
+</span><span class="hll"><span class="linenos">27</span>	<span class="n">m_SystemB</span><span class="o">-&gt;</span><span class="n">operationB</span><span class="p">();</span>
+</span><span class="hll"><span class="linenos">28</span>	<span class="n">m_SystemC</span><span class="o">-&gt;</span><span class="n">opeartionC</span><span class="p">();</span>
+</span><span class="hll"><span class="linenos">29</span><span class="p">}</span>
+</span></pre></div>
+</div>
+<p>运行结果：</p>
+<img alt="../_images/Facade_run.jpg" src="../_images/Facade_run.jpg" />
+</section>
+<section id="id8">
+<h2><a class="toc-backref" href="#id22"><span class="section-number">4.6. </span>模式分析</a><a class="headerlink" href="#id8" title="Permalink to this headline">¶</a></h2>
+<p>根据“单一职责原则”，在软件中将一个系统划分为若干个子系统有利于降低整个系统的复杂性，一个常见的设计目标是使子系统间的通信和相互依赖关系达到最小，而达到该目标的途径之一就是引入一个外观对象，它为子系统的访问提供了一个简单而单一的入口。
+-外观模式也是“迪米特法则”的体现，通过引入一个新的外观类可以降低原有系统的复杂度，同时降低客户类与子系统类的耦合度。
+- 外观模式要求一个子系统的外部与其内部的通信通过一个统一的外观对象进行，外观类将客户端与子系统的内部复杂性分隔开，使得客户端只需要与外观对象打交道，而不需要与子系统内部的很多对象打交道。
+-外观模式的目的在于降低系统的复杂程度。
+-外观模式从很大程度上提高了客户端使用的便捷性，使得客户端无须关心子系统的工作细节，通过外观角色即可调用相关功能。</p>
+</section>
+<section id="id9">
+<h2><a class="toc-backref" href="#id23"><span class="section-number">4.7. </span>实例</a><a class="headerlink" href="#id9" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="id10">
+<h2><a class="toc-backref" href="#id24"><span class="section-number">4.8. </span>优点</a><a class="headerlink" href="#id10" title="Permalink to this headline">¶</a></h2>
+<p>外观模式的优点</p>
+<ul class="simple">
+<li><p>对客户屏蔽子系统组件，减少了客户处理的对象数目并使得子系统使用起来更加容易。通过引入外观模式，客户代码将变得很简单，与之关联的对象也很少。</p></li>
+<li><p>实现了子系统与客户之间的松耦合关系，这使得子系统的组件变化不会影响到调用它的客户类，只需要调整外观类即可。</p></li>
+<li><p>降低了大型软件系统中的编译依赖性，并简化了系统在不同平台之间的移植过程，因为编译一个子系统一般不需要编译所有其他的子系统。一个子系统的修改对其他子系统没有任何影响，而且子系统内部变化也不会影响到外观对象。</p></li>
+<li><p>只是提供了一个访问子系统的统一入口，并不影响用户直接使用子系统类。</p></li>
+</ul>
+</section>
+<section id="id11">
+<h2><a class="toc-backref" href="#id25"><span class="section-number">4.9. </span>缺点</a><a class="headerlink" href="#id11" title="Permalink to this headline">¶</a></h2>
+<p>外观模式的缺点</p>
+<ul class="simple">
+<li><p>不能很好地限制客户使用子系统类，如果对客户访问子系统类做太多的限制则减少了可变性和灵活性。</p></li>
+<li><p>在不引入抽象外观类的情况下，增加新的子系统可能需要修改外观类或客户端的源代码，违背了“开闭原则”。</p></li>
+</ul>
+</section>
+<section id="id12">
+<h2><a class="toc-backref" href="#id26"><span class="section-number">4.10. </span>适用环境</a><a class="headerlink" href="#id12" title="Permalink to this headline">¶</a></h2>
+<p>在以下情况下可以使用外观模式：</p>
+<ul class="simple">
+<li><p>当要为一个复杂子系统提供一个简单接口时可以使用外观模式。该接口可以满足大多数用户的需求，而且用户也可以越过外观类直接访问子系统。</p></li>
+<li><p>客户程序与多个子系统之间存在很大的依赖性。引入外观类将子系统与客户以及其他子系统解耦，可以提高子系统的独立性和可移植性。</p></li>
+<li><p>在层次化结构中，可以使用外观模式定义系统中每一层的入口，层与层之间不直接产生联系，而通过外观类建立联系，降低层之间的耦合度。</p></li>
+</ul>
+</section>
+<section id="id13">
+<h2><a class="toc-backref" href="#id27"><span class="section-number">4.11. </span>模式应用</a><a class="headerlink" href="#id13" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="id14">
+<h2><a class="toc-backref" href="#id28"><span class="section-number">4.12. </span>模式扩展</a><a class="headerlink" href="#id14" title="Permalink to this headline">¶</a></h2>
+<dl class="simple">
+<dt>一个系统有多个外观类</dt><dd><p>在外观模式中，通常只需要一个外观类，并且此外观类只有一个实例，换言之它是一个单例类。在很多情况下为了节约系统资源，一般将外观类设计为单例类。当然这并不意味着在整个系统里只能有一个外观类，在一个系统中可以设计多个外观类，每个外观类都负责和一些特定的子系统交互，向用户提供相应的业务功能。</p>
+</dd>
+<dt>不要试图通过外观类为子系统增加新行为</dt><dd><p>不要通过继承一个外观类在子系统中加入新的行为，这种做法是错误的。外观模式的用意是为子系统提供一个集中化和简化的沟通渠道，而不是向子系统加入新的行为，新的行为的增加应该通过修改原有子系统类或增加新的子系统类来实现，不能通过外观类来实现。</p>
+</dd>
+<dt>外观模式与迪米特法则</dt><dd><p>外观模式创造出一个外观对象，将客户端所涉及的属于一个子系统的协作伙伴的数量减到最少，使得客户端与子系统内部的对象的相互作用被外观对象所取代。外观类充当了客户类与子系统类之间的“第三者”，降低了客户类与子系统类之间的耦合度，外观模式就是实现代码重构以便达到“迪米特法则”要求的一个强有力的武器。</p>
+</dd>
+<dt>抽象外观类的引入</dt><dd><p>外观模式最大的缺点在于违背了“开闭原则”，当增加新的子系统或者移除子系统时需要修改外观类，可以通过引入抽象外观类在一定程度上解决该问题，客户端针对抽象外观类进行编程。对于新的业务需求，不修改原有外观类，而对应增加一个新的具体外观类，由新的具体外观类来关联新的子系统对象，同时通过修改配置文件来达到不修改源代码并更换外观类的目的。</p>
+</dd>
+</dl>
+</section>
+<section id="id15">
+<h2><a class="toc-backref" href="#id29"><span class="section-number">4.13. </span>总结</a><a class="headerlink" href="#id15" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>在外观模式中，外部与一个子系统的通信必须通过一个统一的外观对象进行，为子系统中的一组接口提供一个一致的界面，外观模式定义了一个高层接口，这个接口使得这一子系统更加容易使用。外观模式又称为门面模式，它是一种对象结构型模式。</p></li>
+<li><p>外观模式包含两个角色：外观角色是在客户端直接调用的角色，在外观角色中可以知道相关的(一个或者多个)子系统的功能和责任，它将所有从客户端发来的请求委派到相应的子系统去，传递给相应的子系统对象处理；在软件系统中可以同时有一个或者多个子系统角色，每一个子系统可以不是一个单独的类，而是一个类的集合，它实现子系统的功能。</p></li>
+<li><p>外观模式要求一个子系统的外部与其内部的通信通过一个统一的外观对象进行，外观类将客户端与子系统的内部复杂性分隔开，使得客户端只需要与外观对象打交道，而不需要与子系统内部的很多对象打交道。</p></li>
+<li><p>外观模式主要优点在于对客户屏蔽子系统组件，减少了客户处理的对象数目并使得子系统使用起来更加容易，它实现了子系统与客户之间的松耦合关系，并降低了大型软件系统中的编译依赖性，简化了系统在不同平台之间的移植过程；其缺点在于不能很好地限制客户使用子系统类，而且在不引入抽象外观类的情况下，增加新的子系统可能需要修改外观类或客户端的源代码，违背了“开闭原则”。</p></li>
+<li><p>外观模式适用情况包括：要为一个复杂子系统提供一个简单接口；客户程序与多个子系统之间存在很大的依赖性；在层次化结构中，需要定义系统中每一层的入口，使得层与层之间不直接产生联系。</p></li>
+</ul>
+</section>
+</section>
+
+
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="flyweight.html" class="btn btn-neutral float-right" title="5. 享元模式">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="decorator.html" class="btn btn-neutral" title="3. 装饰模式"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2014, Colin http://blog.me115.com.
+    </p>
+  </div>
+
+  <a href="https://github.com/snide/sphinx_rtd_theme">Sphinx theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../',
+            VERSION:'0.1',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="../_static/documentation_options.js"></script>
+      <script type="text/javascript" src="../_static/jquery.js"></script>
+      <script type="text/javascript" src="../_static/underscore.js"></script>
+      <script type="text/javascript" src="../_static/doctools.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

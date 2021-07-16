@@ -1,0 +1,402 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>3. 抽象工厂模式(Abstract Factory) &mdash; Graphic Design Patterns</title>
+  
+
+  
+  
+
+  
+  <link href="../_static/css/font_lato_googleapi.css" type='text/css'>
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  
+
+  
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  
+    <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  
+        <link rel="index" title="Index"
+              href="../genindex.html"/>
+        <link rel="search" title="Search" href="../search.html"/>
+    <link rel="top" title="Graphic Design Patterns" href="../index.html"/>
+        <link rel="up" title="创建型模式" href="creational.html"/>
+        <link rel="next" title="4. 建造者模式" href="builder.html"/>
+        <link rel="prev" title="2. 工厂方法模式(Factory Method Pattern)" href="factory_method.html"/> 
+
+  
+  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-nav-search">
+        
+          <a href="../index.html" class="fa fa-home"> Graphic Design Patterns</a>
+        
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+        
+        
+            <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../read_uml.html">看懂UML类图和时序图</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../read_uml.html#id1">从一个示例开始</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../read_uml.html#id2">类之间的关系</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../read_uml.html#id3">时序图</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../read_uml.html#id4">附录</a></li>
+</ul>
+</li>
+<li class="toctree-l1 current"><a class="reference internal" href="creational.html">创建型模式</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="simple_factory.html">1. 简单工厂模式( Simple Factory Pattern )</a></li>
+<li class="toctree-l2"><a class="reference internal" href="factory_method.html">2. 工厂方法模式(Factory Method Pattern)</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">3. 抽象工厂模式(Abstract Factory)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="builder.html">4. 建造者模式</a></li>
+<li class="toctree-l2"><a class="reference internal" href="singleton.html">5. 单例模式</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../structural_patterns/structural.html">结构型模式</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../structural_patterns/adapter.html">1. 适配器模式</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../structural_patterns/bridge.html">2. 桥接模式</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../structural_patterns/decorator.html">3. 装饰模式</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../structural_patterns/facade.html">4. 外观模式</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../structural_patterns/flyweight.html">5. 享元模式</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../structural_patterns/proxy.html">6. 代理模式</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../behavioral_patterns/behavioral.html">行为型模式</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../behavioral_patterns/command.html">1. 命令模式</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../behavioral_patterns/mediator.html">2. 中介者模式</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../behavioral_patterns/observer.html">3. 观察者模式</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../behavioral_patterns/state.html">4. 状态模式</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../behavioral_patterns/strategy.html">5. 策略模式</a></li>
+</ul>
+</li>
+</ul>
+
+        
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../index.html">Graphic Design Patterns</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../index.html">Docs</a> &raquo;</li>
+      
+          <li><a href="creational.html">创建型模式</a> &raquo;</li>
+      
+    <li><span class="section-number">3. </span>抽象工厂模式(Abstract Factory)</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          <a href="../_sources/creational_patterns/abstract_factory.rst.txt" rel="nofollow"> View page source</a>
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document">
+            
+  <section id="abstract-factory">
+<h1><a class="toc-backref" href="#id17"><span class="section-number">3. </span>抽象工厂模式(Abstract Factory)</a><a class="headerlink" href="#abstract-factory" title="Permalink to this headline">¶</a></h1>
+<div class="contents topic" id="id1">
+<p class="topic-title">目录</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="#abstract-factory" id="id17">抽象工厂模式(Abstract Factory)</a></p>
+<ul>
+<li><p><a class="reference internal" href="#id2" id="id18">模式动机</a></p></li>
+<li><p><a class="reference internal" href="#id3" id="id19">模式定义</a></p></li>
+<li><p><a class="reference internal" href="#id4" id="id20">模式结构</a></p></li>
+<li><p><a class="reference internal" href="#id5" id="id21">时序图</a></p></li>
+<li><p><a class="reference internal" href="#id6" id="id22">代码分析</a></p></li>
+<li><p><a class="reference internal" href="#id7" id="id23">模式分析</a></p></li>
+<li><p><a class="reference internal" href="#id8" id="id24">实例</a></p></li>
+<li><p><a class="reference internal" href="#id9" id="id25">优点</a></p></li>
+<li><p><a class="reference internal" href="#id10" id="id26">缺点</a></p></li>
+<li><p><a class="reference internal" href="#id11" id="id27">适用环境</a></p></li>
+<li><p><a class="reference internal" href="#id12" id="id28">模式应用</a></p></li>
+<li><p><a class="reference internal" href="#id13" id="id29">模式扩展</a></p>
+<ul>
+<li><p><a class="reference internal" href="#id14" id="id30">“开闭原则”的倾斜性</a></p></li>
+<li><p><a class="reference internal" href="#id15" id="id31">工厂模式的退化</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#id16" id="id32">总结</a></p></li>
+</ul>
+</li>
+</ul>
+</div>
+<section id="id2">
+<h2><a class="toc-backref" href="#id18"><span class="section-number">3.1. </span>模式动机</a><a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
+<ul>
+<li><p>在工厂方法模式中具体工厂负责生产具体的产品，每一个具体工厂对应一种具体产品，工厂方法也具有唯一性，一般情况下，一个具体工厂中只有一个工厂方法或者一组重载的工厂方法。但是有时候我们需要一个工厂可以提供多个产品对象，而不是单一的产品对象。</p>
+<blockquote>
+<div><p>为了更清晰地理解工厂方法模式，需要先引入两个概念：</p>
+<ul class="simple">
+<li><p><strong>产品等级结构</strong> ：产品等级结构即产品的继承结构，如一个抽象类是电视机，其子类有海尔电视机、海信电视机、TCL电视机，则抽象电视机与具体品牌的电视机之间构成了一个产品等级结构，抽象电视机是父类，而具体品牌的电视机是其子类。</p></li>
+<li><p><strong>产品族</strong> ：在抽象工厂模式中，产品族是指由同一个工厂生产的，位于不同产品等级结构中的一组产品，如海尔电器工厂生产的海尔电视机、海尔电冰箱，海尔电视机位于电视机产品等级结构中，海尔电冰箱位于电冰箱产品等级结构中。</p></li>
+</ul>
+</div></blockquote>
+</li>
+<li><p>当系统所提供的工厂所需生产的具体产品并不是一个简单的对象，而是多个位于不同产品等级结构中属于不同类型的具体产品时需要使用抽象工厂模式。</p></li>
+<li><p>抽象工厂模式是所有形式的工厂模式中最为抽象和最具一般性的一种形态。</p></li>
+<li><p>抽象工厂模式与工厂方法模式最大的区别在于，工厂方法模式针对的是一个产品等级结构，而抽象工厂模式则需要面对多个产品等级结构，一个工厂等级结构可以负责多个不同产品等级结构中的产品对象的创建 。当一个工厂等级结构可以创建出分属于不同产品等级结构的一个产品族中的所有对象时，抽象工厂模式比工厂方法模式更为简单、有效率。</p></li>
+</ul>
+</section>
+<section id="id3">
+<h2><a class="toc-backref" href="#id19"><span class="section-number">3.2. </span>模式定义</a><a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h2>
+<p>抽象工厂模式(Abstract Factory Pattern)：提供一个创建一系列相关或相互依赖对象的接口，而无须指定它们具体的类。抽象工厂模式又称为Kit模式，属于对象创建型模式。</p>
+</section>
+<section id="id4">
+<h2><a class="toc-backref" href="#id20"><span class="section-number">3.3. </span>模式结构</a><a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h2>
+<p>抽象工厂模式包含如下角色：</p>
+<ul class="simple">
+<li><p>AbstractFactory：抽象工厂</p></li>
+<li><p>ConcreteFactory：具体工厂</p></li>
+<li><p>AbstractProduct：抽象产品</p></li>
+<li><p>Product：具体产品</p></li>
+</ul>
+<img alt="../_images/AbatractFactory.jpg" src="../_images/AbatractFactory.jpg" />
+</section>
+<section id="id5">
+<h2><a class="toc-backref" href="#id21"><span class="section-number">3.4. </span>时序图</a><a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h2>
+<img alt="../_images/seq_AbatractFactory.jpg" src="../_images/seq_AbatractFactory.jpg" />
+</section>
+<section id="id6">
+<h2><a class="toc-backref" href="#id22"><span class="section-number">3.5. </span>代码分析</a><a class="headerlink" href="#id6" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="cp">#include</span> <span class="cpf">&lt;iostream&gt;</span><span class="cp"></span>
+<span class="linenos"> 2</span><span class="cp">#include</span> <span class="cpf">&quot;AbstractFactory.h&quot;</span><span class="cp"></span>
+<span class="linenos"> 3</span><span class="cp">#include</span> <span class="cpf">&quot;AbstractProductA.h&quot;</span><span class="cp"></span>
+<span class="linenos"> 4</span><span class="cp">#include</span> <span class="cpf">&quot;AbstractProductB.h&quot;</span><span class="cp"></span>
+<span class="linenos"> 5</span><span class="cp">#include</span> <span class="cpf">&quot;ConcreteFactory1.h&quot;</span><span class="cp"></span>
+<span class="linenos"> 6</span><span class="cp">#include</span> <span class="cpf">&quot;ConcreteFactory2.h&quot;</span><span class="cp"></span>
+<span class="linenos"> 7</span><span class="k">using</span> <span class="k">namespace</span> <span class="nn">std</span><span class="p">;</span>
+<span class="linenos"> 8</span>
+<span class="linenos"> 9</span><span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">int</span> <span class="n">argc</span><span class="p">,</span> <span class="kt">char</span> <span class="o">*</span><span class="n">argv</span><span class="p">[])</span>
+<span class="linenos">10</span><span class="p">{</span>
+<span class="hll"><span class="linenos">11</span>	<span class="n">AbstractFactory</span> <span class="o">*</span> <span class="n">fc</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ConcreteFactory1</span><span class="p">();</span>
+</span><span class="hll"><span class="linenos">12</span>	<span class="n">AbstractProductA</span> <span class="o">*</span> <span class="n">pa</span> <span class="o">=</span>  <span class="n">fc</span><span class="o">-&gt;</span><span class="n">createProductA</span><span class="p">();</span>
+</span><span class="hll"><span class="linenos">13</span>	<span class="n">AbstractProductB</span> <span class="o">*</span> <span class="n">pb</span> <span class="o">=</span> <span class="n">fc</span><span class="o">-&gt;</span><span class="n">createProductB</span><span class="p">();</span>
+</span><span class="hll"><span class="linenos">14</span>	<span class="n">pa</span><span class="o">-&gt;</span><span class="n">use</span><span class="p">();</span>
+</span><span class="hll"><span class="linenos">15</span>	<span class="n">pb</span><span class="o">-&gt;</span><span class="n">eat</span><span class="p">();</span>
+</span><span class="hll"><span class="linenos">16</span>	
+</span><span class="hll"><span class="linenos">17</span>	<span class="n">AbstractFactory</span> <span class="o">*</span> <span class="n">fc2</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ConcreteFactory2</span><span class="p">();</span>
+</span><span class="hll"><span class="linenos">18</span>	<span class="n">AbstractProductA</span> <span class="o">*</span> <span class="n">pa2</span> <span class="o">=</span>  <span class="n">fc2</span><span class="o">-&gt;</span><span class="n">createProductA</span><span class="p">();</span>
+</span><span class="hll"><span class="linenos">19</span>	<span class="n">AbstractProductB</span> <span class="o">*</span> <span class="n">pb2</span> <span class="o">=</span> <span class="n">fc2</span><span class="o">-&gt;</span><span class="n">createProductB</span><span class="p">();</span>
+</span><span class="hll"><span class="linenos">20</span>	<span class="n">pa2</span><span class="o">-&gt;</span><span class="n">use</span><span class="p">();</span>
+</span><span class="hll"><span class="linenos">21</span>	<span class="n">pb2</span><span class="o">-&gt;</span><span class="n">eat</span><span class="p">();</span>
+</span></pre></div>
+</div>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="c1">///////////////////////////////////////////////////////////</span>
+<span class="linenos"> 2</span><span class="c1">//  ConcreteFactory1.cpp</span>
+<span class="linenos"> 3</span><span class="c1">//  Implementation of the Class ConcreteFactory1</span>
+<span class="linenos"> 4</span><span class="c1">//  Created on:      02-十月-2014 15:04:11</span>
+<span class="linenos"> 5</span><span class="c1">//  Original author: colin</span>
+<span class="linenos"> 6</span><span class="c1">///////////////////////////////////////////////////////////</span>
+<span class="linenos"> 7</span>
+<span class="linenos"> 8</span><span class="cp">#include</span> <span class="cpf">&quot;ConcreteFactory1.h&quot;</span><span class="cp"></span>
+<span class="linenos"> 9</span><span class="cp">#include</span> <span class="cpf">&quot;ProductA1.h&quot;</span><span class="cp"></span>
+<span class="linenos">10</span><span class="cp">#include</span> <span class="cpf">&quot;ProductB1.h&quot;</span><span class="cp"></span>
+<span class="hll"><span class="linenos">11</span><span class="n">AbstractProductA</span> <span class="o">*</span> <span class="nf">ConcreteFactory1::createProductA</span><span class="p">(){</span>
+</span><span class="hll"><span class="linenos">12</span>	<span class="k">return</span> <span class="k">new</span> <span class="n">ProductA1</span><span class="p">();</span>
+</span><span class="hll"><span class="linenos">13</span><span class="p">}</span>
+</span><span class="hll"><span class="linenos">14</span>
+</span><span class="hll"><span class="linenos">15</span>
+</span><span class="hll"><span class="linenos">16</span><span class="n">AbstractProductB</span> <span class="o">*</span> <span class="nf">ConcreteFactory1::createProductB</span><span class="p">(){</span>
+</span><span class="hll"><span class="linenos">17</span>	<span class="k">return</span> <span class="k">new</span> <span class="n">ProductB1</span><span class="p">();</span>
+</span><span class="hll"><span class="linenos">18</span><span class="p">}</span>
+</span></pre></div>
+</div>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="c1">///////////////////////////////////////////////////////////</span>
+<span class="linenos"> 2</span><span class="c1">//  ProductA1.cpp</span>
+<span class="linenos"> 3</span><span class="c1">//  Implementation of the Class ProductA1</span>
+<span class="linenos"> 4</span><span class="c1">//  Created on:      02-十月-2014 15:04:17</span>
+<span class="linenos"> 5</span><span class="c1">//  Original author: colin</span>
+<span class="linenos"> 6</span><span class="c1">///////////////////////////////////////////////////////////</span>
+<span class="linenos"> 7</span>
+<span class="linenos"> 8</span><span class="cp">#include</span> <span class="cpf">&quot;ProductA1.h&quot;</span><span class="cp"></span>
+<span class="linenos"> 9</span><span class="cp">#include</span> <span class="cpf">&lt;iostream&gt;</span><span class="cp"></span>
+<span class="linenos">10</span><span class="k">using</span> <span class="k">namespace</span> <span class="nn">std</span><span class="p">;</span>
+<span class="hll"><span class="linenos">11</span><span class="kt">void</span> <span class="nf">ProductA1::use</span><span class="p">(){</span>
+</span><span class="hll"><span class="linenos">12</span>	<span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&quot;use Product A1&quot;</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+</span><span class="hll"><span class="linenos">13</span><span class="p">}</span>
+</span></pre></div>
+</div>
+<p>运行结果：</p>
+<img alt="../_images/AbatractFactory_run.jpg" src="../_images/AbatractFactory_run.jpg" />
+</section>
+<section id="id7">
+<h2><a class="toc-backref" href="#id23"><span class="section-number">3.6. </span>模式分析</a><a class="headerlink" href="#id7" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="id8">
+<h2><a class="toc-backref" href="#id24"><span class="section-number">3.7. </span>实例</a><a class="headerlink" href="#id8" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="id9">
+<h2><a class="toc-backref" href="#id25"><span class="section-number">3.8. </span>优点</a><a class="headerlink" href="#id9" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>抽象工厂模式隔离了具体类的生成，使得客户并不需要知道什么被创建。由于这种隔离，更换一个具体工厂就变得相对容易。所有的具体工厂都实现了抽象工厂中定义的那些公共接口，因此只需改变具体工厂的实例，就可以在某种程度上改变整个软件系统的行为。另外，应用抽象工厂模式可以实现高内聚低耦合的设计目的，因此抽象工厂模式得到了广泛的应用。</p></li>
+<li><p>当一个产品族中的多个对象被设计成一起工作时，它能够保证客户端始终只使用同一个产品族中的对象。这对一些需要根据当前环境来决定其行为的软件系统来说，是一种非常实用的设计模式。</p></li>
+<li><p>增加新的具体工厂和产品族很方便，无须修改已有系统，符合“开闭原则”。</p></li>
+</ul>
+</section>
+<section id="id10">
+<h2><a class="toc-backref" href="#id26"><span class="section-number">3.9. </span>缺点</a><a class="headerlink" href="#id10" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>在添加新的产品对象时，难以扩展抽象工厂来生产新种类的产品，这是因为在抽象工厂角色中规定了所有可能被创建的产品集合，要支持新种类的产品就意味着要对该接口进行扩展，而这将涉及到对抽象工厂角色及其所有子类的修改，显然会带来较大的不便。</p></li>
+<li><p>开闭原则的倾斜性（增加新的工厂和产品族容易，增加新的产品等级结构麻烦）。</p></li>
+</ul>
+</section>
+<section id="id11">
+<h2><a class="toc-backref" href="#id27"><span class="section-number">3.10. </span>适用环境</a><a class="headerlink" href="#id11" title="Permalink to this headline">¶</a></h2>
+<p>在以下情况下可以使用抽象工厂模式：</p>
+<ul class="simple">
+<li><p>一个系统不应当依赖于产品类实例如何被创建、组合和表达的细节，这对于所有类型的工厂模式都是重要的。</p></li>
+<li><p>系统中有多于一个的产品族，而每次只使用其中某一产品族。</p></li>
+<li><p>属于同一个产品族的产品将在一起使用，这一约束必须在系统的设计中体现出来。</p></li>
+<li><p>系统提供一个产品类的库，所有的产品以同样的接口出现，从而使客户端不依赖于具体实现。</p></li>
+</ul>
+</section>
+<section id="id12">
+<h2><a class="toc-backref" href="#id28"><span class="section-number">3.11. </span>模式应用</a><a class="headerlink" href="#id12" title="Permalink to this headline">¶</a></h2>
+<p>在很多软件系统中需要更换界面主题，要求界面中的按钮、文本框、背景色等一起发生改变时，可以使用抽象工厂模式进行设计。</p>
+</section>
+<section id="id13">
+<h2><a class="toc-backref" href="#id29"><span class="section-number">3.12. </span>模式扩展</a><a class="headerlink" href="#id13" title="Permalink to this headline">¶</a></h2>
+<section id="id14">
+<h3><a class="toc-backref" href="#id30">“开闭原则”的倾斜性</a><a class="headerlink" href="#id14" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><dl class="simple">
+<dt>“开闭原则”要求系统对扩展开放，对修改封闭，通过扩展达到增强其功能的目的。对于涉及到多个产品族与多个产品等级结构的系统，其功能增强包括两方面：</dt><dd><ol class="arabic simple">
+<li><p>增加产品族：对于增加新的产品族，工厂方法模式很好的支持了“开闭原则”，对于新增加的产品族，只需要对应增加一个新的具体工厂即可，对已有代码无须做任何修改。</p></li>
+<li><p>增加新的产品等级结构：对于增加新的产品等级结构，需要修改所有的工厂角色，包括抽象工厂类，在所有的工厂类中都需要增加生产新产品的方法，不能很好地支持“开闭原则”。</p></li>
+</ol>
+</dd>
+</dl>
+</li>
+<li><p>抽象工厂模式的这种性质称为“开闭原则”的倾斜性，抽象工厂模式以一种倾斜的方式支持增加新的产品，它为新产品族的增加提供方便，但不能为新的产品等级结构的增加提供这样的方便。</p></li>
+</ul>
+</section>
+<section id="id15">
+<h3><a class="toc-backref" href="#id31">工厂模式的退化</a><a class="headerlink" href="#id15" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>当抽象工厂模式中每一个具体工厂类只创建一个产品对象，也就是只存在一个产品等级结构时，抽象工厂模式退化成工厂方法模式；当工厂方法模式中抽象工厂与具体工厂合并，提供一个统一的工厂来创建产品对象，并将创建对象的工厂方法设计为静态方法时，工厂方法模式退化成简单工厂模式。</p></li>
+</ul>
+</section>
+</section>
+<section id="id16">
+<h2><a class="toc-backref" href="#id32"><span class="section-number">3.13. </span>总结</a><a class="headerlink" href="#id16" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>抽象工厂模式提供一个创建一系列相关或相互依赖对象的接口，而无须指定它们具体的类。抽象工厂模式又称为Kit模式，属于对象创建型模式。</p></li>
+<li><p>抽象工厂模式包含四个角色：抽象工厂用于声明生成抽象产品的方法；具体工厂实现了抽象工厂声明的生成抽象产品的方法，生成一组具体产品，这些产品构成了一个产品族，每一个产品都位于某个产品等级结构中；抽象产品为每种产品声明接口，在抽象产品中定义了产品的抽象业务方法；具体产品定义具体工厂生产的具体产品对象，实现抽象产品接口中定义的业务方法。</p></li>
+<li><p>抽象工厂模式是所有形式的工厂模式中最为抽象和最具一般性的一种形态。抽象工厂模式与工厂方法模式最大的区别在于，工厂方法模式针对的是一个产品等级结构，而抽象工厂模式则需要面对多个产品等级结构。</p></li>
+<li><p>抽象工厂模式的主要优点是隔离了具体类的生成，使得客户并不需要知道什么被创建，而且每次可以通过具体工厂类创建一个产品族中的多个对象，增加或者替换产品族比较方便，增加新的具体工厂和产品族很方便；主要缺点在于增加新的产品等级结构很复杂，需要修改抽象工厂和所有的具体工厂类，对“开闭原则”的支持呈现倾斜性。</p></li>
+<li><p>抽象工厂模式适用情况包括：一个系统不应当依赖于产品类实例如何被创建、组合和表达的细节；系统中有多于一个的产品族，而每次只使用其中某一产品族；属于同一个产品族的产品将在一起使用；系统提供一个产品类的库，所有的产品以同样的接口出现，从而使客户端不依赖于具体实现。</p></li>
+</ul>
+</section>
+</section>
+
+
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="builder.html" class="btn btn-neutral float-right" title="4. 建造者模式">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="factory_method.html" class="btn btn-neutral" title="2. 工厂方法模式(Factory Method Pattern)"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2014, Colin http://blog.me115.com.
+    </p>
+  </div>
+
+  <a href="https://github.com/snide/sphinx_rtd_theme">Sphinx theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../',
+            VERSION:'0.1',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="../_static/documentation_options.js"></script>
+      <script type="text/javascript" src="../_static/jquery.js"></script>
+      <script type="text/javascript" src="../_static/underscore.js"></script>
+      <script type="text/javascript" src="../_static/doctools.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

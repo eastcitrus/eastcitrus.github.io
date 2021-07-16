@@ -1,0 +1,357 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>行为型模式 &mdash; Graphic Design Patterns</title>
+  
+
+  
+  
+
+  
+  <link href="../_static/css/font_lato_googleapi.css" type='text/css'>
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  
+
+  
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  
+    <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  
+        <link rel="index" title="Index"
+              href="../genindex.html"/>
+        <link rel="search" title="Search" href="../search.html"/>
+    <link rel="top" title="Graphic Design Patterns" href="../index.html"/>
+        <link rel="next" title="1. 命令模式" href="command.html"/>
+        <link rel="prev" title="6. 代理模式" href="../structural_patterns/proxy.html"/> 
+
+  
+  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-nav-search">
+        
+          <a href="../index.html" class="fa fa-home"> Graphic Design Patterns</a>
+        
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+        
+        
+            <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../read_uml.html">看懂UML类图和时序图</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../read_uml.html#id1">从一个示例开始</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../read_uml.html#id2">类之间的关系</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../read_uml.html#id3">时序图</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../read_uml.html#id4">附录</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../creational_patterns/creational.html">创建型模式</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../creational_patterns/simple_factory.html">1. 简单工厂模式( Simple Factory Pattern )</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../creational_patterns/factory_method.html">2. 工厂方法模式(Factory Method Pattern)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../creational_patterns/abstract_factory.html">3. 抽象工厂模式(Abstract Factory)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../creational_patterns/builder.html">4. 建造者模式</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../creational_patterns/singleton.html">5. 单例模式</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../structural_patterns/structural.html">结构型模式</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../structural_patterns/adapter.html">1. 适配器模式</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../structural_patterns/bridge.html">2. 桥接模式</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../structural_patterns/decorator.html">3. 装饰模式</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../structural_patterns/facade.html">4. 外观模式</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../structural_patterns/flyweight.html">5. 享元模式</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../structural_patterns/proxy.html">6. 代理模式</a></li>
+</ul>
+</li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">行为型模式</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="command.html">1. 命令模式</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mediator.html">2. 中介者模式</a></li>
+<li class="toctree-l2"><a class="reference internal" href="observer.html">3. 观察者模式</a></li>
+<li class="toctree-l2"><a class="reference internal" href="state.html">4. 状态模式</a></li>
+<li class="toctree-l2"><a class="reference internal" href="strategy.html">5. 策略模式</a></li>
+</ul>
+</li>
+</ul>
+
+        
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../index.html">Graphic Design Patterns</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../index.html">Docs</a> &raquo;</li>
+      
+    <li>行为型模式</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          <a href="../_sources/behavioral_patterns/behavioral.rst.txt" rel="nofollow"> View page source</a>
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document">
+            
+  <section id="behavioral">
+<span id="id1"></span><h1>行为型模式<a class="headerlink" href="#behavioral" title="Permalink to this headline">¶</a></h1>
+<p>行为型模式(Behavioral Pattern)是对在不同的对象之间划分责任和算法的抽象化。</p>
+<p>行为型模式不仅仅关注类和对象的结构，而且重点关注它们之间的相互作用。</p>
+<p>通过行为型模式，可以更加清晰地划分类与对象的职责，并研究系统在运行时实例对象
+之间的交互。在系统运行时，对象并不是孤立的，它们可以通过相互通信与协作完成某些复杂功能，一个对象在运行时也将影响到其他对象的运行。</p>
+<p>行为型模式分为类行为型模式和对象行为型模式两种：</p>
+<ul class="simple">
+<li><p>类行为型模式：类的行为型模式使用继承关系在几个类之间分配行为，类行为型模式主要通过多态等方式来分配父类与子类的职责。</p></li>
+<li><p>对象行为型模式：对象的行为型模式则使用对象的聚合关联关系来分配行为，对象行为型模式主要是通过对象关联等方式来分配两个或多个类的职责。根据“合成复用原则”，系统中要尽量使用关联关系来取代继承关系，因此大部分行为型设计模式都属于对象行为型设计模式。</p></li>
+</ul>
+<p><strong>包含模式</strong></p>
+<ul class="simple">
+<li><dl class="simple">
+<dt>职责链模式(Chain of Responsibility)</dt><dd><p>重要程度：3</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>命令模式(Command)</dt><dd><p>重要程度：4</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>解释器模式(Interpreter)</dt><dd><p>重要程度：1</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>迭代器模式(Iterator)</dt><dd><p>重要程度：5</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>中介者模式(Mediator)</dt><dd><p>重要程度：2</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>备忘录模式(Memento)</dt><dd><p>重要程度：2</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>观察者模式(Observer)</dt><dd><p>重要程度：5</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>状态模式(State)</dt><dd><p>重要程度：3</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>策略模式(Strategy)</dt><dd><p>重要程度：4</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>模板方法模式(Template Method)</dt><dd><p>重要程度：3</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>访问者模式(Visitor)</dt><dd><p>重要程度：1</p>
+</dd>
+</dl>
+</li>
+</ul>
+<p><strong>目录</strong></p>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="command.html">1. 命令模式</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="command.html#id3">1.1. 模式动机</a></li>
+<li class="toctree-l2"><a class="reference internal" href="command.html#id4">1.2. 模式定义</a></li>
+<li class="toctree-l2"><a class="reference internal" href="command.html#id5">1.3. 模式结构</a></li>
+<li class="toctree-l2"><a class="reference internal" href="command.html#id6">1.4. 时序图</a></li>
+<li class="toctree-l2"><a class="reference internal" href="command.html#id7">1.5. 代码分析</a></li>
+<li class="toctree-l2"><a class="reference internal" href="command.html#id8">1.6. 模式分析</a></li>
+<li class="toctree-l2"><a class="reference internal" href="command.html#id9">1.7. 实例</a></li>
+<li class="toctree-l2"><a class="reference internal" href="command.html#id10">1.8. 优点</a></li>
+<li class="toctree-l2"><a class="reference internal" href="command.html#id11">1.9. 缺点</a></li>
+<li class="toctree-l2"><a class="reference internal" href="command.html#id12">1.10. 适用环境</a></li>
+<li class="toctree-l2"><a class="reference internal" href="command.html#id13">1.11. 模式应用</a></li>
+<li class="toctree-l2"><a class="reference internal" href="command.html#id14">1.12. 模式扩展</a></li>
+<li class="toctree-l2"><a class="reference internal" href="command.html#id15">1.13. 总结</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="mediator.html">2. 中介者模式</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="mediator.html#id3">2.1. 模式动机</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mediator.html#id4">2.2. 模式定义</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mediator.html#id5">2.3. 模式结构</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mediator.html#id6">2.4. 时序图</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mediator.html#id7">2.5. 代码分析</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mediator.html#id8">2.6. 模式分析</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mediator.html#id9">2.7. 实例</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mediator.html#id10">2.8. 优点</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mediator.html#id11">2.9. 缺点</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mediator.html#id12">2.10. 适用环境</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mediator.html#id13">2.11. 模式应用</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mediator.html#id14">2.12. 模式扩展</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mediator.html#id15">2.13. 总结</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="observer.html">3. 观察者模式</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="observer.html#id3">3.1. 模式动机</a></li>
+<li class="toctree-l2"><a class="reference internal" href="observer.html#id4">3.2. 模式定义</a></li>
+<li class="toctree-l2"><a class="reference internal" href="observer.html#id5">3.3. 模式结构</a></li>
+<li class="toctree-l2"><a class="reference internal" href="observer.html#id6">3.4. 时序图</a></li>
+<li class="toctree-l2"><a class="reference internal" href="observer.html#id7">3.5. 代码分析</a></li>
+<li class="toctree-l2"><a class="reference internal" href="observer.html#id8">3.6. 模式分析</a></li>
+<li class="toctree-l2"><a class="reference internal" href="observer.html#id9">3.7. 实例</a></li>
+<li class="toctree-l2"><a class="reference internal" href="observer.html#id10">3.8. 优点</a></li>
+<li class="toctree-l2"><a class="reference internal" href="observer.html#id11">3.9. 缺点</a></li>
+<li class="toctree-l2"><a class="reference internal" href="observer.html#id12">3.10. 适用环境</a></li>
+<li class="toctree-l2"><a class="reference internal" href="observer.html#id13">3.11. 模式应用</a></li>
+<li class="toctree-l2"><a class="reference internal" href="observer.html#id14">3.12. 模式扩展</a></li>
+<li class="toctree-l2"><a class="reference internal" href="observer.html#id15">3.13. 总结</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="state.html">4. 状态模式</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="state.html#id3">4.1. 模式动机</a></li>
+<li class="toctree-l2"><a class="reference internal" href="state.html#id4">4.2. 模式定义</a></li>
+<li class="toctree-l2"><a class="reference internal" href="state.html#id5">4.3. 模式结构</a></li>
+<li class="toctree-l2"><a class="reference internal" href="state.html#id6">4.4. 时序图</a></li>
+<li class="toctree-l2"><a class="reference internal" href="state.html#id7">4.5. 代码分析</a></li>
+<li class="toctree-l2"><a class="reference internal" href="state.html#id8">4.6. 模式分析</a></li>
+<li class="toctree-l2"><a class="reference internal" href="state.html#id9">4.7. 实例</a></li>
+<li class="toctree-l2"><a class="reference internal" href="state.html#id10">4.8. 优点</a></li>
+<li class="toctree-l2"><a class="reference internal" href="state.html#id11">4.9. 缺点</a></li>
+<li class="toctree-l2"><a class="reference internal" href="state.html#id12">4.10. 适用环境</a></li>
+<li class="toctree-l2"><a class="reference internal" href="state.html#id13">4.11. 模式应用</a></li>
+<li class="toctree-l2"><a class="reference internal" href="state.html#id14">4.12. 模式扩展</a></li>
+<li class="toctree-l2"><a class="reference internal" href="state.html#id15">4.13. 总结</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="strategy.html">5. 策略模式</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="strategy.html#id3">5.1. 模式动机</a></li>
+<li class="toctree-l2"><a class="reference internal" href="strategy.html#id4">5.2. 模式定义</a></li>
+<li class="toctree-l2"><a class="reference internal" href="strategy.html#id5">5.3. 模式结构</a></li>
+<li class="toctree-l2"><a class="reference internal" href="strategy.html#id6">5.4. 时序图</a></li>
+<li class="toctree-l2"><a class="reference internal" href="strategy.html#id7">5.5. 代码分析</a></li>
+<li class="toctree-l2"><a class="reference internal" href="strategy.html#id8">5.6. 模式分析</a></li>
+<li class="toctree-l2"><a class="reference internal" href="strategy.html#id9">5.7. 实例</a></li>
+<li class="toctree-l2"><a class="reference internal" href="strategy.html#id10">5.8. 优点</a></li>
+<li class="toctree-l2"><a class="reference internal" href="strategy.html#id11">5.9. 缺点</a></li>
+<li class="toctree-l2"><a class="reference internal" href="strategy.html#id12">5.10. 适用环境</a></li>
+<li class="toctree-l2"><a class="reference internal" href="strategy.html#id13">5.11. 模式应用</a></li>
+<li class="toctree-l2"><a class="reference internal" href="strategy.html#id14">5.12. 模式扩展</a></li>
+<li class="toctree-l2"><a class="reference internal" href="strategy.html#id15">5.13. 总结</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</section>
+
+
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="command.html" class="btn btn-neutral float-right" title="1. 命令模式">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="../structural_patterns/proxy.html" class="btn btn-neutral" title="6. 代理模式"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2014, Colin http://blog.me115.com.
+    </p>
+  </div>
+
+  <a href="https://github.com/snide/sphinx_rtd_theme">Sphinx theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../',
+            VERSION:'0.1',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="../_static/documentation_options.js"></script>
+      <script type="text/javascript" src="../_static/jquery.js"></script>
+      <script type="text/javascript" src="../_static/underscore.js"></script>
+      <script type="text/javascript" src="../_static/doctools.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

@@ -1,0 +1,511 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>3. 观察者模式 &mdash; Graphic Design Patterns</title>
+  
+
+  
+  
+
+  
+  <link href="../_static/css/font_lato_googleapi.css" type='text/css'>
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  
+
+  
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  
+    <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  
+        <link rel="index" title="Index"
+              href="../genindex.html"/>
+        <link rel="search" title="Search" href="../search.html"/>
+    <link rel="top" title="Graphic Design Patterns" href="../index.html"/>
+        <link rel="up" title="行为型模式" href="behavioral.html"/>
+        <link rel="next" title="4. 状态模式" href="state.html"/>
+        <link rel="prev" title="2. 中介者模式" href="mediator.html"/> 
+
+  
+  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-nav-search">
+        
+          <a href="../index.html" class="fa fa-home"> Graphic Design Patterns</a>
+        
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+        
+        
+            <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../read_uml.html">看懂UML类图和时序图</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../read_uml.html#id1">从一个示例开始</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../read_uml.html#id2">类之间的关系</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../read_uml.html#id3">时序图</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../read_uml.html#id4">附录</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../creational_patterns/creational.html">创建型模式</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../creational_patterns/simple_factory.html">1. 简单工厂模式( Simple Factory Pattern )</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../creational_patterns/factory_method.html">2. 工厂方法模式(Factory Method Pattern)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../creational_patterns/abstract_factory.html">3. 抽象工厂模式(Abstract Factory)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../creational_patterns/builder.html">4. 建造者模式</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../creational_patterns/singleton.html">5. 单例模式</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../structural_patterns/structural.html">结构型模式</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../structural_patterns/adapter.html">1. 适配器模式</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../structural_patterns/bridge.html">2. 桥接模式</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../structural_patterns/decorator.html">3. 装饰模式</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../structural_patterns/facade.html">4. 外观模式</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../structural_patterns/flyweight.html">5. 享元模式</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../structural_patterns/proxy.html">6. 代理模式</a></li>
+</ul>
+</li>
+<li class="toctree-l1 current"><a class="reference internal" href="behavioral.html">行为型模式</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="command.html">1. 命令模式</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mediator.html">2. 中介者模式</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">3. 观察者模式</a></li>
+<li class="toctree-l2"><a class="reference internal" href="state.html">4. 状态模式</a></li>
+<li class="toctree-l2"><a class="reference internal" href="strategy.html">5. 策略模式</a></li>
+</ul>
+</li>
+</ul>
+
+        
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../index.html">Graphic Design Patterns</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../index.html">Docs</a> &raquo;</li>
+      
+          <li><a href="behavioral.html">行为型模式</a> &raquo;</li>
+      
+    <li><span class="section-number">3. </span>观察者模式</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          <a href="../_sources/behavioral_patterns/observer.rst.txt" rel="nofollow"> View page source</a>
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document">
+            
+  <section id="observer">
+<span id="id1"></span><h1><a class="toc-backref" href="#id16"><span class="section-number">3. </span>观察者模式</a><a class="headerlink" href="#observer" title="Permalink to this headline">¶</a></h1>
+<div class="contents topic" id="id2">
+<p class="topic-title">目录</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="#observer" id="id16">观察者模式</a></p>
+<ul>
+<li><p><a class="reference internal" href="#id3" id="id17">模式动机</a></p></li>
+<li><p><a class="reference internal" href="#id4" id="id18">模式定义</a></p></li>
+<li><p><a class="reference internal" href="#id5" id="id19">模式结构</a></p></li>
+<li><p><a class="reference internal" href="#id6" id="id20">时序图</a></p></li>
+<li><p><a class="reference internal" href="#id7" id="id21">代码分析</a></p></li>
+<li><p><a class="reference internal" href="#id8" id="id22">模式分析</a></p></li>
+<li><p><a class="reference internal" href="#id9" id="id23">实例</a></p></li>
+<li><p><a class="reference internal" href="#id10" id="id24">优点</a></p></li>
+<li><p><a class="reference internal" href="#id11" id="id25">缺点</a></p></li>
+<li><p><a class="reference internal" href="#id12" id="id26">适用环境</a></p></li>
+<li><p><a class="reference internal" href="#id13" id="id27">模式应用</a></p></li>
+<li><p><a class="reference internal" href="#id14" id="id28">模式扩展</a></p></li>
+<li><p><a class="reference internal" href="#id15" id="id29">总结</a></p></li>
+</ul>
+</li>
+</ul>
+</div>
+<section id="id3">
+<h2><a class="toc-backref" href="#id17"><span class="section-number">3.1. </span>模式动机</a><a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h2>
+<p>建立一种对象与对象之间的依赖关系，一个对象发生改变时将自动通知其他对象，其他对象将相应做出反应。在此，发生改变的对象称为观察目标，而被通知的对象称为观察者，一个观察目标可以对应多个观察者，而且这些观察者之间没有相互联系，可以根据需要增加和删除观察者，使得系统更易于扩展，这就是观察者模式的模式动机。</p>
+</section>
+<section id="id4">
+<h2><a class="toc-backref" href="#id18"><span class="section-number">3.2. </span>模式定义</a><a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h2>
+<p>观察者模式(Observer Pattern)：定义对象间的一种一对多依赖关系，使得每当一个对象状态发生改变时，其相关依赖对象皆得到通知并被自动更新。观察者模式又叫做发布-订阅（Publish/Subscribe）模式、模型-视图（Model/View）模式、源-监听器（Source/Listener）模式或从属者（Dependents）模式。</p>
+<p>观察者模式是一种对象行为型模式。</p>
+</section>
+<section id="id5">
+<h2><a class="toc-backref" href="#id19"><span class="section-number">3.3. </span>模式结构</a><a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h2>
+<p>观察者模式包含如下角色：</p>
+<ul class="simple">
+<li><p>Subject: 目标</p></li>
+<li><p>ConcreteSubject: 具体目标</p></li>
+<li><p>Observer: 观察者</p></li>
+<li><p>ConcreteObserver: 具体观察者</p></li>
+</ul>
+<img alt="../_images/Obeserver.jpg" src="../_images/Obeserver.jpg" />
+</section>
+<section id="id6">
+<h2><a class="toc-backref" href="#id20"><span class="section-number">3.4. </span>时序图</a><a class="headerlink" href="#id6" title="Permalink to this headline">¶</a></h2>
+<img alt="../_images/seq_Obeserver.jpg" src="../_images/seq_Obeserver.jpg" />
+</section>
+<section id="id7">
+<h2><a class="toc-backref" href="#id21"><span class="section-number">3.5. </span>代码分析</a><a class="headerlink" href="#id7" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="cp">#include</span> <span class="cpf">&lt;iostream&gt;</span><span class="cp"></span>
+<span class="linenos"> 2</span><span class="cp">#include</span> <span class="cpf">&quot;Subject.h&quot;</span><span class="cp"></span>
+<span class="linenos"> 3</span><span class="cp">#include</span> <span class="cpf">&quot;Obeserver.h&quot;</span><span class="cp"></span>
+<span class="linenos"> 4</span><span class="cp">#include</span> <span class="cpf">&quot;ConcreteObeserver.h&quot;</span><span class="cp"></span>
+<span class="linenos"> 5</span><span class="cp">#include</span> <span class="cpf">&quot;ConcreteSubject.h&quot;</span><span class="cp"></span>
+<span class="linenos"> 6</span>
+<span class="linenos"> 7</span><span class="k">using</span> <span class="k">namespace</span> <span class="nn">std</span><span class="p">;</span>
+<span class="linenos"> 8</span>
+<span class="linenos"> 9</span><span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">int</span> <span class="n">argc</span><span class="p">,</span> <span class="kt">char</span> <span class="o">*</span><span class="n">argv</span><span class="p">[])</span>
+<span class="linenos">10</span><span class="p">{</span>
+<span class="hll"><span class="linenos">11</span>	<span class="n">Subject</span> <span class="o">*</span> <span class="n">subject</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ConcreteSubject</span><span class="p">();</span>
+</span><span class="hll"><span class="linenos">12</span>	<span class="n">Obeserver</span> <span class="o">*</span> <span class="n">objA</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ConcreteObeserver</span><span class="p">(</span><span class="s">&quot;A&quot;</span><span class="p">);</span>
+</span><span class="hll"><span class="linenos">13</span>	<span class="n">Obeserver</span> <span class="o">*</span> <span class="n">objB</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ConcreteObeserver</span><span class="p">(</span><span class="s">&quot;B&quot;</span><span class="p">);</span>
+</span><span class="hll"><span class="linenos">14</span>	<span class="n">subject</span><span class="o">-&gt;</span><span class="n">attach</span><span class="p">(</span><span class="n">objA</span><span class="p">);</span>
+</span><span class="hll"><span class="linenos">15</span>	<span class="n">subject</span><span class="o">-&gt;</span><span class="n">attach</span><span class="p">(</span><span class="n">objB</span><span class="p">);</span>
+</span><span class="hll"><span class="linenos">16</span>	
+</span><span class="hll"><span class="linenos">17</span>	<span class="n">subject</span><span class="o">-&gt;</span><span class="n">setState</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
+</span><span class="hll"><span class="linenos">18</span>	<span class="n">subject</span><span class="o">-&gt;</span><span class="n">notify</span><span class="p">();</span>
+</span><span class="hll"><span class="linenos">19</span>	
+</span><span class="hll"><span class="linenos">20</span>	<span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&quot;--------------------&quot;</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+</span><span class="hll"><span class="linenos">21</span>	<span class="n">subject</span><span class="o">-&gt;</span><span class="n">detach</span><span class="p">(</span><span class="n">objB</span><span class="p">);</span>
+</span><span class="hll"><span class="linenos">22</span>	<span class="n">subject</span><span class="o">-&gt;</span><span class="n">setState</span><span class="p">(</span><span class="mi">2</span><span class="p">);</span>
+</span><span class="hll"><span class="linenos">23</span>	<span class="n">subject</span><span class="o">-&gt;</span><span class="n">notify</span><span class="p">();</span>
+</span><span class="linenos">24</span>	
+<span class="linenos">25</span>	<span class="k">delete</span> <span class="n">subject</span><span class="p">;</span>
+<span class="linenos">26</span>	<span class="k">delete</span> <span class="n">objA</span><span class="p">;</span>
+<span class="linenos">27</span>	<span class="k">delete</span> <span class="n">objB</span><span class="p">;</span>
+<span class="linenos">28</span>		
+<span class="linenos">29</span>	<span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="linenos">30</span><span class="p">}</span>
+</pre></div>
+</div>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="c1">///////////////////////////////////////////////////////////</span>
+<span class="linenos"> 2</span><span class="c1">//  Subject.h</span>
+<span class="linenos"> 3</span><span class="c1">//  Implementation of the Class Subject</span>
+<span class="linenos"> 4</span><span class="c1">//  Created on:      07-十月-2014 23:00:10</span>
+<span class="linenos"> 5</span><span class="c1">//  Original author: cl</span>
+<span class="linenos"> 6</span><span class="c1">///////////////////////////////////////////////////////////</span>
+<span class="linenos"> 7</span>
+<span class="linenos"> 8</span><span class="cp">#if !defined(EA_61998456_1B61_49f4_B3EA_9D28EEBC9649__INCLUDED_)</span>
+<span class="linenos"> 9</span><span class="cp">#define EA_61998456_1B61_49f4_B3EA_9D28EEBC9649__INCLUDED_</span>
+<span class="linenos">10</span>
+<span class="linenos">11</span><span class="cp">#include</span> <span class="cpf">&quot;Obeserver.h&quot;</span><span class="cp"></span>
+<span class="linenos">12</span><span class="cp">#include</span> <span class="cpf">&lt;vector&gt;</span><span class="cp"></span>
+<span class="linenos">13</span><span class="k">using</span> <span class="k">namespace</span> <span class="nn">std</span><span class="p">;</span>
+<span class="linenos">14</span>
+<span class="linenos">15</span><span class="k">class</span> <span class="nc">Subject</span>
+<span class="linenos">16</span><span class="p">{</span>
+<span class="linenos">17</span>
+<span class="linenos">18</span><span class="k">public</span><span class="o">:</span>
+<span class="linenos">19</span>	<span class="n">Subject</span><span class="p">();</span>
+<span class="linenos">20</span>	<span class="k">virtual</span> <span class="o">~</span><span class="n">Subject</span><span class="p">();</span>
+<span class="linenos">21</span>	<span class="n">Obeserver</span> <span class="o">*</span><span class="n">m_Obeserver</span><span class="p">;</span>
+<span class="linenos">22</span>
+<span class="hll"><span class="linenos">23</span>	<span class="kt">void</span> <span class="nf">attach</span><span class="p">(</span><span class="n">Obeserver</span> <span class="o">*</span> <span class="n">pObeserver</span><span class="p">);</span>
+</span><span class="hll"><span class="linenos">24</span>	<span class="kt">void</span> <span class="nf">detach</span><span class="p">(</span><span class="n">Obeserver</span> <span class="o">*</span> <span class="n">pObeserver</span><span class="p">);</span>
+</span><span class="hll"><span class="linenos">25</span>	<span class="kt">void</span> <span class="nf">notify</span><span class="p">();</span>
+</span><span class="linenos">26</span>		
+<span class="linenos">27</span>	<span class="k">virtual</span> <span class="kt">int</span> <span class="nf">getState</span><span class="p">()</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+<span class="linenos">28</span>	<span class="k">virtual</span> <span class="kt">void</span> <span class="nf">setState</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="p">)</span><span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+<span class="linenos">29</span>	
+<span class="linenos">30</span><span class="k">private</span><span class="o">:</span>
+<span class="hll"><span class="linenos">31</span>	<span class="n">vector</span><span class="o">&lt;</span><span class="n">Obeserver</span><span class="o">*&gt;</span> <span class="n">m_vtObj</span><span class="p">;</span>
+</span><span class="linenos">32</span>
+<span class="linenos">33</span><span class="p">};</span>
+<span class="linenos">34</span><span class="cp">#endif </span><span class="c1">// !defined(EA_61998456_1B61_49f4_B3EA_9D28EEBC9649__INCLUDED_)</span>
+</pre></div>
+</div>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="c1">///////////////////////////////////////////////////////////</span>
+<span class="linenos"> 2</span><span class="c1">//  Subject.cpp</span>
+<span class="linenos"> 3</span><span class="c1">//  Implementation of the Class Subject</span>
+<span class="linenos"> 4</span><span class="c1">//  Created on:      07-十月-2014 23:00:10</span>
+<span class="linenos"> 5</span><span class="c1">//  Original author: cl</span>
+<span class="linenos"> 6</span><span class="c1">///////////////////////////////////////////////////////////</span>
+<span class="linenos"> 7</span>
+<span class="linenos"> 8</span><span class="cp">#include</span> <span class="cpf">&quot;Subject.h&quot;</span><span class="cp"></span>
+<span class="linenos"> 9</span>
+<span class="linenos">10</span><span class="n">Subject</span><span class="o">::</span><span class="n">Subject</span><span class="p">(){</span>
+<span class="linenos">11</span>
+<span class="linenos">12</span><span class="p">}</span>
+<span class="linenos">13</span>
+<span class="linenos">14</span><span class="n">Subject</span><span class="o">::~</span><span class="n">Subject</span><span class="p">(){</span>
+<span class="linenos">15</span>
+<span class="linenos">16</span><span class="p">}</span>
+<span class="linenos">17</span>
+<span class="hll"><span class="linenos">18</span><span class="kt">void</span> <span class="n">Subject</span><span class="o">::</span><span class="n">attach</span><span class="p">(</span><span class="n">Obeserver</span> <span class="o">*</span> <span class="n">pObeserver</span><span class="p">){</span>
+</span><span class="hll"><span class="linenos">19</span>	<span class="n">m_vtObj</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="n">pObeserver</span><span class="p">);</span>
+</span><span class="hll"><span class="linenos">20</span><span class="p">}</span>
+</span><span class="hll"><span class="linenos">21</span>
+</span><span class="hll"><span class="linenos">22</span><span class="kt">void</span> <span class="n">Subject</span><span class="o">::</span><span class="n">detach</span><span class="p">(</span><span class="n">Obeserver</span> <span class="o">*</span> <span class="n">pObeserver</span><span class="p">){</span>
+</span><span class="hll"><span class="linenos">23</span>	<span class="k">for</span><span class="p">(</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">Obeserver</span><span class="o">*&gt;::</span><span class="n">iterator</span> <span class="n">itr</span> <span class="o">=</span> <span class="n">m_vtObj</span><span class="p">.</span><span class="n">begin</span><span class="p">();</span>
+</span><span class="hll"><span class="linenos">24</span>		<span class="n">itr</span> <span class="o">!=</span> <span class="n">m_vtObj</span><span class="p">.</span><span class="n">end</span><span class="p">();</span> <span class="n">itr</span><span class="o">++</span><span class="p">)</span>
+</span><span class="hll"><span class="linenos">25</span>	<span class="p">{</span>
+</span><span class="hll"><span class="linenos">26</span>		<span class="k">if</span><span class="p">(</span><span class="o">*</span><span class="n">itr</span> <span class="o">==</span> <span class="n">pObeserver</span><span class="p">)</span>
+</span><span class="hll"><span class="linenos">27</span>		<span class="p">{</span>
+</span><span class="hll"><span class="linenos">28</span>			<span class="n">m_vtObj</span><span class="p">.</span><span class="n">erase</span><span class="p">(</span><span class="n">itr</span><span class="p">);</span>
+</span><span class="hll"><span class="linenos">29</span>			<span class="k">return</span><span class="p">;</span>
+</span><span class="hll"><span class="linenos">30</span>		<span class="p">}</span>			
+</span><span class="hll"><span class="linenos">31</span>	<span class="p">}</span>
+</span><span class="hll"><span class="linenos">32</span><span class="p">}</span>
+</span><span class="hll"><span class="linenos">33</span>
+</span><span class="hll"><span class="linenos">34</span><span class="kt">void</span> <span class="n">Subject</span><span class="o">::</span><span class="n">notify</span><span class="p">(){</span>
+</span><span class="hll"><span class="linenos">35</span>	<span class="k">for</span><span class="p">(</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">Obeserver</span><span class="o">*&gt;::</span><span class="n">iterator</span> <span class="n">itr</span> <span class="o">=</span> <span class="n">m_vtObj</span><span class="p">.</span><span class="n">begin</span><span class="p">();</span>
+</span><span class="hll"><span class="linenos">36</span>		<span class="n">itr</span> <span class="o">!=</span> <span class="n">m_vtObj</span><span class="p">.</span><span class="n">end</span><span class="p">();</span>
+</span><span class="hll"><span class="linenos">37</span>	 	<span class="n">itr</span><span class="o">++</span><span class="p">)</span>
+</span><span class="hll"><span class="linenos">38</span>	<span class="p">{</span>	
+</span><span class="hll"><span class="linenos">39</span>		<span class="p">(</span><span class="o">*</span><span class="n">itr</span><span class="p">)</span><span class="o">-&gt;</span><span class="n">update</span><span class="p">(</span><span class="k">this</span><span class="p">);</span>		
+</span><span class="hll"><span class="linenos">40</span>	<span class="p">}</span>
+</span><span class="hll"><span class="linenos">41</span><span class="p">}</span>
+</span></pre></div>
+</div>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="c1">///////////////////////////////////////////////////////////</span>
+<span class="linenos"> 2</span><span class="c1">//  Obeserver.h</span>
+<span class="linenos"> 3</span><span class="c1">//  Implementation of the Class Obeserver</span>
+<span class="linenos"> 4</span><span class="c1">//  Created on:      07-十月-2014 23:00:10</span>
+<span class="linenos"> 5</span><span class="c1">//  Original author: cl</span>
+<span class="linenos"> 6</span><span class="c1">///////////////////////////////////////////////////////////</span>
+<span class="linenos"> 7</span>
+<span class="linenos"> 8</span><span class="cp">#if !defined(EA_2C7362B2_0B22_4168_8690_F9C7B76C343F__INCLUDED_)</span>
+<span class="linenos"> 9</span><span class="cp">#define EA_2C7362B2_0B22_4168_8690_F9C7B76C343F__INCLUDED_</span>
+<span class="linenos">10</span>
+<span class="hll"><span class="linenos">11</span><span class="k">class</span> <span class="nc">Subject</span><span class="p">;</span>
+</span><span class="linenos">12</span>
+<span class="linenos">13</span><span class="k">class</span> <span class="nc">Obeserver</span>
+<span class="linenos">14</span><span class="p">{</span>
+<span class="linenos">15</span>
+<span class="linenos">16</span><span class="k">public</span><span class="o">:</span>
+<span class="linenos">17</span>	<span class="n">Obeserver</span><span class="p">();</span>
+<span class="linenos">18</span>	<span class="k">virtual</span> <span class="o">~</span><span class="n">Obeserver</span><span class="p">();</span>
+<span class="linenos">19</span>	<span class="k">virtual</span> <span class="kt">void</span> <span class="nf">update</span><span class="p">(</span><span class="n">Subject</span> <span class="o">*</span> <span class="n">sub</span><span class="p">)</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+<span class="linenos">20</span><span class="p">};</span>
+<span class="linenos">21</span><span class="cp">#endif </span><span class="c1">// !defined(EA_2C7362B2_0B22_4168_8690_F9C7B76C343F__INCLUDED_)</span>
+</pre></div>
+</div>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="c1">///////////////////////////////////////////////////////////</span>
+<span class="linenos"> 2</span><span class="c1">//  ConcreteObeserver.h</span>
+<span class="linenos"> 3</span><span class="c1">//  Implementation of the Class ConcreteObeserver</span>
+<span class="linenos"> 4</span><span class="c1">//  Created on:      07-十月-2014 23:00:09</span>
+<span class="linenos"> 5</span><span class="c1">//  Original author: cl</span>
+<span class="linenos"> 6</span><span class="c1">///////////////////////////////////////////////////////////</span>
+<span class="linenos"> 7</span>
+<span class="linenos"> 8</span><span class="cp">#if !defined(EA_7B020534_BFEA_4c9e_8E4C_34DCE001E9B1__INCLUDED_)</span>
+<span class="linenos"> 9</span><span class="cp">#define EA_7B020534_BFEA_4c9e_8E4C_34DCE001E9B1__INCLUDED_</span>
+<span class="linenos">10</span><span class="cp">#include</span> <span class="cpf">&quot;Obeserver.h&quot;</span><span class="cp"></span>
+<span class="linenos">11</span><span class="cp">#include</span> <span class="cpf">&lt;string&gt;</span><span class="cp"></span>
+<span class="linenos">12</span><span class="k">using</span> <span class="k">namespace</span> <span class="nn">std</span><span class="p">;</span>
+<span class="linenos">13</span>
+<span class="linenos">14</span><span class="k">class</span> <span class="nc">ConcreteObeserver</span> <span class="o">:</span> <span class="k">public</span> <span class="n">Obeserver</span>
+<span class="linenos">15</span><span class="p">{</span>
+<span class="linenos">16</span>
+<span class="linenos">17</span><span class="k">public</span><span class="o">:</span>
+<span class="linenos">18</span>	<span class="n">ConcreteObeserver</span><span class="p">(</span><span class="n">string</span> <span class="n">name</span><span class="p">);</span>
+<span class="linenos">19</span>	<span class="k">virtual</span> <span class="o">~</span><span class="n">ConcreteObeserver</span><span class="p">();</span>
+<span class="linenos">20</span>	<span class="k">virtual</span> <span class="kt">void</span> <span class="nf">update</span><span class="p">(</span><span class="n">Subject</span> <span class="o">*</span> <span class="n">sub</span><span class="p">);</span>
+<span class="linenos">21</span>
+<span class="linenos">22</span><span class="k">private</span><span class="o">:</span>
+<span class="linenos">23</span>	<span class="n">string</span> <span class="n">m_objName</span><span class="p">;</span>
+<span class="linenos">24</span>	<span class="kt">int</span> <span class="n">m_obeserverState</span><span class="p">;</span>
+<span class="linenos">25</span><span class="p">};</span>
+<span class="linenos">26</span><span class="cp">#endif </span><span class="c1">// !defined(EA_7B020534_BFEA_4c9e_8E4C_34DCE001E9B1__INCLUDED_)</span>
+</pre></div>
+</div>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="c1">///////////////////////////////////////////////////////////</span>
+<span class="linenos"> 2</span><span class="c1">//  ConcreteObeserver.cpp</span>
+<span class="linenos"> 3</span><span class="c1">//  Implementation of the Class ConcreteObeserver</span>
+<span class="linenos"> 4</span><span class="c1">//  Created on:      07-十月-2014 23:00:09</span>
+<span class="linenos"> 5</span><span class="c1">//  Original author: cl</span>
+<span class="linenos"> 6</span><span class="c1">///////////////////////////////////////////////////////////</span>
+<span class="linenos"> 7</span>
+<span class="linenos"> 8</span><span class="cp">#include</span> <span class="cpf">&quot;ConcreteObeserver.h&quot;</span><span class="cp"></span>
+<span class="linenos"> 9</span><span class="cp">#include</span> <span class="cpf">&lt;iostream&gt;</span><span class="cp"></span>
+<span class="linenos">10</span><span class="cp">#include</span> <span class="cpf">&lt;vector&gt;</span><span class="cp"></span>
+<span class="linenos">11</span><span class="cp">#include</span> <span class="cpf">&quot;Subject.h&quot;</span><span class="cp"></span>
+<span class="linenos">12</span><span class="k">using</span> <span class="k">namespace</span> <span class="nn">std</span><span class="p">;</span>
+<span class="linenos">13</span>
+<span class="linenos">14</span><span class="n">ConcreteObeserver</span><span class="o">::</span><span class="n">ConcreteObeserver</span><span class="p">(</span><span class="n">string</span> <span class="n">name</span><span class="p">){</span>
+<span class="linenos">15</span>	<span class="n">m_objName</span> <span class="o">=</span> <span class="n">name</span><span class="p">;</span>
+<span class="linenos">16</span><span class="p">}</span>
+<span class="linenos">17</span>
+<span class="linenos">18</span><span class="n">ConcreteObeserver</span><span class="o">::~</span><span class="n">ConcreteObeserver</span><span class="p">(){</span>
+<span class="linenos">19</span>
+<span class="linenos">20</span><span class="p">}</span>
+<span class="linenos">21</span>
+<span class="hll"><span class="linenos">22</span><span class="kt">void</span> <span class="n">ConcreteObeserver</span><span class="o">::</span><span class="n">update</span><span class="p">(</span><span class="n">Subject</span> <span class="o">*</span> <span class="n">sub</span><span class="p">){</span>
+</span><span class="hll"><span class="linenos">23</span>	<span class="n">m_obeserverState</span> <span class="o">=</span> <span class="n">sub</span><span class="o">-&gt;</span><span class="n">getState</span><span class="p">();</span>
+</span><span class="hll"><span class="linenos">24</span>	<span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&quot;update oberserver[&quot;</span> <span class="o">&lt;&lt;</span> <span class="n">m_objName</span> <span class="o">&lt;&lt;</span> <span class="s">&quot;] state:&quot;</span> <span class="o">&lt;&lt;</span> <span class="n">m_obeserverState</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+</span><span class="hll"><span class="linenos">25</span><span class="p">}</span>
+</span></pre></div>
+</div>
+<p>运行结果：</p>
+<img alt="../_images/Obeserver_run.jpg" src="../_images/Obeserver_run.jpg" />
+</section>
+<section id="id8">
+<h2><a class="toc-backref" href="#id22"><span class="section-number">3.6. </span>模式分析</a><a class="headerlink" href="#id8" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>观察者模式描述了如何建立对象与对象之间的依赖关系，如何构造满足这种需求的系统。</p></li>
+<li><p>这一模式中的关键对象是观察目标和观察者，一个目标可以有任意数目的与之相依赖的观察者，一旦目标的状态发生改变，所有的观察者都将得到通知。</p></li>
+<li><p>作为对这个通知的响应，每个观察者都将即时更新自己的状态，以与目标状态同步，这种交互也称为发布-订阅(publishsubscribe)。目标是通知的发布者，它发出通知时并不需要知道谁是它的观察者，可以有任意数目的观察者订阅它并接收通</p></li>
+</ul>
+<p>知。</p>
+</section>
+<section id="id9">
+<h2><a class="toc-backref" href="#id23"><span class="section-number">3.7. </span>实例</a><a class="headerlink" href="#id9" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="id10">
+<h2><a class="toc-backref" href="#id24"><span class="section-number">3.8. </span>优点</a><a class="headerlink" href="#id10" title="Permalink to this headline">¶</a></h2>
+<p>观察者模式的优点</p>
+<ul class="simple">
+<li><p>观察者模式可以实现表示层和数据逻辑层的分离，并定义了稳定的消息更新传递机制，抽象了更新接口，使得可以有各种各样不同的表示层作为具体观察者角色。</p></li>
+<li><p>观察者模式在观察目标和观察者之间建立一个抽象的耦合。</p></li>
+<li><p>观察者模式支持广播通信。</p></li>
+<li><p>观察者模式符合“开闭原则”的要求。</p></li>
+</ul>
+</section>
+<section id="id11">
+<h2><a class="toc-backref" href="#id25"><span class="section-number">3.9. </span>缺点</a><a class="headerlink" href="#id11" title="Permalink to this headline">¶</a></h2>
+<p>观察者模式的缺点</p>
+<ul class="simple">
+<li><p>如果一个观察目标对象有很多直接和间接的观察者的话，将所有的观察者都通知到会花费很多时间。</p></li>
+<li><p>如果在观察者和观察目标之间有循环依赖的话，观察目标会触发它们之间进行循环调用，可能导致系统崩溃。</p></li>
+<li><p>观察者模式没有相应的机制让观察者知道所观察的目标对象是怎么发生变化的，而仅仅只是知道观察目标发生了变化。</p></li>
+</ul>
+</section>
+<section id="id12">
+<h2><a class="toc-backref" href="#id26"><span class="section-number">3.10. </span>适用环境</a><a class="headerlink" href="#id12" title="Permalink to this headline">¶</a></h2>
+<p>在以下情况下可以使用观察者模式：</p>
+<ul class="simple">
+<li><p>一个抽象模型有两个方面，其中一个方面依赖于另一个方面。将这些方面封装在独立的对象中使它们可以各自独立地改变和复用。</p></li>
+<li><p>一个对象的改变将导致其他一个或多个对象也发生改变，而不知道具体有多少对象将发生改变，可以降低对象之间的耦合度。</p></li>
+<li><p>一个对象必须通知其他对象，而并不知道这些对象是谁。</p></li>
+<li><p>需要在系统中创建一个触发链，A对象的行为将影响B对象，B对象的行为将影响C对象……，可以使用观察者模式创建一种链式触发机制。</p></li>
+</ul>
+</section>
+<section id="id13">
+<h2><a class="toc-backref" href="#id27"><span class="section-number">3.11. </span>模式应用</a><a class="headerlink" href="#id13" title="Permalink to this headline">¶</a></h2>
+<p>观察者模式在软件开发中应用非常广泛，如某电子商务网站可以在执行发送操作后给用户多个发送商品打折信息，某团队战斗游戏中某队友牺牲将给所有成员提示等等，凡是涉及到一对一或者一对多的对象交互场景都可以使用观察者模式。</p>
+</section>
+<section id="id14">
+<h2><a class="toc-backref" href="#id28"><span class="section-number">3.12. </span>模式扩展</a><a class="headerlink" href="#id14" title="Permalink to this headline">¶</a></h2>
+<p>MVC模式</p>
+<ul class="simple">
+<li><p>MVC模式是一种架构模式，它包含三个角色：模型(Model)，视图(View)和控制器(Controller)。观察者模式可以用来实现MVC模式，观察者模式中的观察目标就是MVC模式中的模型(Model)，而观察者就是MVC中的视图(View)，控制器(Controller)充当两者之间的中介者(Mediator)。当模型层的数据发生改变时，视图层将自动改变其显示内容。</p></li>
+</ul>
+</section>
+<section id="id15">
+<h2><a class="toc-backref" href="#id29"><span class="section-number">3.13. </span>总结</a><a class="headerlink" href="#id15" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>观察者模式定义对象间的一种一对多依赖关系，使得每当一个对象状态发生改变时，其相关依赖对象皆得到通知并被自动更新。观察者模式又叫做发布-订阅模式、模型-视图模式、源-监听器模式或从属者模式。观察者模式是一种对象行为型模式。</p></li>
+<li><p>观察者模式包含四个角色：目标又称为主题，它是指被观察的对象；具体目标是目标类的子类，通常它包含有经常发生改变的数据，当它的状态发生改变时，向它的各个观察者发出通知；观察者将对观察目标的改变做出反应；在具体观察者中维护一个指向具体目标对象的引用，它存储具体观察者的有关状态，这些状态需要和具体目标的状态保持一致。</p></li>
+<li><p>观察者模式定义了一种一对多的依赖关系，让多个观察者对象同时监听某一个目标对象，当这个目标对象的状态发生变化时，会通知所有观察者对象，使它们能够自动更新。</p></li>
+<li><p>观察者模式的主要优点在于可以实现表示层和数据逻辑层的分离，并在观察目标和观察者之间建立一个抽象的耦合，支持广播通信；其主要缺点在于如果一个观察目标对象有很多直接和间接的观察者的话，将所有的观察者都通知到会花费很多时间，而且如果在观察者和观察目标之间有循环依赖的话，观察目标会触发它们之间进行循环调用，可能导致系统崩溃。</p></li>
+<li><p>观察者模式适用情况包括：一个抽象模型有两个方面，其中一个方面依赖于另一个方面；一个对象的改变将导致其他一个或多个对象也发生改变，而不知道具体有多少对象将发生改变；一个对象必须通知其他对象，而并不知道这些对象是谁；需要在系统中创建一个触发链。</p></li>
+<li><p>在JDK的java.util包中，提供了Observable类以及Observer接口，它们构成了Java语言对观察者模式的支持。</p></li>
+</ul>
+</section>
+</section>
+
+
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="state.html" class="btn btn-neutral float-right" title="4. 状态模式">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="mediator.html" class="btn btn-neutral" title="2. 中介者模式"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2014, Colin http://blog.me115.com.
+    </p>
+  </div>
+
+  <a href="https://github.com/snide/sphinx_rtd_theme">Sphinx theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../',
+            VERSION:'0.1',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="../_static/documentation_options.js"></script>
+      <script type="text/javascript" src="../_static/jquery.js"></script>
+      <script type="text/javascript" src="../_static/underscore.js"></script>
+      <script type="text/javascript" src="../_static/doctools.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

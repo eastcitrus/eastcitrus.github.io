@@ -1,0 +1,411 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>2. 桥接模式 &mdash; Graphic Design Patterns</title>
+  
+
+  
+  
+
+  
+  <link href="../_static/css/font_lato_googleapi.css" type='text/css'>
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  
+
+  
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  
+    <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  
+        <link rel="index" title="Index"
+              href="../genindex.html"/>
+        <link rel="search" title="Search" href="../search.html"/>
+    <link rel="top" title="Graphic Design Patterns" href="../index.html"/>
+        <link rel="up" title="结构型模式" href="structural.html"/>
+        <link rel="next" title="3. 装饰模式" href="decorator.html"/>
+        <link rel="prev" title="1. 适配器模式" href="adapter.html"/> 
+
+  
+  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-nav-search">
+        
+          <a href="../index.html" class="fa fa-home"> Graphic Design Patterns</a>
+        
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+        
+        
+            <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../read_uml.html">看懂UML类图和时序图</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../read_uml.html#id1">从一个示例开始</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../read_uml.html#id2">类之间的关系</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../read_uml.html#id3">时序图</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../read_uml.html#id4">附录</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../creational_patterns/creational.html">创建型模式</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../creational_patterns/simple_factory.html">1. 简单工厂模式( Simple Factory Pattern )</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../creational_patterns/factory_method.html">2. 工厂方法模式(Factory Method Pattern)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../creational_patterns/abstract_factory.html">3. 抽象工厂模式(Abstract Factory)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../creational_patterns/builder.html">4. 建造者模式</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../creational_patterns/singleton.html">5. 单例模式</a></li>
+</ul>
+</li>
+<li class="toctree-l1 current"><a class="reference internal" href="structural.html">结构型模式</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="adapter.html">1. 适配器模式</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">2. 桥接模式</a></li>
+<li class="toctree-l2"><a class="reference internal" href="decorator.html">3. 装饰模式</a></li>
+<li class="toctree-l2"><a class="reference internal" href="facade.html">4. 外观模式</a></li>
+<li class="toctree-l2"><a class="reference internal" href="flyweight.html">5. 享元模式</a></li>
+<li class="toctree-l2"><a class="reference internal" href="proxy.html">6. 代理模式</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../behavioral_patterns/behavioral.html">行为型模式</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../behavioral_patterns/command.html">1. 命令模式</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../behavioral_patterns/mediator.html">2. 中介者模式</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../behavioral_patterns/observer.html">3. 观察者模式</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../behavioral_patterns/state.html">4. 状态模式</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../behavioral_patterns/strategy.html">5. 策略模式</a></li>
+</ul>
+</li>
+</ul>
+
+        
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../index.html">Graphic Design Patterns</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../index.html">Docs</a> &raquo;</li>
+      
+          <li><a href="structural.html">结构型模式</a> &raquo;</li>
+      
+    <li><span class="section-number">2. </span>桥接模式</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          <a href="../_sources/structural_patterns/bridge.rst.txt" rel="nofollow"> View page source</a>
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document">
+            
+  <section id="bridge">
+<span id="id1"></span><h1><a class="toc-backref" href="#id16"><span class="section-number">2. </span>桥接模式</a><a class="headerlink" href="#bridge" title="Permalink to this headline">¶</a></h1>
+<div class="contents topic" id="id2">
+<p class="topic-title">目录</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="#bridge" id="id16">桥接模式</a></p>
+<ul>
+<li><p><a class="reference internal" href="#id3" id="id17">模式动机</a></p></li>
+<li><p><a class="reference internal" href="#id4" id="id18">模式定义</a></p></li>
+<li><p><a class="reference internal" href="#id5" id="id19">模式结构</a></p></li>
+<li><p><a class="reference internal" href="#id6" id="id20">时序图</a></p></li>
+<li><p><a class="reference internal" href="#id7" id="id21">代码分析</a></p></li>
+<li><p><a class="reference internal" href="#id8" id="id22">模式分析</a></p></li>
+<li><p><a class="reference internal" href="#id9" id="id23">实例</a></p></li>
+<li><p><a class="reference internal" href="#id10" id="id24">优点</a></p></li>
+<li><p><a class="reference internal" href="#id11" id="id25">缺点</a></p></li>
+<li><p><a class="reference internal" href="#id12" id="id26">适用环境</a></p></li>
+<li><p><a class="reference internal" href="#id13" id="id27">模式应用</a></p></li>
+<li><p><a class="reference internal" href="#id14" id="id28">模式扩展</a></p></li>
+<li><p><a class="reference internal" href="#id15" id="id29">总结</a></p></li>
+</ul>
+</li>
+</ul>
+</div>
+<section id="id3">
+<h2><a class="toc-backref" href="#id17"><span class="section-number">2.1. </span>模式动机</a><a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h2>
+<p>设想如果要绘制矩形、圆形、椭圆、正方形，我们至少需要4个形状类，但是如果绘制的图形需要具有不同的颜色，如红色、绿色、蓝色等，此时至少有如下两种设计方案：</p>
+<ul class="simple">
+<li><p>第一种设计方案是为每一种形状都提供一套各种颜色的版本。</p></li>
+<li><p>第二种设计方案是根据实际需要对形状和颜色进行组合</p></li>
+</ul>
+<p>对于有两个变化维度（即两个变化的原因）的系统，采用方案二来进行设计系统中类的个数更少，且系统扩展更为方便。设计方案二即是桥接模式的应用。桥接模式将继承关系转换为关联关系，从而降低了类与类之间的耦合，减少了代码编写量。</p>
+</section>
+<section id="id4">
+<h2><a class="toc-backref" href="#id18"><span class="section-number">2.2. </span>模式定义</a><a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h2>
+<p>桥接模式(Bridge Pattern)：将抽象部分与它的实现部分分离，使它们都可以独立地变化。它是一种对象结构型模式，又称为柄体(Handle and Body)模式或接口(Interface)模式。</p>
+</section>
+<section id="id5">
+<h2><a class="toc-backref" href="#id19"><span class="section-number">2.3. </span>模式结构</a><a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h2>
+<p>桥接模式包含如下角色：</p>
+<ul class="simple">
+<li><p>Abstraction：抽象类</p></li>
+<li><p>RefinedAbstraction：扩充抽象类</p></li>
+<li><p>Implementor：实现类接口</p></li>
+<li><p>ConcreteImplementor：具体实现类</p></li>
+</ul>
+<img alt="../_images/Bridge.jpg" src="../_images/Bridge.jpg" />
+</section>
+<section id="id6">
+<h2><a class="toc-backref" href="#id20"><span class="section-number">2.4. </span>时序图</a><a class="headerlink" href="#id6" title="Permalink to this headline">¶</a></h2>
+<img alt="../_images/seq_Bridge.jpg" src="../_images/seq_Bridge.jpg" />
+</section>
+<section id="id7">
+<h2><a class="toc-backref" href="#id21"><span class="section-number">2.5. </span>代码分析</a><a class="headerlink" href="#id7" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="cp">#include</span> <span class="cpf">&lt;iostream&gt;</span><span class="cp"></span>
+<span class="linenos"> 2</span><span class="cp">#include</span> <span class="cpf">&quot;ConcreteImplementorA.h&quot;</span><span class="cp"></span>
+<span class="linenos"> 3</span><span class="cp">#include</span> <span class="cpf">&quot;ConcreteImplementorB.h&quot;</span><span class="cp"></span>
+<span class="linenos"> 4</span><span class="cp">#include</span> <span class="cpf">&quot;RefinedAbstraction.h&quot;</span><span class="cp"></span>
+<span class="linenos"> 5</span><span class="cp">#include</span> <span class="cpf">&quot;Abstraction.h&quot;</span><span class="cp"></span>
+<span class="linenos"> 6</span>
+<span class="linenos"> 7</span><span class="k">using</span> <span class="k">namespace</span> <span class="nn">std</span><span class="p">;</span>
+<span class="linenos"> 8</span>
+<span class="linenos"> 9</span><span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">int</span> <span class="n">argc</span><span class="p">,</span> <span class="kt">char</span> <span class="o">*</span><span class="n">argv</span><span class="p">[])</span>
+<span class="linenos">10</span><span class="p">{</span>
+<span class="linenos">11</span>	
+<span class="hll"><span class="linenos">12</span>	<span class="n">Implementor</span> <span class="o">*</span> <span class="n">pImp</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ConcreteImplementorA</span><span class="p">();</span>
+</span><span class="hll"><span class="linenos">13</span>	<span class="n">Abstraction</span> <span class="o">*</span> <span class="n">pa</span> <span class="o">=</span> <span class="k">new</span> <span class="n">RefinedAbstraction</span><span class="p">(</span><span class="n">pImp</span><span class="p">);</span>
+</span><span class="hll"><span class="linenos">14</span>	<span class="n">pa</span><span class="o">-&gt;</span><span class="n">operation</span><span class="p">();</span>
+</span><span class="hll"><span class="linenos">15</span>	
+</span><span class="hll"><span class="linenos">16</span>	<span class="n">Abstraction</span> <span class="o">*</span> <span class="n">pb</span> <span class="o">=</span> <span class="k">new</span> <span class="n">RefinedAbstraction</span><span class="p">(</span><span class="k">new</span> <span class="n">ConcreteImplementorB</span><span class="p">());</span>
+</span><span class="hll"><span class="linenos">17</span>	<span class="n">pb</span><span class="o">-&gt;</span><span class="n">operation</span><span class="p">();</span>		
+</span><span class="linenos">18</span>	
+<span class="linenos">19</span>	<span class="k">delete</span> <span class="n">pa</span><span class="p">;</span>
+<span class="linenos">20</span>	<span class="k">delete</span> <span class="n">pb</span><span class="p">;</span>
+<span class="linenos">21</span>	
+<span class="linenos">22</span>	<span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="linenos">23</span><span class="p">}</span>
+</pre></div>
+</div>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="c1">///////////////////////////////////////////////////////////</span>
+<span class="linenos"> 2</span><span class="c1">//  RefinedAbstraction.h</span>
+<span class="linenos"> 3</span><span class="c1">//  Implementation of the Class RefinedAbstraction</span>
+<span class="linenos"> 4</span><span class="c1">//  Created on:      03-十月-2014 18:12:43</span>
+<span class="linenos"> 5</span><span class="c1">//  Original author: colin</span>
+<span class="linenos"> 6</span><span class="c1">///////////////////////////////////////////////////////////</span>
+<span class="linenos"> 7</span>
+<span class="linenos"> 8</span><span class="cp">#if !defined(EA_4BA5BE7C_DED5_4236_8362_F2988921CFA7__INCLUDED_)</span>
+<span class="linenos"> 9</span><span class="cp">#define EA_4BA5BE7C_DED5_4236_8362_F2988921CFA7__INCLUDED_</span>
+<span class="linenos">10</span>
+<span class="linenos">11</span><span class="cp">#include</span> <span class="cpf">&quot;Abstraction.h&quot;</span><span class="cp"></span>
+<span class="linenos">12</span>
+<span class="linenos">13</span><span class="k">class</span> <span class="nc">RefinedAbstraction</span> <span class="o">:</span> <span class="k">public</span> <span class="n">Abstraction</span>
+<span class="linenos">14</span><span class="p">{</span>
+<span class="linenos">15</span>
+<span class="linenos">16</span><span class="k">public</span><span class="o">:</span>
+<span class="linenos">17</span>	<span class="n">RefinedAbstraction</span><span class="p">();</span>
+<span class="linenos">18</span>	<span class="n">RefinedAbstraction</span><span class="p">(</span><span class="n">Implementor</span><span class="o">*</span> <span class="n">imp</span><span class="p">);</span>
+<span class="linenos">19</span>	<span class="k">virtual</span> <span class="o">~</span><span class="n">RefinedAbstraction</span><span class="p">();</span>
+<span class="linenos">20</span>
+<span class="linenos">21</span>	<span class="k">virtual</span> <span class="kt">void</span> <span class="nf">operation</span><span class="p">();</span>
+<span class="linenos">22</span>
+<span class="linenos">23</span><span class="p">};</span>
+<span class="linenos">24</span><span class="cp">#endif </span><span class="c1">// !defined(EA_4BA5BE7C_DED5_4236_8362_F2988921CFA7__INCLUDED_)</span>
+</pre></div>
+</div>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="c1">///////////////////////////////////////////////////////////</span>
+<span class="linenos"> 2</span><span class="c1">//  RefinedAbstraction.cpp</span>
+<span class="linenos"> 3</span><span class="c1">//  Implementation of the Class RefinedAbstraction</span>
+<span class="linenos"> 4</span><span class="c1">//  Created on:      03-十月-2014 18:12:43</span>
+<span class="linenos"> 5</span><span class="c1">//  Original author: colin</span>
+<span class="linenos"> 6</span><span class="c1">///////////////////////////////////////////////////////////</span>
+<span class="linenos"> 7</span>
+<span class="linenos"> 8</span><span class="cp">#include</span> <span class="cpf">&quot;RefinedAbstraction.h&quot;</span><span class="cp"></span>
+<span class="linenos"> 9</span><span class="cp">#include</span> <span class="cpf">&lt;iostream&gt;</span><span class="cp"></span>
+<span class="linenos">10</span><span class="k">using</span> <span class="k">namespace</span> <span class="nn">std</span><span class="p">;</span>
+<span class="linenos">11</span>
+<span class="linenos">12</span>
+<span class="linenos">13</span><span class="n">RefinedAbstraction</span><span class="o">::</span><span class="n">RefinedAbstraction</span><span class="p">(){</span>
+<span class="linenos">14</span>
+<span class="linenos">15</span><span class="p">}</span>
+<span class="linenos">16</span>
+<span class="linenos">17</span><span class="n">RefinedAbstraction</span><span class="o">::</span><span class="n">RefinedAbstraction</span><span class="p">(</span><span class="n">Implementor</span><span class="o">*</span> <span class="n">imp</span><span class="p">)</span>
+<span class="linenos">18</span>	<span class="o">:</span><span class="n">Abstraction</span><span class="p">(</span><span class="n">imp</span><span class="p">)</span>
+<span class="linenos">19</span><span class="p">{</span>
+<span class="linenos">20</span><span class="p">}</span>
+<span class="linenos">21</span>
+<span class="linenos">22</span><span class="n">RefinedAbstraction</span><span class="o">::~</span><span class="n">RefinedAbstraction</span><span class="p">(){</span>
+<span class="linenos">23</span>
+<span class="linenos">24</span><span class="p">}</span>
+<span class="linenos">25</span>
+<span class="hll"><span class="linenos">26</span><span class="kt">void</span> <span class="n">RefinedAbstraction</span><span class="o">::</span><span class="n">operation</span><span class="p">(){</span>
+</span><span class="hll"><span class="linenos">27</span>	<span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&quot;do something else ,and then &quot;</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+</span><span class="hll"><span class="linenos">28</span>	<span class="n">m_pImp</span><span class="o">-&gt;</span><span class="n">operationImp</span><span class="p">();</span>
+</span><span class="linenos">29</span><span class="p">}</span>
+<span class="linenos">30</span>
+<span class="linenos">31</span> 
+</pre></div>
+</div>
+<p>运行结果：</p>
+<img alt="../_images/Bridge_run.jpg" src="../_images/Bridge_run.jpg" />
+</section>
+<section id="id8">
+<h2><a class="toc-backref" href="#id22"><span class="section-number">2.6. </span>模式分析</a><a class="headerlink" href="#id8" title="Permalink to this headline">¶</a></h2>
+<p>理解桥接模式，重点需要理解如何将抽象化(Abstraction)与实现化(Implementation)脱耦，使得二者可以独立地变化。</p>
+<ul class="simple">
+<li><p>抽象化：抽象化就是忽略一些信息，把不同的实体当作同样的实体对待。在面向对象中，将对象的共同性质抽取出来形成类的过程即为抽象化的过程。</p></li>
+<li><p>实现化：针对抽象化给出的具体实现，就是实现化，抽象化与实现化是一对互逆的概念，实现化产生的对象比抽象化更具体，是对抽象化事物的进一步具体化的产物。</p></li>
+<li><p>脱耦：脱耦就是将抽象化和实现化之间的耦合解脱开，或者说是将它们之间的强关联改换成弱关联，将两个角色之间的继承关系改为关联关系。桥接模式中的所谓脱耦，就是指在一个软件系统的抽象化和实现化之间使用关联关系（组合或者聚合关系）而不是继承关系，从而使两者可以相对独立地变化，这就是桥接模式的用意。</p></li>
+</ul>
+</section>
+<section id="id9">
+<h2><a class="toc-backref" href="#id23"><span class="section-number">2.7. </span>实例</a><a class="headerlink" href="#id9" title="Permalink to this headline">¶</a></h2>
+<p>如果需要开发一个跨平台视频播放器，可以在不同操作系统平台（如Windows、Linux、Unix等）上播放多种格式的视频文件，常见的视频格式包括MPEG、RMVB、AVI、WMV等。现使用桥接模式设计该播放器。</p>
+</section>
+<section id="id10">
+<h2><a class="toc-backref" href="#id24"><span class="section-number">2.8. </span>优点</a><a class="headerlink" href="#id10" title="Permalink to this headline">¶</a></h2>
+<p>桥接模式的优点:</p>
+<ul class="simple">
+<li><p>分离抽象接口及其实现部分。</p></li>
+<li><p>桥接模式有时类似于多继承方案，但是多继承方案违背了类的单一职责原则（即一个类只有一个变化的原因），复用性比较差，而且多继承结构中类的个数非常庞大，桥接模式是比多继承方案更好的解决方法。</p></li>
+<li><p>桥接模式提高了系统的可扩充性，在两个变化维度中任意扩展一个维度，都不需要修改原有系统。</p></li>
+<li><p>实现细节对客户透明，可以对用户隐藏实现细节。</p></li>
+</ul>
+</section>
+<section id="id11">
+<h2><a class="toc-backref" href="#id25"><span class="section-number">2.9. </span>缺点</a><a class="headerlink" href="#id11" title="Permalink to this headline">¶</a></h2>
+<p>桥接模式的缺点:</p>
+<ul class="simple">
+<li><p>桥接模式的引入会增加系统的理解与设计难度，由于聚合关联关系建立在抽象层，要求开发者针对抽象进</p></li>
+</ul>
+<p>行设计与编程。
+- 桥接模式要求正确识别出系统中两个独立变化的维度，因此其使用范围具有一定的局限性。</p>
+</section>
+<section id="id12">
+<h2><a class="toc-backref" href="#id26"><span class="section-number">2.10. </span>适用环境</a><a class="headerlink" href="#id12" title="Permalink to this headline">¶</a></h2>
+<p>在以下情况下可以使用桥接模式：</p>
+<ul class="simple">
+<li><p>如果一个系统需要在构件的抽象化角色和具体化角色之间增加更多的灵活性，避免在两个层次之间建立静态的继承联系，通过桥接模式可以使它们在抽象层建立一个关联关系。</p></li>
+<li><p>抽象化角色和实现化角色可以以继承的方式独立扩展而互不影响，在程序运行时可以动态将一个抽象化子类的对象和一个实现化子类的对象进行组合，即系统需要对抽象化角色和实现化角色进行动态耦合。</p></li>
+<li><p>一个类存在两个独立变化的维度，且这两个维度都需要进行扩展。</p></li>
+<li><p>虽然在系统中使用继承是没有问题的，但是由于抽象化角色和具体化角色需要独立变化，设计要求需要独立管理这两者。</p></li>
+<li><p>对于那些不希望使用继承或因为多层次继承导致系统类的个数急剧增加的系统，桥接模式尤为适用。</p></li>
+</ul>
+</section>
+<section id="id13">
+<h2><a class="toc-backref" href="#id27"><span class="section-number">2.11. </span>模式应用</a><a class="headerlink" href="#id13" title="Permalink to this headline">¶</a></h2>
+<p>一个Java桌面软件总是带有所在操作系统的视感(LookAndFeel)，如果一个Java软件是在Unix系统上开发的，那么开发人员看到的是Motif用户界面的视感；在Windows上面使用这个系统的用户看到的是Windows用户界面的视感；而一个在Macintosh上面使用的用户看到的则是Macintosh用户界面的视感，Java语言是通过所谓的Peer架构做到这一点的。Java为AWT中的每一个GUI构件都提供了一个Peer构件，在AWT中的Peer架构就使用了桥接模式</p>
+</section>
+<section id="id14">
+<h2><a class="toc-backref" href="#id28"><span class="section-number">2.12. </span>模式扩展</a><a class="headerlink" href="#id14" title="Permalink to this headline">¶</a></h2>
+<p>适配器模式与桥接模式的联用:</p>
+<ul class="simple">
+<li><p>桥接模式和适配器模式用于设计的不同阶段，桥接模式用于系统的初步设计，对于存在两个独立变化维度的类可以将其分为抽象化和实现化两个角色，使它们可以分别进行变化；而在初步设计完成之后，当发现系统与已有类无法协同工作时，可以采用适配器模式。但有时候在设计初期也需要考虑适配器模式，特别是那些涉及到大量第三方应用接口的情况。</p></li>
+</ul>
+</section>
+<section id="id15">
+<h2><a class="toc-backref" href="#id29"><span class="section-number">2.13. </span>总结</a><a class="headerlink" href="#id15" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>桥接模式将抽象部分与它的实现部分分离，使它们都可以独立地变化。它是一种对象结构型模式，又称为柄体(Handle and Body)模式或接口(Interface)模式。</p></li>
+<li><p>桥接模式包含如下四个角色：抽象类中定义了一个实现类接口类型的对象并可以维护该对象；扩充抽象类扩充由抽象类定义的接口，它实现了在抽象类中定义的抽象业务方法，在扩充抽象类中可以调用在实现类接口中定义的业务方法；实现类接口定义了实现类的接口，实现类接口仅提供基本操作，而抽象类定义的接口可能会做更多更复杂的操作；具体实现类实现了实现类接口并且具体实现它，在不同的具体实现类中提供基本操作的不同实现，在程序运行时，具体实现类对象将替换其父类对象，提供给客户端具体的业务操作方法。</p></li>
+<li><p>在桥接模式中，抽象化(Abstraction)与实现化(Implementation)脱耦，它们可以沿着各自的维度独立变化。</p></li>
+<li><p>桥接模式的主要优点是分离抽象接口及其实现部分，是比多继承方案更好的解决方法，桥接模式还提高了系统的可扩充性，在两个变化维度中任意扩展一个维度，都不需要修改原有系统，实现细节对客户透明，可以对用户隐藏实现细节；其主要缺点是增加系统的理解与设计难度，且识别出系统中两个独立变化的维度并不是一件容易的事情。</p></li>
+<li><p>桥接模式适用情况包括：需要在构件的抽象化角色和具体化角色之间增加更多的灵活性，避免在两个层次之间建立静态的继承联系；抽象化角色和实现化角色可以以继承的方式独立扩展而互不影响；一个类存在两个独立变化的维度，且这两个维度都需要进行扩展；设计要求需要独立管理抽象化角色和具体化角色；不希望使用继承或因为多层次继承导致系统类的个数急剧增加的系统。</p></li>
+</ul>
+</section>
+</section>
+
+
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="decorator.html" class="btn btn-neutral float-right" title="3. 装饰模式">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="adapter.html" class="btn btn-neutral" title="1. 适配器模式"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2014, Colin http://blog.me115.com.
+    </p>
+  </div>
+
+  <a href="https://github.com/snide/sphinx_rtd_theme">Sphinx theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../',
+            VERSION:'0.1',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="../_static/documentation_options.js"></script>
+      <script type="text/javascript" src="../_static/jquery.js"></script>
+      <script type="text/javascript" src="../_static/underscore.js"></script>
+      <script type="text/javascript" src="../_static/doctools.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

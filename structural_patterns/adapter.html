@@ -1,0 +1,418 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>1. 适配器模式 &mdash; Graphic Design Patterns</title>
+  
+
+  
+  
+
+  
+  <link href="../_static/css/font_lato_googleapi.css" type='text/css'>
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  
+
+  
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  
+    <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  
+        <link rel="index" title="Index"
+              href="../genindex.html"/>
+        <link rel="search" title="Search" href="../search.html"/>
+    <link rel="top" title="Graphic Design Patterns" href="../index.html"/>
+        <link rel="up" title="结构型模式" href="structural.html"/>
+        <link rel="next" title="2. 桥接模式" href="bridge.html"/>
+        <link rel="prev" title="结构型模式" href="structural.html"/> 
+
+  
+  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-nav-search">
+        
+          <a href="../index.html" class="fa fa-home"> Graphic Design Patterns</a>
+        
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+        
+        
+            <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../read_uml.html">看懂UML类图和时序图</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../read_uml.html#id1">从一个示例开始</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../read_uml.html#id2">类之间的关系</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../read_uml.html#id3">时序图</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../read_uml.html#id4">附录</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../creational_patterns/creational.html">创建型模式</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../creational_patterns/simple_factory.html">1. 简单工厂模式( Simple Factory Pattern )</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../creational_patterns/factory_method.html">2. 工厂方法模式(Factory Method Pattern)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../creational_patterns/abstract_factory.html">3. 抽象工厂模式(Abstract Factory)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../creational_patterns/builder.html">4. 建造者模式</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../creational_patterns/singleton.html">5. 单例模式</a></li>
+</ul>
+</li>
+<li class="toctree-l1 current"><a class="reference internal" href="structural.html">结构型模式</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="#">1. 适配器模式</a></li>
+<li class="toctree-l2"><a class="reference internal" href="bridge.html">2. 桥接模式</a></li>
+<li class="toctree-l2"><a class="reference internal" href="decorator.html">3. 装饰模式</a></li>
+<li class="toctree-l2"><a class="reference internal" href="facade.html">4. 外观模式</a></li>
+<li class="toctree-l2"><a class="reference internal" href="flyweight.html">5. 享元模式</a></li>
+<li class="toctree-l2"><a class="reference internal" href="proxy.html">6. 代理模式</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../behavioral_patterns/behavioral.html">行为型模式</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../behavioral_patterns/command.html">1. 命令模式</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../behavioral_patterns/mediator.html">2. 中介者模式</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../behavioral_patterns/observer.html">3. 观察者模式</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../behavioral_patterns/state.html">4. 状态模式</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../behavioral_patterns/strategy.html">5. 策略模式</a></li>
+</ul>
+</li>
+</ul>
+
+        
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../index.html">Graphic Design Patterns</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../index.html">Docs</a> &raquo;</li>
+      
+          <li><a href="structural.html">结构型模式</a> &raquo;</li>
+      
+    <li><span class="section-number">1. </span>适配器模式</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          <a href="../_sources/structural_patterns/adapter.rst.txt" rel="nofollow"> View page source</a>
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document">
+            
+  <section id="adapter">
+<span id="id1"></span><h1><a class="toc-backref" href="#id16"><span class="section-number">1. </span>适配器模式</a><a class="headerlink" href="#adapter" title="Permalink to this headline">¶</a></h1>
+<div class="contents topic" id="id2">
+<p class="topic-title">目录</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="#adapter" id="id16">适配器模式</a></p>
+<ul>
+<li><p><a class="reference internal" href="#id3" id="id17">模式动机</a></p></li>
+<li><p><a class="reference internal" href="#id4" id="id18">模式定义</a></p></li>
+<li><p><a class="reference internal" href="#id5" id="id19">模式结构</a></p></li>
+<li><p><a class="reference internal" href="#id6" id="id20">时序图</a></p></li>
+<li><p><a class="reference internal" href="#id7" id="id21">代码分析</a></p></li>
+<li><p><a class="reference internal" href="#id8" id="id22">模式分析</a></p></li>
+<li><p><a class="reference internal" href="#id9" id="id23">实例</a></p></li>
+<li><p><a class="reference internal" href="#id10" id="id24">优点</a></p></li>
+<li><p><a class="reference internal" href="#id11" id="id25">缺点</a></p></li>
+<li><p><a class="reference internal" href="#id12" id="id26">适用环境</a></p></li>
+<li><p><a class="reference internal" href="#id13" id="id27">模式应用</a></p></li>
+<li><p><a class="reference internal" href="#id14" id="id28">模式扩展</a></p></li>
+<li><p><a class="reference internal" href="#id15" id="id29">总结</a></p></li>
+</ul>
+</li>
+</ul>
+</div>
+<section id="id3">
+<h2><a class="toc-backref" href="#id17"><span class="section-number">1.1. </span>模式动机</a><a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>在软件开发中采用类似于电源适配器的设计和编码技巧被称为适配器模式。</p></li>
+<li><p>通常情况下，客户端可以通过目标类的接口访问它所提供的服务。有时，现有的类可以满足客户类的功能需要，但是它所提供的接口不一定是客户类所期望的，这可能是因为现有类中方法名与目标类中定义的方法名不一致等原因所导致的。</p></li>
+<li><p>在这种情况下，现有的接口需要转化为客户类期望的接口，这样保证了对现有类的重用。如果不进行这样的转化，客户类就不能利用现有类所提供的功能，适配器模式可以完成这样的转化。</p></li>
+<li><p>在适配器模式中可以定义一个包装类，包装不兼容接口的对象，这个包装类指的就是适配器(Adapter)，它所包装的对象就是适配者(Adaptee)，即被适配的类。</p></li>
+<li><p>适配器提供客户类需要的接口，适配器的实现就是把客户类的请求转化为对适配者的相应接口的调用。也就是说：当客户类调用适配器的方法时，在适配器类的内部将调用适配者类的方法，而这个过程对客户类是透明的，客户类并不直接访问适配者类。因此，适配器可以使由于接口不兼容而不能交互的类可以一起工作。这就是适配器模式的模式动机。</p></li>
+</ul>
+</section>
+<section id="id4">
+<h2><a class="toc-backref" href="#id18"><span class="section-number">1.2. </span>模式定义</a><a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h2>
+<p>适配器模式(Adapter Pattern) ：将一个接口转换成客户希望的另一个接口，适配器模式使接口不兼容的那些类可以一起工作，其别名为包装器(Wrapper)。适配器模式既可以作为类结构型模式，也可以作为对象结构型模式。</p>
+</section>
+<section id="id5">
+<h2><a class="toc-backref" href="#id19"><span class="section-number">1.3. </span>模式结构</a><a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h2>
+<p>适配器模式包含如下角色：</p>
+<ul class="simple">
+<li><p>Target：目标抽象类</p></li>
+<li><p>Adapter：适配器类</p></li>
+<li><p>Adaptee：适配者类</p></li>
+<li><p>Client：客户类</p></li>
+</ul>
+<p>适配器模式有对象适配器和类适配器两种实现：</p>
+<p>对象适配器：</p>
+<img alt="../_images/Adapter.jpg" src="../_images/Adapter.jpg" />
+<p>类适配器：</p>
+<img alt="../_images/Adapter_classModel.jpg" src="../_images/Adapter_classModel.jpg" />
+</section>
+<section id="id6">
+<h2><a class="toc-backref" href="#id20"><span class="section-number">1.4. </span>时序图</a><a class="headerlink" href="#id6" title="Permalink to this headline">¶</a></h2>
+<img alt="../_images/seq_Adapter.jpg" src="../_images/seq_Adapter.jpg" />
+</section>
+<section id="id7">
+<h2><a class="toc-backref" href="#id21"><span class="section-number">1.5. </span>代码分析</a><a class="headerlink" href="#id7" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="cp">#include</span> <span class="cpf">&lt;iostream&gt;</span><span class="cp"></span>
+<span class="linenos"> 2</span><span class="cp">#include</span> <span class="cpf">&quot;Adapter.h&quot;</span><span class="cp"></span>
+<span class="linenos"> 3</span><span class="cp">#include</span> <span class="cpf">&quot;Adaptee.h&quot;</span><span class="cp"></span>
+<span class="linenos"> 4</span><span class="cp">#include</span> <span class="cpf">&quot;Target.h&quot;</span><span class="cp"></span>
+<span class="linenos"> 5</span>
+<span class="linenos"> 6</span><span class="k">using</span> <span class="k">namespace</span> <span class="nn">std</span><span class="p">;</span>
+<span class="linenos"> 7</span>
+<span class="linenos"> 8</span><span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">int</span> <span class="n">argc</span><span class="p">,</span> <span class="kt">char</span> <span class="o">*</span><span class="n">argv</span><span class="p">[])</span>
+<span class="linenos"> 9</span><span class="p">{</span>
+<span class="hll"><span class="linenos">10</span>	<span class="n">Adaptee</span> <span class="o">*</span> <span class="n">adaptee</span>  <span class="o">=</span> <span class="k">new</span> <span class="n">Adaptee</span><span class="p">();</span>
+</span><span class="hll"><span class="linenos">11</span>	<span class="n">Target</span> <span class="o">*</span> <span class="n">tar</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Adapter</span><span class="p">(</span><span class="n">adaptee</span><span class="p">);</span>
+</span><span class="hll"><span class="linenos">12</span>	<span class="n">tar</span><span class="o">-&gt;</span><span class="n">request</span><span class="p">();</span>
+</span><span class="linenos">13</span>	
+<span class="linenos">14</span>	<span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="linenos">15</span><span class="p">}</span>
+</pre></div>
+</div>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="c1">///////////////////////////////////////////////////////////</span>
+<span class="linenos"> 2</span><span class="c1">//  Adapter.h</span>
+<span class="linenos"> 3</span><span class="c1">//  Implementation of the Class Adapter</span>
+<span class="linenos"> 4</span><span class="c1">//  Created on:      03-十月-2014 17:32:00</span>
+<span class="linenos"> 5</span><span class="c1">//  Original author: colin</span>
+<span class="linenos"> 6</span><span class="c1">///////////////////////////////////////////////////////////</span>
+<span class="linenos"> 7</span>
+<span class="linenos"> 8</span><span class="cp">#if !defined(EA_BD766D47_0C69_4131_B7B9_21DF78B1E80D__INCLUDED_)</span>
+<span class="linenos"> 9</span><span class="cp">#define EA_BD766D47_0C69_4131_B7B9_21DF78B1E80D__INCLUDED_</span>
+<span class="linenos">10</span>
+<span class="linenos">11</span><span class="cp">#include</span> <span class="cpf">&quot;Target.h&quot;</span><span class="cp"></span>
+<span class="linenos">12</span><span class="cp">#include</span> <span class="cpf">&quot;Adaptee.h&quot;</span><span class="cp"></span>
+<span class="linenos">13</span>
+<span class="linenos">14</span><span class="k">class</span> <span class="nc">Adapter</span> <span class="o">:</span> <span class="k">public</span> <span class="n">Target</span>
+<span class="linenos">15</span><span class="p">{</span>
+<span class="linenos">16</span>
+<span class="linenos">17</span><span class="k">public</span><span class="o">:</span>
+<span class="linenos">18</span>	<span class="n">Adapter</span><span class="p">(</span><span class="n">Adaptee</span> <span class="o">*</span><span class="n">adaptee</span><span class="p">);</span>
+<span class="linenos">19</span>	<span class="k">virtual</span> <span class="o">~</span><span class="n">Adapter</span><span class="p">();</span>
+<span class="linenos">20</span>
+<span class="linenos">21</span>	<span class="k">virtual</span> <span class="kt">void</span> <span class="nf">request</span><span class="p">();</span>
+<span class="linenos">22</span>
+<span class="linenos">23</span><span class="k">private</span><span class="o">:</span>
+<span class="linenos">24</span>	<span class="n">Adaptee</span><span class="o">*</span> <span class="n">m_pAdaptee</span><span class="p">;</span>
+<span class="linenos">25</span>
+<span class="linenos">26</span><span class="p">};</span>
+<span class="linenos">27</span><span class="cp">#endif </span><span class="c1">// !defined(EA_BD766D47_0C69_4131_B7B9_21DF78B1E80D__INCLUDED_)</span>
+</pre></div>
+</div>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="c1">///////////////////////////////////////////////////////////</span>
+<span class="linenos"> 2</span><span class="c1">//  Adapter.cpp</span>
+<span class="linenos"> 3</span><span class="c1">//  Implementation of the Class Adapter</span>
+<span class="linenos"> 4</span><span class="c1">//  Created on:      03-十月-2014 17:32:00</span>
+<span class="linenos"> 5</span><span class="c1">//  Original author: colin</span>
+<span class="linenos"> 6</span><span class="c1">///////////////////////////////////////////////////////////</span>
+<span class="linenos"> 7</span>
+<span class="linenos"> 8</span><span class="cp">#include</span> <span class="cpf">&quot;Adapter.h&quot;</span><span class="cp"></span>
+<span class="linenos"> 9</span>
+<span class="linenos">10</span><span class="n">Adapter</span><span class="o">::</span><span class="n">Adapter</span><span class="p">(</span><span class="n">Adaptee</span> <span class="o">*</span> <span class="n">adaptee</span><span class="p">){</span>
+<span class="linenos">11</span>	<span class="n">m_pAdaptee</span> <span class="o">=</span>  <span class="n">adaptee</span><span class="p">;</span>
+<span class="linenos">12</span><span class="p">}</span>
+<span class="linenos">13</span>
+<span class="linenos">14</span><span class="n">Adapter</span><span class="o">::~</span><span class="n">Adapter</span><span class="p">(){</span>
+<span class="linenos">15</span>
+<span class="linenos">16</span><span class="p">}</span>
+<span class="linenos">17</span>
+<span class="linenos">18</span><span class="kt">void</span> <span class="n">Adapter</span><span class="o">::</span><span class="n">request</span><span class="p">(){</span>
+<span class="hll"><span class="linenos">19</span>	<span class="n">m_pAdaptee</span><span class="o">-&gt;</span><span class="n">specificRequest</span><span class="p">();</span>
+</span><span class="linenos">20</span><span class="p">}</span>
+</pre></div>
+</div>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="c1">///////////////////////////////////////////////////////////</span>
+<span class="linenos"> 2</span><span class="c1">//  Adaptee.h</span>
+<span class="linenos"> 3</span><span class="c1">//  Implementation of the Class Adaptee</span>
+<span class="linenos"> 4</span><span class="c1">//  Created on:      03-十月-2014 17:32:00</span>
+<span class="linenos"> 5</span><span class="c1">//  Original author: colin</span>
+<span class="linenos"> 6</span><span class="c1">///////////////////////////////////////////////////////////</span>
+<span class="linenos"> 7</span>
+<span class="linenos"> 8</span><span class="cp">#if !defined(EA_826E6B4F_12BE_4609_A0A3_95BD5E657D36__INCLUDED_)</span>
+<span class="linenos"> 9</span><span class="cp">#define EA_826E6B4F_12BE_4609_A0A3_95BD5E657D36__INCLUDED_</span>
+<span class="linenos">10</span>
+<span class="linenos">11</span><span class="k">class</span> <span class="nc">Adaptee</span>
+<span class="linenos">12</span><span class="p">{</span>
+<span class="linenos">13</span>
+<span class="linenos">14</span><span class="k">public</span><span class="o">:</span>
+<span class="linenos">15</span>	<span class="n">Adaptee</span><span class="p">();</span>
+<span class="linenos">16</span>	<span class="k">virtual</span> <span class="o">~</span><span class="n">Adaptee</span><span class="p">();</span>
+<span class="linenos">17</span>
+<span class="linenos">18</span>	<span class="kt">void</span> <span class="nf">specificRequest</span><span class="p">();</span>
+<span class="linenos">19</span>
+<span class="linenos">20</span><span class="p">};</span>
+<span class="linenos">21</span><span class="cp">#endif </span><span class="c1">// !defined(EA_826E6B4F_12BE_4609_A0A3_95BD5E657D36__INCLUDED_)</span>
+</pre></div>
+</div>
+<p>运行结果：</p>
+<img alt="../_images/Adapter_run.jpg" src="../_images/Adapter_run.jpg" />
+</section>
+<section id="id8">
+<h2><a class="toc-backref" href="#id22"><span class="section-number">1.6. </span>模式分析</a><a class="headerlink" href="#id8" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="id9">
+<h2><a class="toc-backref" href="#id23"><span class="section-number">1.7. </span>实例</a><a class="headerlink" href="#id9" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="id10">
+<h2><a class="toc-backref" href="#id24"><span class="section-number">1.8. </span>优点</a><a class="headerlink" href="#id10" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>将目标类和适配者类解耦，通过引入一个适配器类来重用现有的适配者类，而无须修改原有代码。</p></li>
+<li><p>增加了类的透明性和复用性，将具体的实现封装在适配者类中，对于客户端类来说是透明的，而且提高了适配者的复用性。</p></li>
+<li><p>灵活性和扩展性都非常好，通过使用配置文件，可以很方便地更换适配器，也可以在不修改原有代码的基础上增加新的适配器类，完全符合“开闭原则”。</p></li>
+</ul>
+<dl class="simple">
+<dt>类适配器模式还具有如下优点：</dt><dd><p>由于适配器类是适配者类的子类，因此可以在适配器类中置换一些适配者的方法，使得适配器的灵活性更强。</p>
+</dd>
+<dt>对象适配器模式还具有如下优点：</dt><dd><p>一个对象适配器可以把多个不同的适配者适配到同一个目标，也就是说，同一个适配器可以把适配者类和它的子类都适配到目标接口。</p>
+</dd>
+</dl>
+</section>
+<section id="id11">
+<h2><a class="toc-backref" href="#id25"><span class="section-number">1.9. </span>缺点</a><a class="headerlink" href="#id11" title="Permalink to this headline">¶</a></h2>
+<dl class="simple">
+<dt>类适配器模式的缺点如下：</dt><dd><p>对于Java、C#等不支持多重继承的语言，一次最多只能适配一个适配者类，而且目标抽象类只能为抽象类，不能为具体类，其使用有一定的局限性，不能将一个适配者类和它的子类都适配到目标接口。</p>
+</dd>
+<dt>对象适配器模式的缺点如下：</dt><dd><p>与类适配器模式相比，要想置换适配者类的方法就不容易。如果一定要置换掉适配者类的一个或多个方法，就只好先做一个适配者类的子类，将适配者类的方法置换掉，然后再把适配者类的子类当做真正的适配者进行适配，实现过程较为复杂。</p>
+</dd>
+</dl>
+</section>
+<section id="id12">
+<h2><a class="toc-backref" href="#id26"><span class="section-number">1.10. </span>适用环境</a><a class="headerlink" href="#id12" title="Permalink to this headline">¶</a></h2>
+<p>在以下情况下可以使用适配器模式：</p>
+<ul class="simple">
+<li><p>系统需要使用现有的类，而这些类的接口不符合系统的需要。</p></li>
+<li><p>想要建立一个可以重复使用的类，用于与一些彼此之间没有太大关联的一些类，包括一些可能在将来引进的类一起工作。</p></li>
+</ul>
+</section>
+<section id="id13">
+<h2><a class="toc-backref" href="#id27"><span class="section-number">1.11. </span>模式应用</a><a class="headerlink" href="#id13" title="Permalink to this headline">¶</a></h2>
+<p>Sun公司在1996年公开了Java语言的数据库连接工具JDBC，JDBC使得Java语言程序能够与数据库连接，并使用SQL语言来查询和操作数据。JDBC给出一个客户端通用的抽象接口，每一个具体数据库引擎（如SQL Server、Oracle、MySQL等）的JDBC驱动软件都是一个介于JDBC接口和数据库引擎接口之间的适配器软件。抽象的JDBC接口和各个数据库引擎API之间都需要相应的适配器软件，这就是为各个不同数据库引擎准备的驱动程序。</p>
+</section>
+<section id="id14">
+<h2><a class="toc-backref" href="#id28"><span class="section-number">1.12. </span>模式扩展</a><a class="headerlink" href="#id14" title="Permalink to this headline">¶</a></h2>
+<dl class="simple">
+<dt>认适配器模式(Default Adapter Pattern)或缺省适配器模式</dt><dd><p>当不需要全部实现接口提供的方法时，可先设计一个抽象类实现接口，并为该接口中每个方法提供一个默认实现（空方法），那么该抽象类的子类可有选择地覆盖父类的某些方法来实现需求，它适用于一个接口不想使用其所有的方法的情况。因此也称为单接口适配器模式。</p>
+</dd>
+</dl>
+</section>
+<section id="id15">
+<h2><a class="toc-backref" href="#id29"><span class="section-number">1.13. </span>总结</a><a class="headerlink" href="#id15" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>结构型模式描述如何将类或者对象结合在一起形成更大的结构。</p></li>
+<li><p>适配器模式用于将一个接口转换成客户希望的另一个接口，适配器模式使接口不兼容的那些类可以一起工作，其别名为包装器。适配器模式既可以作为类结构型模式，也可以作为对象结构型模式。</p></li>
+<li><p>适配器模式包含四个角色：目标抽象类定义客户要用的特定领域的接口；适配器类可以调用另一个接口，作为一个转换器，对适配者和抽象目标类进行适配，它是适配器模式的核心；适配者类是被适配的角色，它定义了一个已经存在的接口，这个接口需要适配；在客户类中针对目标抽象类进行编程，调用在目标抽象类中定义的业务方法。</p></li>
+<li><p>在类适配器模式中，适配器类实现了目标抽象类接口并继承了适配者类，并在目标抽象类的实现方法中调用所继承的适配者类的方法；在对象适配器模式中，适配器类继承了目标抽象类并定义了一个适配者类的对象实例，在所继承的目标抽象类方法中调用适配者类的相应业务方法。</p></li>
+<li><p>适配器模式的主要优点是将目标类和适配者类解耦，增加了类的透明性和复用性，同时系统的灵活性和扩展性都非常好，更换适配器或者增加新的适配器都非常方便，符合“开闭原则”；类适配器模式的缺点是适配器类在很多编程语言中不能同时适配多个适配者类，对象适配器模式的缺点是很难置换适配者类的方法。</p></li>
+<li><p>适配器模式适用情况包括：系统需要使用现有的类，而这些类的接口不符合系统的需要；想要建立一个可以重复使用的类，用于与一些彼此之间没有太大关联的一些类一起工作。</p></li>
+</ul>
+</section>
+</section>
+
+
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="bridge.html" class="btn btn-neutral float-right" title="2. 桥接模式">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="structural.html" class="btn btn-neutral" title="结构型模式"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2014, Colin http://blog.me115.com.
+    </p>
+  </div>
+
+  <a href="https://github.com/snide/sphinx_rtd_theme">Sphinx theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../',
+            VERSION:'0.1',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="../_static/documentation_options.js"></script>
+      <script type="text/javascript" src="../_static/jquery.js"></script>
+      <script type="text/javascript" src="../_static/underscore.js"></script>
+      <script type="text/javascript" src="../_static/doctools.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

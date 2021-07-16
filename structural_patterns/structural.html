@@ -1,0 +1,356 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>结构型模式 &mdash; Graphic Design Patterns</title>
+  
+
+  
+  
+
+  
+  <link href="../_static/css/font_lato_googleapi.css" type='text/css'>
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  
+
+  
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  
+    <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  
+        <link rel="index" title="Index"
+              href="../genindex.html"/>
+        <link rel="search" title="Search" href="../search.html"/>
+    <link rel="top" title="Graphic Design Patterns" href="../index.html"/>
+        <link rel="next" title="1. 适配器模式" href="adapter.html"/>
+        <link rel="prev" title="5. 单例模式" href="../creational_patterns/singleton.html"/> 
+
+  
+  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-nav-search">
+        
+          <a href="../index.html" class="fa fa-home"> Graphic Design Patterns</a>
+        
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+        
+        
+            <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../read_uml.html">看懂UML类图和时序图</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../read_uml.html#id1">从一个示例开始</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../read_uml.html#id2">类之间的关系</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../read_uml.html#id3">时序图</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../read_uml.html#id4">附录</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../creational_patterns/creational.html">创建型模式</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../creational_patterns/simple_factory.html">1. 简单工厂模式( Simple Factory Pattern )</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../creational_patterns/factory_method.html">2. 工厂方法模式(Factory Method Pattern)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../creational_patterns/abstract_factory.html">3. 抽象工厂模式(Abstract Factory)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../creational_patterns/builder.html">4. 建造者模式</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../creational_patterns/singleton.html">5. 单例模式</a></li>
+</ul>
+</li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">结构型模式</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="adapter.html">1. 适配器模式</a></li>
+<li class="toctree-l2"><a class="reference internal" href="bridge.html">2. 桥接模式</a></li>
+<li class="toctree-l2"><a class="reference internal" href="decorator.html">3. 装饰模式</a></li>
+<li class="toctree-l2"><a class="reference internal" href="facade.html">4. 外观模式</a></li>
+<li class="toctree-l2"><a class="reference internal" href="flyweight.html">5. 享元模式</a></li>
+<li class="toctree-l2"><a class="reference internal" href="proxy.html">6. 代理模式</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../behavioral_patterns/behavioral.html">行为型模式</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../behavioral_patterns/command.html">1. 命令模式</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../behavioral_patterns/mediator.html">2. 中介者模式</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../behavioral_patterns/observer.html">3. 观察者模式</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../behavioral_patterns/state.html">4. 状态模式</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../behavioral_patterns/strategy.html">5. 策略模式</a></li>
+</ul>
+</li>
+</ul>
+
+        
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../index.html">Graphic Design Patterns</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../index.html">Docs</a> &raquo;</li>
+      
+    <li>结构型模式</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          <a href="../_sources/structural_patterns/structural.rst.txt" rel="nofollow"> View page source</a>
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document">
+            
+  <section id="structural">
+<span id="id1"></span><h1>结构型模式<a class="headerlink" href="#structural" title="Permalink to this headline">¶</a></h1>
+<p>结构型模式(Structural Pattern)描述如何将类或者对
+象结合在一起形成更大的结构，就像搭积木，可以通过
+简单积木的组合形成复杂的、功能更为强大的结构。</p>
+<p>结构型模式可以分为类结构型模式和对象结构型模式：</p>
+<ul class="simple">
+<li><p>类结构型模式关心类的组合，由多个类可以组合成一个更大的</p></li>
+</ul>
+<p>系统，在类结构型模式中一般只存在继承关系和实现关系。
+- 对象结构型模式关心类与对象的组合，通过关联关系使得在一
+个类中定义另一个类的实例对象，然后通过该对象调用其方法。
+根据“合成复用原则”，在系统中尽量使用关联关系来替代继
+承关系，因此大部分结构型模式都是对象结构型模式。</p>
+<p><strong>包含模式</strong></p>
+<ul class="simple">
+<li><dl class="simple">
+<dt>适配器模式(Adapter)</dt><dd><p>重要程度：4</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>桥接模式(Bridge)</dt><dd><p>重要程度：3</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>组合模式(Composite)</dt><dd><p>重要程度：4</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>装饰模式(Decorator)</dt><dd><p>重要程度：3</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>外观模式(Facade)</dt><dd><p>重要程度：5</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>享元模式(Flyweight)</dt><dd><p>重要程度：1</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>代理模式(Proxy)</dt><dd><p>重要程度：4</p>
+</dd>
+</dl>
+</li>
+</ul>
+<p><strong>目录</strong></p>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="adapter.html">1. 适配器模式</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="adapter.html#id3">1.1. 模式动机</a></li>
+<li class="toctree-l2"><a class="reference internal" href="adapter.html#id4">1.2. 模式定义</a></li>
+<li class="toctree-l2"><a class="reference internal" href="adapter.html#id5">1.3. 模式结构</a></li>
+<li class="toctree-l2"><a class="reference internal" href="adapter.html#id6">1.4. 时序图</a></li>
+<li class="toctree-l2"><a class="reference internal" href="adapter.html#id7">1.5. 代码分析</a></li>
+<li class="toctree-l2"><a class="reference internal" href="adapter.html#id8">1.6. 模式分析</a></li>
+<li class="toctree-l2"><a class="reference internal" href="adapter.html#id9">1.7. 实例</a></li>
+<li class="toctree-l2"><a class="reference internal" href="adapter.html#id10">1.8. 优点</a></li>
+<li class="toctree-l2"><a class="reference internal" href="adapter.html#id11">1.9. 缺点</a></li>
+<li class="toctree-l2"><a class="reference internal" href="adapter.html#id12">1.10. 适用环境</a></li>
+<li class="toctree-l2"><a class="reference internal" href="adapter.html#id13">1.11. 模式应用</a></li>
+<li class="toctree-l2"><a class="reference internal" href="adapter.html#id14">1.12. 模式扩展</a></li>
+<li class="toctree-l2"><a class="reference internal" href="adapter.html#id15">1.13. 总结</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="bridge.html">2. 桥接模式</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="bridge.html#id3">2.1. 模式动机</a></li>
+<li class="toctree-l2"><a class="reference internal" href="bridge.html#id4">2.2. 模式定义</a></li>
+<li class="toctree-l2"><a class="reference internal" href="bridge.html#id5">2.3. 模式结构</a></li>
+<li class="toctree-l2"><a class="reference internal" href="bridge.html#id6">2.4. 时序图</a></li>
+<li class="toctree-l2"><a class="reference internal" href="bridge.html#id7">2.5. 代码分析</a></li>
+<li class="toctree-l2"><a class="reference internal" href="bridge.html#id8">2.6. 模式分析</a></li>
+<li class="toctree-l2"><a class="reference internal" href="bridge.html#id9">2.7. 实例</a></li>
+<li class="toctree-l2"><a class="reference internal" href="bridge.html#id10">2.8. 优点</a></li>
+<li class="toctree-l2"><a class="reference internal" href="bridge.html#id11">2.9. 缺点</a></li>
+<li class="toctree-l2"><a class="reference internal" href="bridge.html#id12">2.10. 适用环境</a></li>
+<li class="toctree-l2"><a class="reference internal" href="bridge.html#id13">2.11. 模式应用</a></li>
+<li class="toctree-l2"><a class="reference internal" href="bridge.html#id14">2.12. 模式扩展</a></li>
+<li class="toctree-l2"><a class="reference internal" href="bridge.html#id15">2.13. 总结</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="decorator.html">3. 装饰模式</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="decorator.html#id3">3.1. 模式动机</a></li>
+<li class="toctree-l2"><a class="reference internal" href="decorator.html#id4">3.2. 模式定义</a></li>
+<li class="toctree-l2"><a class="reference internal" href="decorator.html#id5">3.3. 模式结构</a></li>
+<li class="toctree-l2"><a class="reference internal" href="decorator.html#id6">3.4. 时序图</a></li>
+<li class="toctree-l2"><a class="reference internal" href="decorator.html#id7">3.5. 代码分析</a></li>
+<li class="toctree-l2"><a class="reference internal" href="decorator.html#id8">3.6. 模式分析</a></li>
+<li class="toctree-l2"><a class="reference internal" href="decorator.html#id9">3.7. 实例</a></li>
+<li class="toctree-l2"><a class="reference internal" href="decorator.html#id10">3.8. 优点</a></li>
+<li class="toctree-l2"><a class="reference internal" href="decorator.html#id11">3.9. 缺点</a></li>
+<li class="toctree-l2"><a class="reference internal" href="decorator.html#id12">3.10. 适用环境</a></li>
+<li class="toctree-l2"><a class="reference internal" href="decorator.html#id13">3.11. 模式应用</a></li>
+<li class="toctree-l2"><a class="reference internal" href="decorator.html#id14">3.12. 模式扩展</a></li>
+<li class="toctree-l2"><a class="reference internal" href="decorator.html#id15">3.13. 总结</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="facade.html">4. 外观模式</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="facade.html#id3">4.1. 模式动机</a></li>
+<li class="toctree-l2"><a class="reference internal" href="facade.html#id4">4.2. 模式定义</a></li>
+<li class="toctree-l2"><a class="reference internal" href="facade.html#id5">4.3. 模式结构</a></li>
+<li class="toctree-l2"><a class="reference internal" href="facade.html#id6">4.4. 时序图</a></li>
+<li class="toctree-l2"><a class="reference internal" href="facade.html#id7">4.5. 代码分析</a></li>
+<li class="toctree-l2"><a class="reference internal" href="facade.html#id8">4.6. 模式分析</a></li>
+<li class="toctree-l2"><a class="reference internal" href="facade.html#id9">4.7. 实例</a></li>
+<li class="toctree-l2"><a class="reference internal" href="facade.html#id10">4.8. 优点</a></li>
+<li class="toctree-l2"><a class="reference internal" href="facade.html#id11">4.9. 缺点</a></li>
+<li class="toctree-l2"><a class="reference internal" href="facade.html#id12">4.10. 适用环境</a></li>
+<li class="toctree-l2"><a class="reference internal" href="facade.html#id13">4.11. 模式应用</a></li>
+<li class="toctree-l2"><a class="reference internal" href="facade.html#id14">4.12. 模式扩展</a></li>
+<li class="toctree-l2"><a class="reference internal" href="facade.html#id15">4.13. 总结</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="flyweight.html">5. 享元模式</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="flyweight.html#id3">5.1. 模式动机</a></li>
+<li class="toctree-l2"><a class="reference internal" href="flyweight.html#id4">5.2. 模式定义</a></li>
+<li class="toctree-l2"><a class="reference internal" href="flyweight.html#id5">5.3. 模式结构</a></li>
+<li class="toctree-l2"><a class="reference internal" href="flyweight.html#id6">5.4. 时序图</a></li>
+<li class="toctree-l2"><a class="reference internal" href="flyweight.html#id7">5.5. 代码分析</a></li>
+<li class="toctree-l2"><a class="reference internal" href="flyweight.html#id8">5.6. 模式分析</a></li>
+<li class="toctree-l2"><a class="reference internal" href="flyweight.html#id9">5.7. 实例</a></li>
+<li class="toctree-l2"><a class="reference internal" href="flyweight.html#id10">5.8. 优点</a></li>
+<li class="toctree-l2"><a class="reference internal" href="flyweight.html#id11">5.9. 缺点</a></li>
+<li class="toctree-l2"><a class="reference internal" href="flyweight.html#id12">5.10. 适用环境</a></li>
+<li class="toctree-l2"><a class="reference internal" href="flyweight.html#id13">5.11. 模式应用</a></li>
+<li class="toctree-l2"><a class="reference internal" href="flyweight.html#id14">5.12. 模式扩展</a></li>
+<li class="toctree-l2"><a class="reference internal" href="flyweight.html#id15">5.13. 总结</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="proxy.html">6. 代理模式</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="proxy.html#id3">6.1. 模式动机</a></li>
+<li class="toctree-l2"><a class="reference internal" href="proxy.html#id4">6.2. 模式定义</a></li>
+<li class="toctree-l2"><a class="reference internal" href="proxy.html#id5">6.3. 模式结构</a></li>
+<li class="toctree-l2"><a class="reference internal" href="proxy.html#id6">6.4. 时序图</a></li>
+<li class="toctree-l2"><a class="reference internal" href="proxy.html#id7">6.5. 代码分析</a></li>
+<li class="toctree-l2"><a class="reference internal" href="proxy.html#id8">6.6. 模式分析</a></li>
+<li class="toctree-l2"><a class="reference internal" href="proxy.html#id9">6.7. 实例</a></li>
+<li class="toctree-l2"><a class="reference internal" href="proxy.html#id10">6.8. 优点</a></li>
+<li class="toctree-l2"><a class="reference internal" href="proxy.html#id11">6.9. 缺点</a></li>
+<li class="toctree-l2"><a class="reference internal" href="proxy.html#id12">6.10. 适用环境</a></li>
+<li class="toctree-l2"><a class="reference internal" href="proxy.html#id13">6.11. 模式应用</a></li>
+<li class="toctree-l2"><a class="reference internal" href="proxy.html#id14">6.12. 模式扩展</a></li>
+<li class="toctree-l2"><a class="reference internal" href="proxy.html#id15">6.13. 总结</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</section>
+
+
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="adapter.html" class="btn btn-neutral float-right" title="1. 适配器模式">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="../creational_patterns/singleton.html" class="btn btn-neutral" title="5. 单例模式"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2014, Colin http://blog.me115.com.
+    </p>
+  </div>
+
+  <a href="https://github.com/snide/sphinx_rtd_theme">Sphinx theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../',
+            VERSION:'0.1',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="../_static/documentation_options.js"></script>
+      <script type="text/javascript" src="../_static/jquery.js"></script>
+      <script type="text/javascript" src="../_static/underscore.js"></script>
+      <script type="text/javascript" src="../_static/doctools.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

@@ -1,0 +1,467 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>5. 策略模式 &mdash; Graphic Design Patterns</title>
+  
+
+  
+  
+
+  
+  <link href="../_static/css/font_lato_googleapi.css" type='text/css'>
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  
+
+  
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  
+    <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  
+        <link rel="index" title="Index"
+              href="../genindex.html"/>
+        <link rel="search" title="Search" href="../search.html"/>
+    <link rel="top" title="Graphic Design Patterns" href="../index.html"/>
+        <link rel="up" title="行为型模式" href="behavioral.html"/>
+        <link rel="prev" title="4. 状态模式" href="state.html"/> 
+
+  
+  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-nav-search">
+        
+          <a href="../index.html" class="fa fa-home"> Graphic Design Patterns</a>
+        
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+        
+        
+            <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../read_uml.html">看懂UML类图和时序图</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../read_uml.html#id1">从一个示例开始</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../read_uml.html#id2">类之间的关系</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../read_uml.html#id3">时序图</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../read_uml.html#id4">附录</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../creational_patterns/creational.html">创建型模式</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../creational_patterns/simple_factory.html">1. 简单工厂模式( Simple Factory Pattern )</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../creational_patterns/factory_method.html">2. 工厂方法模式(Factory Method Pattern)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../creational_patterns/abstract_factory.html">3. 抽象工厂模式(Abstract Factory)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../creational_patterns/builder.html">4. 建造者模式</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../creational_patterns/singleton.html">5. 单例模式</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../structural_patterns/structural.html">结构型模式</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../structural_patterns/adapter.html">1. 适配器模式</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../structural_patterns/bridge.html">2. 桥接模式</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../structural_patterns/decorator.html">3. 装饰模式</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../structural_patterns/facade.html">4. 外观模式</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../structural_patterns/flyweight.html">5. 享元模式</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../structural_patterns/proxy.html">6. 代理模式</a></li>
+</ul>
+</li>
+<li class="toctree-l1 current"><a class="reference internal" href="behavioral.html">行为型模式</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="command.html">1. 命令模式</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mediator.html">2. 中介者模式</a></li>
+<li class="toctree-l2"><a class="reference internal" href="observer.html">3. 观察者模式</a></li>
+<li class="toctree-l2"><a class="reference internal" href="state.html">4. 状态模式</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">5. 策略模式</a></li>
+</ul>
+</li>
+</ul>
+
+        
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../index.html">Graphic Design Patterns</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../index.html">Docs</a> &raquo;</li>
+      
+          <li><a href="behavioral.html">行为型模式</a> &raquo;</li>
+      
+    <li><span class="section-number">5. </span>策略模式</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          <a href="../_sources/behavioral_patterns/strategy.rst.txt" rel="nofollow"> View page source</a>
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document">
+            
+  <section id="strategy">
+<span id="id1"></span><h1><a class="toc-backref" href="#id16"><span class="section-number">5. </span>策略模式</a><a class="headerlink" href="#strategy" title="Permalink to this headline">¶</a></h1>
+<div class="contents topic" id="id2">
+<p class="topic-title">目录</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="#strategy" id="id16">策略模式</a></p>
+<ul>
+<li><p><a class="reference internal" href="#id3" id="id17">模式动机</a></p></li>
+<li><p><a class="reference internal" href="#id4" id="id18">模式定义</a></p></li>
+<li><p><a class="reference internal" href="#id5" id="id19">模式结构</a></p></li>
+<li><p><a class="reference internal" href="#id6" id="id20">时序图</a></p></li>
+<li><p><a class="reference internal" href="#id7" id="id21">代码分析</a></p></li>
+<li><p><a class="reference internal" href="#id8" id="id22">模式分析</a></p></li>
+<li><p><a class="reference internal" href="#id9" id="id23">实例</a></p></li>
+<li><p><a class="reference internal" href="#id10" id="id24">优点</a></p></li>
+<li><p><a class="reference internal" href="#id11" id="id25">缺点</a></p></li>
+<li><p><a class="reference internal" href="#id12" id="id26">适用环境</a></p></li>
+<li><p><a class="reference internal" href="#id13" id="id27">模式应用</a></p></li>
+<li><p><a class="reference internal" href="#id14" id="id28">模式扩展</a></p></li>
+<li><p><a class="reference internal" href="#id15" id="id29">总结</a></p></li>
+</ul>
+</li>
+</ul>
+</div>
+<section id="id3">
+<h2><a class="toc-backref" href="#id17"><span class="section-number">5.1. </span>模式动机</a><a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>完成一项任务，往往可以有多种不同的方式，每一种方式称为一个策略，我们可以根据环境或者条件的不同选择不同的策略来完成该项任务。</p></li>
+<li><p>在软件开发中也常常遇到类似的情况，实现某一个功能有多个途径，此时可以使用一种设计模式来使得系统可以灵活地选择解决途径，也能够方便地增加新的解决途径。</p></li>
+<li><p>在软件系统中，有许多算法可以实现某一功能，如查找、排序等，一种常用的方法是硬编码(Hard Coding)在一个类中，如需要提供多种查找算法，可以将这些算法写到一个类中，在该类中提供多个方法，每一个方法对应一个具体的查找算法；当然也可以将这些查找算法封装在一个统一的方法中，通过if…else…等条件判断语句来进行选择。这两种实现方法我们都可以称之为硬编码，如果需要增加一种新的查找算法，需要修改封装算法类的源代码；更换查找算法，也需要修改客户端调用代码。在这个算法类中封装了大量查找算法，该类代码将较复杂，维护较为困难。</p></li>
+<li><p>除了提供专门的查找算法类之外，还可以在客户端程序中直接包含算法代码，这种做法更不可取，将导致客户端程序庞大而且难以维护，如果存在大量可供选择的算法时问题将变得更加严重。</p></li>
+<li><p>为了解决这些问题，可以定义一些独立的类来封装不同的算法，每一个类封装一个具体的算法，在这里，每一个封装算法的类我们都可以称之为策略(Strategy)，为了保证这些策略的一致性，一般会用一个抽象的策略类来做算法的定义，而具体每种算法则对应于一个具体策略类。</p></li>
+</ul>
+</section>
+<section id="id4">
+<h2><a class="toc-backref" href="#id18"><span class="section-number">5.2. </span>模式定义</a><a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h2>
+<p>策略模式(Strategy Pattern)：定义一系列算法，将每一个算法封装起来，并让它们可以相互替换。策略模式让算法独立于使用它的客户而变化，也称为政策模式(Policy)。</p>
+<p>策略模式是一种对象行为型模式。</p>
+</section>
+<section id="id5">
+<h2><a class="toc-backref" href="#id19"><span class="section-number">5.3. </span>模式结构</a><a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h2>
+<p>策略模式包含如下角色：</p>
+<ul class="simple">
+<li><p>Context: 环境类</p></li>
+<li><p>Strategy: 抽象策略类</p></li>
+<li><p>ConcreteStrategy: 具体策略类</p></li>
+</ul>
+<img alt="../_images/Strategy.jpg" src="../_images/Strategy.jpg" />
+</section>
+<section id="id6">
+<h2><a class="toc-backref" href="#id20"><span class="section-number">5.4. </span>时序图</a><a class="headerlink" href="#id6" title="Permalink to this headline">¶</a></h2>
+<img alt="../_images/seq_Strategy.jpg" src="../_images/seq_Strategy.jpg" />
+</section>
+<section id="id7">
+<h2><a class="toc-backref" href="#id21"><span class="section-number">5.5. </span>代码分析</a><a class="headerlink" href="#id7" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="cp">#include</span> <span class="cpf">&lt;iostream&gt;</span><span class="cp"></span>
+<span class="linenos"> 2</span><span class="cp">#include</span> <span class="cpf">&quot;Context.h&quot;</span><span class="cp"></span>
+<span class="linenos"> 3</span><span class="cp">#include</span> <span class="cpf">&quot;ConcreteStrategyA.h&quot;</span><span class="cp"></span>
+<span class="linenos"> 4</span><span class="cp">#include</span> <span class="cpf">&quot;ConcreteStrategyB.h&quot;</span><span class="cp"></span>
+<span class="linenos"> 5</span><span class="cp">#include</span> <span class="cpf">&quot;Strategy.h&quot;</span><span class="cp"></span>
+<span class="linenos"> 6</span><span class="cp">#include</span> <span class="cpf">&lt;vector&gt;</span><span class="cp"></span>
+<span class="linenos"> 7</span><span class="k">using</span> <span class="k">namespace</span> <span class="nn">std</span><span class="p">;</span>
+<span class="linenos"> 8</span>
+<span class="linenos"> 9</span><span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">int</span> <span class="n">argc</span><span class="p">,</span> <span class="kt">char</span> <span class="o">*</span><span class="n">argv</span><span class="p">[])</span>
+<span class="hll"><span class="linenos">10</span><span class="p">{</span>
+</span><span class="hll"><span class="linenos">11</span>	<span class="n">Strategy</span> <span class="o">*</span> <span class="n">s1</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ConcreteStrategyA</span><span class="p">();</span>
+</span><span class="hll"><span class="linenos">12</span>	<span class="n">Context</span> <span class="o">*</span> <span class="n">cxt</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Context</span><span class="p">();</span>
+</span><span class="hll"><span class="linenos">13</span>	<span class="n">cxt</span><span class="o">-&gt;</span><span class="n">setStrategy</span><span class="p">(</span><span class="n">s1</span><span class="p">);</span>
+</span><span class="hll"><span class="linenos">14</span>	<span class="n">cxt</span><span class="o">-&gt;</span><span class="n">algorithm</span><span class="p">();</span>
+</span><span class="hll"><span class="linenos">15</span>
+</span><span class="hll"><span class="linenos">16</span>	<span class="n">Strategy</span> <span class="o">*</span><span class="n">s2</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ConcreteStrategyB</span><span class="p">();</span>
+</span><span class="hll"><span class="linenos">17</span>	<span class="n">cxt</span><span class="o">-&gt;</span><span class="n">setStrategy</span><span class="p">(</span><span class="n">s2</span><span class="p">);</span>
+</span><span class="linenos">18</span>	<span class="n">cxt</span><span class="o">-&gt;</span><span class="n">algorithm</span><span class="p">();</span>
+<span class="linenos">19</span>	
+<span class="linenos">20</span>	<span class="k">delete</span> <span class="n">s1</span><span class="p">;</span>
+<span class="linenos">21</span>	<span class="k">delete</span> <span class="n">s2</span><span class="p">;</span>
+<span class="linenos">22</span>	
+<span class="linenos">23</span>	<span class="kt">int</span> <span class="n">rac1</span> <span class="o">=</span> <span class="mh">0x1</span><span class="p">;</span>
+<span class="linenos">24</span>	<span class="kt">int</span> <span class="n">rac2</span> <span class="o">=</span> <span class="mh">0x2</span><span class="p">;</span>
+<span class="linenos">25</span>	<span class="kt">int</span> <span class="n">rac3</span> <span class="o">=</span> <span class="mh">0x4</span><span class="p">;</span>
+<span class="linenos">26</span>	<span class="kt">int</span> <span class="n">rac4</span> <span class="o">=</span> <span class="mh">0x8</span><span class="p">;</span>
+<span class="linenos">27</span>	
+<span class="linenos">28</span>	<span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mh">0xe</span><span class="p">;</span>
+<span class="linenos">29</span>	<span class="kt">int</span> <span class="n">j</span> <span class="o">=</span> <span class="mh">0x5</span><span class="p">;</span>
+<span class="linenos">30</span>
+<span class="linenos">31</span>	<span class="kt">int</span> <span class="n">r1</span> <span class="o">=</span> <span class="n">i</span> <span class="o">&amp;</span> <span class="n">rac1</span><span class="p">;</span>
+<span class="linenos">32</span>	<span class="kt">int</span> <span class="n">r2</span> <span class="o">=</span> <span class="n">i</span> <span class="o">&amp;</span> <span class="n">rac2</span><span class="p">;</span>
+<span class="linenos">33</span>	<span class="kt">int</span> <span class="n">r3</span> <span class="o">=</span> <span class="n">i</span> <span class="o">&amp;</span> <span class="n">rac3</span><span class="p">;</span>
+<span class="linenos">34</span>	<span class="kt">int</span> <span class="n">r4</span> <span class="o">=</span> <span class="n">i</span> <span class="o">&amp;</span> <span class="n">rac4</span><span class="p">;</span>
+<span class="linenos">35</span>	
+<span class="linenos">36</span>	<span class="n">cout</span> <span class="o">&lt;&lt;</span><span class="s">&quot;res:&quot;</span> <span class="o">&lt;&lt;</span> <span class="n">r1</span> <span class="o">&lt;&lt;</span> <span class="s">&quot;/&quot;</span> <span class="o">&lt;&lt;</span> <span class="n">r2</span> <span class="o">&lt;&lt;</span> <span class="s">&quot;/&quot;</span> <span class="o">&lt;&lt;</span> <span class="n">r3</span> <span class="o">&lt;&lt;</span> <span class="s">&quot;/&quot;</span> <span class="o">&lt;&lt;</span> <span class="n">r4</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+<span class="linenos">37</span>	
+<span class="linenos">38</span>	<span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="linenos">39</span><span class="p">}</span>
+</pre></div>
+</div>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="c1">///////////////////////////////////////////////////////////</span>
+<span class="linenos"> 2</span><span class="c1">//  Context.h</span>
+<span class="linenos"> 3</span><span class="c1">//  Implementation of the Class Context</span>
+<span class="linenos"> 4</span><span class="c1">//  Created on:      09-十月-2014 22:21:07</span>
+<span class="linenos"> 5</span><span class="c1">//  Original author: colin</span>
+<span class="linenos"> 6</span><span class="c1">///////////////////////////////////////////////////////////</span>
+<span class="linenos"> 7</span>
+<span class="linenos"> 8</span><span class="cp">#if !defined(EA_0DA87730_4DEE_4392_9BAF_4AC64A8A07A4__INCLUDED_)</span>
+<span class="linenos"> 9</span><span class="cp">#define EA_0DA87730_4DEE_4392_9BAF_4AC64A8A07A4__INCLUDED_</span>
+<span class="linenos">10</span>
+<span class="linenos">11</span><span class="cp">#include</span> <span class="cpf">&quot;Strategy.h&quot;</span><span class="cp"></span>
+<span class="linenos">12</span>
+<span class="linenos">13</span><span class="k">class</span> <span class="nc">Context</span>
+<span class="linenos">14</span><span class="p">{</span>
+<span class="linenos">15</span>
+<span class="linenos">16</span><span class="k">public</span><span class="o">:</span>
+<span class="linenos">17</span>	<span class="n">Context</span><span class="p">();</span>
+<span class="linenos">18</span>	<span class="k">virtual</span> <span class="o">~</span><span class="n">Context</span><span class="p">();</span>
+<span class="linenos">19</span>	
+<span class="linenos">20</span>
+<span class="linenos">21</span>	<span class="kt">void</span> <span class="nf">algorithm</span><span class="p">();</span>
+<span class="linenos">22</span>	<span class="kt">void</span> <span class="nf">setStrategy</span><span class="p">(</span><span class="n">Strategy</span><span class="o">*</span> <span class="n">st</span><span class="p">);</span>
+<span class="linenos">23</span>	
+<span class="linenos">24</span><span class="k">private</span><span class="o">:</span>
+<span class="linenos">25</span>	<span class="n">Strategy</span> <span class="o">*</span><span class="n">m_pStrategy</span><span class="p">;</span>
+<span class="linenos">26</span>
+<span class="linenos">27</span><span class="p">};</span>
+<span class="linenos">28</span><span class="cp">#endif </span><span class="c1">// !defined(EA_0DA87730_4DEE_4392_9BAF_4AC64A8A07A4__INCLUDED_)</span>
+</pre></div>
+</div>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="c1">///////////////////////////////////////////////////////////</span>
+<span class="linenos"> 2</span><span class="c1">//  Context.cpp</span>
+<span class="linenos"> 3</span><span class="c1">//  Implementation of the Class Context</span>
+<span class="linenos"> 4</span><span class="c1">//  Created on:      09-十月-2014 22:21:07</span>
+<span class="linenos"> 5</span><span class="c1">//  Original author: colin</span>
+<span class="linenos"> 6</span><span class="c1">///////////////////////////////////////////////////////////</span>
+<span class="linenos"> 7</span>
+<span class="linenos"> 8</span><span class="cp">#include</span> <span class="cpf">&quot;Context.h&quot;</span><span class="cp"></span>
+<span class="linenos"> 9</span>
+<span class="linenos">10</span><span class="n">Context</span><span class="o">::</span><span class="n">Context</span><span class="p">(){</span>
+<span class="linenos">11</span><span class="p">}</span>
+<span class="linenos">12</span>
+<span class="linenos">13</span><span class="n">Context</span><span class="o">::~</span><span class="n">Context</span><span class="p">(){</span>
+<span class="linenos">14</span><span class="p">}</span>
+<span class="linenos">15</span>
+<span class="hll"><span class="linenos">16</span><span class="kt">void</span> <span class="n">Context</span><span class="o">::</span><span class="n">algorithm</span><span class="p">(){</span>
+</span><span class="hll"><span class="linenos">17</span>	<span class="n">m_pStrategy</span><span class="o">-&gt;</span><span class="n">algorithm</span><span class="p">();</span>
+</span><span class="hll"><span class="linenos">18</span><span class="p">}</span>
+</span><span class="hll"><span class="linenos">19</span>
+</span><span class="hll"><span class="linenos">20</span><span class="kt">void</span> <span class="n">Context</span><span class="o">::</span><span class="n">setStrategy</span><span class="p">(</span><span class="n">Strategy</span><span class="o">*</span> <span class="n">st</span><span class="p">){</span>
+</span><span class="hll"><span class="linenos">21</span>	<span class="n">m_pStrategy</span> <span class="o">=</span> <span class="n">st</span><span class="p">;</span>
+</span><span class="hll"><span class="linenos">22</span><span class="p">}</span>
+</span></pre></div>
+</div>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="c1">///////////////////////////////////////////////////////////</span>
+<span class="linenos"> 2</span><span class="c1">//  ConcreteStrategyA.h</span>
+<span class="linenos"> 3</span><span class="c1">//  Implementation of the Class ConcreteStrategyA</span>
+<span class="linenos"> 4</span><span class="c1">//  Created on:      09-十月-2014 22:21:06</span>
+<span class="linenos"> 5</span><span class="c1">//  Original author: colin</span>
+<span class="linenos"> 6</span><span class="c1">///////////////////////////////////////////////////////////</span>
+<span class="linenos"> 7</span>
+<span class="linenos"> 8</span><span class="cp">#if !defined(EA_9B180F12_677B_4e9b_A243_1F5DAD93FE1D__INCLUDED_)</span>
+<span class="linenos"> 9</span><span class="cp">#define EA_9B180F12_677B_4e9b_A243_1F5DAD93FE1D__INCLUDED_</span>
+<span class="linenos">10</span>
+<span class="linenos">11</span><span class="cp">#include</span> <span class="cpf">&quot;Strategy.h&quot;</span><span class="cp"></span>
+<span class="linenos">12</span>
+<span class="linenos">13</span><span class="k">class</span> <span class="nc">ConcreteStrategyA</span> <span class="o">:</span> <span class="k">public</span> <span class="n">Strategy</span>
+<span class="linenos">14</span><span class="p">{</span>
+<span class="linenos">15</span>
+<span class="linenos">16</span><span class="k">public</span><span class="o">:</span>
+<span class="linenos">17</span>	<span class="n">ConcreteStrategyA</span><span class="p">();</span>
+<span class="linenos">18</span>	<span class="k">virtual</span> <span class="o">~</span><span class="n">ConcreteStrategyA</span><span class="p">();</span>
+<span class="linenos">19</span>
+<span class="linenos">20</span>	<span class="k">virtual</span> <span class="kt">void</span> <span class="nf">algorithm</span><span class="p">();</span>
+<span class="linenos">21</span>
+<span class="linenos">22</span><span class="p">};</span>
+<span class="linenos">23</span><span class="cp">#endif </span><span class="c1">// !defined(EA_9B180F12_677B_4e9b_A243_1F5DAD93FE1D__INCLUDED_)</span>
+</pre></div>
+</div>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="c1">///////////////////////////////////////////////////////////</span>
+<span class="linenos"> 2</span><span class="c1">//  ConcreteStrategyA.cpp</span>
+<span class="linenos"> 3</span><span class="c1">//  Implementation of the Class ConcreteStrategyA</span>
+<span class="linenos"> 4</span><span class="c1">//  Created on:      09-十月-2014 22:21:07</span>
+<span class="linenos"> 5</span><span class="c1">//  Original author: colin</span>
+<span class="linenos"> 6</span><span class="c1">///////////////////////////////////////////////////////////</span>
+<span class="linenos"> 7</span>
+<span class="linenos"> 8</span><span class="cp">#include</span> <span class="cpf">&quot;ConcreteStrategyA.h&quot;</span><span class="cp"></span>
+<span class="linenos"> 9</span><span class="cp">#include</span> <span class="cpf">&lt;iostream&gt;</span><span class="cp"></span>
+<span class="linenos">10</span><span class="k">using</span> <span class="k">namespace</span> <span class="nn">std</span><span class="p">;</span>
+<span class="linenos">11</span>
+<span class="linenos">12</span><span class="n">ConcreteStrategyA</span><span class="o">::</span><span class="n">ConcreteStrategyA</span><span class="p">(){</span>
+<span class="linenos">13</span>
+<span class="linenos">14</span><span class="p">}</span>
+<span class="linenos">15</span>
+<span class="linenos">16</span><span class="n">ConcreteStrategyA</span><span class="o">::~</span><span class="n">ConcreteStrategyA</span><span class="p">(){</span>
+<span class="linenos">17</span>
+<span class="linenos">18</span><span class="p">}</span>
+<span class="linenos">19</span>
+<span class="linenos">20</span><span class="kt">void</span> <span class="n">ConcreteStrategyA</span><span class="o">::</span><span class="n">algorithm</span><span class="p">(){</span>
+<span class="linenos">21</span>	<span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&quot;use algorithm A&quot;</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+<span class="linenos">22</span><span class="p">}</span>
+</pre></div>
+</div>
+<p>运行结果：</p>
+<img alt="../_images/Strategy_run.jpg" src="../_images/Strategy_run.jpg" />
+</section>
+<section id="id8">
+<h2><a class="toc-backref" href="#id22"><span class="section-number">5.6. </span>模式分析</a><a class="headerlink" href="#id8" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>策略模式是一个比较容易理解和使用的设计模式，策略模式是对算法的封装，它把算法的责任和算法本身分割开，委派给不同的对象管理。策略模式通常把一个系列的算法封装到一系列的策略类里面，作为一个抽象策略类的子类。用一句话来说，就是“准备一组算法，并将每一个算法封装起来，使得它们可以互换”。</p></li>
+<li><p>在策略模式中，应当由客户端自己决定在什么情况下使用什么具体策略角色。</p></li>
+<li><p>策略模式仅仅封装算法，提供新算法插入到已有系统中，以及老算法从系统中“退休”的方便，策略模式并不决定在何时使用何种算法，算法的选择由客户端来决定。这在一定程度上提高了系统的灵活性，但是客户端需要理解所有具体策略类之间的区别，以便选择合适的算法，这也是策略模式的缺点之一，在一定程度上增加了客户端的使用难度。</p></li>
+</ul>
+</section>
+<section id="id9">
+<h2><a class="toc-backref" href="#id23"><span class="section-number">5.7. </span>实例</a><a class="headerlink" href="#id9" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="id10">
+<h2><a class="toc-backref" href="#id24"><span class="section-number">5.8. </span>优点</a><a class="headerlink" href="#id10" title="Permalink to this headline">¶</a></h2>
+<p>策略模式的优点</p>
+<ul class="simple">
+<li><p>策略模式提供了对“开闭原则”的完美支持，用户可以在不修改原有系统的基础上选择算法或行为，也可以灵活地增加新的算法或行为。</p></li>
+<li><p>策略模式提供了管理相关的算法族的办法。</p></li>
+<li><p>策略模式提供了可以替换继承关系的办法。</p></li>
+<li><p>使用策略模式可以避免使用多重条件转移语句。</p></li>
+</ul>
+</section>
+<section id="id11">
+<h2><a class="toc-backref" href="#id25"><span class="section-number">5.9. </span>缺点</a><a class="headerlink" href="#id11" title="Permalink to this headline">¶</a></h2>
+<p>策略模式的缺点</p>
+<ul class="simple">
+<li><p>客户端必须知道所有的策略类，并自行决定使用哪一个策略类。</p></li>
+<li><p>策略模式将造成产生很多策略类，可以通过使用享元模式在一定程度上减少对象的数量。</p></li>
+</ul>
+</section>
+<section id="id12">
+<h2><a class="toc-backref" href="#id26"><span class="section-number">5.10. </span>适用环境</a><a class="headerlink" href="#id12" title="Permalink to this headline">¶</a></h2>
+<p>在以下情况下可以使用策略模式：</p>
+<ul class="simple">
+<li><p>如果在一个系统里面有许多类，它们之间的区别仅在于它们的行为，那么使用策略模式可以动态地让一个对象在许多行为中选择一种行为。</p></li>
+<li><p>一个系统需要动态地在几种算法中选择一种。</p></li>
+<li><p>如果一个对象有很多的行为，如果不用恰当的模式，这些行为就只好使用多重的条件选择语句来实现。</p></li>
+<li><p>不希望客户端知道复杂的、与算法相关的数据结构，在具体策略类中封装算法和相关的数据结构，提高算法的保密性与安全性。</p></li>
+</ul>
+</section>
+<section id="id13">
+<h2><a class="toc-backref" href="#id27"><span class="section-number">5.11. </span>模式应用</a><a class="headerlink" href="#id13" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="id14">
+<h2><a class="toc-backref" href="#id28"><span class="section-number">5.12. </span>模式扩展</a><a class="headerlink" href="#id14" title="Permalink to this headline">¶</a></h2>
+<p>策略模式与状态模式</p>
+<ul class="simple">
+<li><p>可以通过环境类状态的个数来决定是使用策略模式还是状态模式。</p></li>
+<li><p>策略模式的环境类自己选择一个具体策略类，具体策略类无须关心环境类；而状态模式的环境类由于外在因素需要放进一个具体状态中，以便通过其方法实现状态的切换，因此环境类和状态类之间存在一种双向的关联关系。</p></li>
+<li><p>使用策略模式时，客户端需要知道所选的具体策略是哪一个，而使用状态模式时，客户端无须关心具体状态，环境类的状态会根据用户的操作自动转换。</p></li>
+<li><p>如果系统中某个类的对象存在多种状态，不同状态下行为有差异，而且这些状态之间可以发生转换时使用状态模式；如果系统中某个类的某一行为存在多种实现方式，而且这些实现方式可以互换时使用策略模式。</p></li>
+</ul>
+</section>
+<section id="id15">
+<h2><a class="toc-backref" href="#id29"><span class="section-number">5.13. </span>总结</a><a class="headerlink" href="#id15" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>在策略模式中定义了一系列算法，将每一个算法封装起来，并让它们可以相互替换。策略模式让算法独立于使用它的客户而变化，也称为政策模式。策略模式是一种对象行为型模式。</p></li>
+<li><p>策略模式包含三个角色：环境类在解决某个问题时可以采用多种策略，在环境类中维护一个对抽象策略类的引用实例；抽象策略类为所支持的算法声明了抽象方法，是所有策略类的父类；具体策略类实现了在抽象策略类中定义的算法。</p></li>
+<li><p>策略模式是对算法的封装，它把算法的责任和算法本身分割开，委派给不同的对象管理。策略模式通常把一个系列的算法封装到一系列的策略类里面，作为一个抽象策略类的子类。</p></li>
+<li><p>策略模式主要优点在于对“开闭原则”的完美支持，在不修改原有系统的基础上可以更换算法或者增加新的算法，它很好地管理算法族，提高了代码的复用性，是一种替换继承，避免多重条件转移语句的实现方式；其缺点在于客户端必须知道所有的策略类，并理解其区别，同时在一定程度上增加了系统中类的个数，可能会存在很多策略类。</p></li>
+<li><p>策略模式适用情况包括：在一个系统里面有许多类，它们之间的区别仅在于它们的行为，使用策略模式可以动态地让一个对象在许多行为中选择一种行为；一个系统需要动态地在几种算法中选择一种；避免使用难以维护的多重条件选择语句；希望在具体策略类中封装算法和与相关的数据结构。</p></li>
+</ul>
+</section>
+</section>
+
+
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+      
+        <a href="state.html" class="btn btn-neutral" title="4. 状态模式"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2014, Colin http://blog.me115.com.
+    </p>
+  </div>
+
+  <a href="https://github.com/snide/sphinx_rtd_theme">Sphinx theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../',
+            VERSION:'0.1',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="../_static/documentation_options.js"></script>
+      <script type="text/javascript" src="../_static/jquery.js"></script>
+      <script type="text/javascript" src="../_static/underscore.js"></script>
+      <script type="text/javascript" src="../_static/doctools.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

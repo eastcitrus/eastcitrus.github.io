@@ -1,0 +1,362 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>1. 简单工厂模式( Simple Factory Pattern ) &mdash; Graphic Design Patterns</title>
+  
+
+  
+  
+
+  
+  <link href="../_static/css/font_lato_googleapi.css" type='text/css'>
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  
+
+  
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  
+    <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  
+        <link rel="index" title="Index"
+              href="../genindex.html"/>
+        <link rel="search" title="Search" href="../search.html"/>
+    <link rel="top" title="Graphic Design Patterns" href="../index.html"/>
+        <link rel="up" title="创建型模式" href="creational.html"/>
+        <link rel="next" title="2. 工厂方法模式(Factory Method Pattern)" href="factory_method.html"/>
+        <link rel="prev" title="创建型模式" href="creational.html"/> 
+
+  
+  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-nav-search">
+        
+          <a href="../index.html" class="fa fa-home"> Graphic Design Patterns</a>
+        
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+        
+        
+            <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../read_uml.html">看懂UML类图和时序图</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../read_uml.html#id1">从一个示例开始</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../read_uml.html#id2">类之间的关系</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../read_uml.html#id3">时序图</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../read_uml.html#id4">附录</a></li>
+</ul>
+</li>
+<li class="toctree-l1 current"><a class="reference internal" href="creational.html">创建型模式</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="#">1. 简单工厂模式( Simple Factory Pattern )</a></li>
+<li class="toctree-l2"><a class="reference internal" href="factory_method.html">2. 工厂方法模式(Factory Method Pattern)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="abstract_factory.html">3. 抽象工厂模式(Abstract Factory)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="builder.html">4. 建造者模式</a></li>
+<li class="toctree-l2"><a class="reference internal" href="singleton.html">5. 单例模式</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../structural_patterns/structural.html">结构型模式</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../structural_patterns/adapter.html">1. 适配器模式</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../structural_patterns/bridge.html">2. 桥接模式</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../structural_patterns/decorator.html">3. 装饰模式</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../structural_patterns/facade.html">4. 外观模式</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../structural_patterns/flyweight.html">5. 享元模式</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../structural_patterns/proxy.html">6. 代理模式</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../behavioral_patterns/behavioral.html">行为型模式</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../behavioral_patterns/command.html">1. 命令模式</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../behavioral_patterns/mediator.html">2. 中介者模式</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../behavioral_patterns/observer.html">3. 观察者模式</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../behavioral_patterns/state.html">4. 状态模式</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../behavioral_patterns/strategy.html">5. 策略模式</a></li>
+</ul>
+</li>
+</ul>
+
+        
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../index.html">Graphic Design Patterns</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../index.html">Docs</a> &raquo;</li>
+      
+          <li><a href="creational.html">创建型模式</a> &raquo;</li>
+      
+    <li><span class="section-number">1. </span>简单工厂模式( Simple Factory Pattern )</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          <a href="../_sources/creational_patterns/simple_factory.rst.txt" rel="nofollow"> View page source</a>
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document">
+            
+  <section id="simple-factory-pattern">
+<span id="simple-factory"></span><h1><a class="toc-backref" href="#id14"><span class="section-number">1. </span>简单工厂模式( Simple Factory Pattern )</a><a class="headerlink" href="#simple-factory-pattern" title="Permalink to this headline">¶</a></h1>
+<div class="contents topic" id="id1">
+<p class="topic-title">目录</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="#simple-factory-pattern" id="id14">简单工厂模式( Simple Factory Pattern )</a></p>
+<ul>
+<li><p><a class="reference internal" href="#id2" id="id15">模式动机</a></p></li>
+<li><p><a class="reference internal" href="#id3" id="id16">模式定义</a></p></li>
+<li><p><a class="reference internal" href="#id4" id="id17">模式结构</a></p></li>
+<li><p><a class="reference internal" href="#id5" id="id18">时序图</a></p></li>
+<li><p><a class="reference internal" href="#id6" id="id19">代码分析</a></p></li>
+<li><p><a class="reference internal" href="#id7" id="id20">模式分析</a></p></li>
+<li><p><a class="reference internal" href="#id8" id="id21">实例</a></p></li>
+<li><p><a class="reference internal" href="#id9" id="id22">简单工厂模式的优点</a></p></li>
+<li><p><a class="reference internal" href="#id10" id="id23">简单工厂模式的缺点</a></p></li>
+<li><p><a class="reference internal" href="#id11" id="id24">适用环境</a></p></li>
+<li><p><a class="reference internal" href="#id12" id="id25">模式应用</a></p></li>
+<li><p><a class="reference internal" href="#id13" id="id26">总结</a></p></li>
+</ul>
+</li>
+</ul>
+</div>
+<section id="id2">
+<h2><a class="toc-backref" href="#id15"><span class="section-number">1.1. </span>模式动机</a><a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
+<p>考虑一个简单的软件应用场景，一个软件系统可以提供多个外观不同的按钮（如圆形按钮、矩形按钮、菱形按钮等），
+这些按钮都源自同一个基类，不过在继承基类后不同的子类修改了部分属性从而使得它们可以呈现不同的外观，如果我们希望在使用这些按钮时，不需要知道这些具体按钮类的名字，只需要知道表示该按钮类的一个参数，并提供一个调用方便的方法，把该参数传入方法即可返回一个相应的按钮对象，此时，就可以使用简单工厂模式。</p>
+</section>
+<section id="id3">
+<h2><a class="toc-backref" href="#id16"><span class="section-number">1.2. </span>模式定义</a><a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h2>
+<p>简单工厂模式(Simple Factory Pattern)：又称为静态工厂方法(Static Factory Method)模式，它属于类创建型模式。在简单工厂模式中，可以根据参数的不同返回不同类的实例。简单工厂模式专门定义一个类来负责创建其他类的实例，被创建的实例通常都具有共同的父类。</p>
+</section>
+<section id="id4">
+<h2><a class="toc-backref" href="#id17"><span class="section-number">1.3. </span>模式结构</a><a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h2>
+<p>简单工厂模式包含如下角色：</p>
+<ul class="simple">
+<li><dl class="simple">
+<dt>Factory：工厂角色</dt><dd><p>工厂角色负责实现创建所有实例的内部逻辑</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>Product：抽象产品角色</dt><dd><p>抽象产品角色是所创建的所有对象的父类，负责描述所有实例所共有的公共接口</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>ConcreteProduct：具体产品角色</dt><dd><p>具体产品角色是创建目标，所有创建的对象都充当这个角色的某个具体类的实例。</p>
+</dd>
+</dl>
+</li>
+</ul>
+<img alt="../_images/SimpleFactory.jpg" src="../_images/SimpleFactory.jpg" />
+</section>
+<section id="id5">
+<h2><a class="toc-backref" href="#id18"><span class="section-number">1.4. </span>时序图</a><a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h2>
+<img alt="../_images/seq_SimpleFactory.jpg" src="../_images/seq_SimpleFactory.jpg" />
+</section>
+<section id="id6">
+<h2><a class="toc-backref" href="#id19"><span class="section-number">1.5. </span>代码分析</a><a class="headerlink" href="#id6" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="c1">///////////////////////////////////////////////////////////</span>
+<span class="linenos"> 2</span><span class="c1">//  Factory.cpp</span>
+<span class="linenos"> 3</span><span class="c1">//  Implementation of the Class Factory</span>
+<span class="linenos"> 4</span><span class="c1">//  Created on:      01-十月-2014 18:41:33</span>
+<span class="linenos"> 5</span><span class="c1">//  Original author: colin</span>
+<span class="linenos"> 6</span><span class="c1">///////////////////////////////////////////////////////////</span>
+<span class="linenos"> 7</span>
+<span class="linenos"> 8</span><span class="cp">#include</span> <span class="cpf">&quot;Factory.h&quot;</span><span class="cp"></span>
+<span class="linenos"> 9</span><span class="cp">#include</span> <span class="cpf">&quot;ConcreteProductA.h&quot;</span><span class="cp"></span>
+<span class="linenos">10</span><span class="cp">#include</span> <span class="cpf">&quot;ConcreteProductB.h&quot;</span><span class="cp"></span>
+<span class="linenos">11</span><span class="n">Product</span><span class="o">*</span> <span class="nf">Factory::createProduct</span><span class="p">(</span><span class="n">string</span> <span class="n">proname</span><span class="p">){</span>
+<span class="hll"><span class="linenos">12</span>	<span class="k">if</span> <span class="p">(</span> <span class="s">&quot;A&quot;</span> <span class="o">==</span> <span class="n">proname</span> <span class="p">)</span>
+</span><span class="hll"><span class="linenos">13</span>	<span class="p">{</span>
+</span><span class="hll"><span class="linenos">14</span>		<span class="k">return</span> <span class="k">new</span> <span class="n">ConcreteProductA</span><span class="p">();</span>
+</span><span class="hll"><span class="linenos">15</span>	<span class="p">}</span>
+</span><span class="hll"><span class="linenos">16</span>	<span class="k">else</span> <span class="k">if</span><span class="p">(</span><span class="s">&quot;B&quot;</span> <span class="o">==</span> <span class="n">proname</span><span class="p">)</span>
+</span><span class="hll"><span class="linenos">17</span>	<span class="p">{</span>
+</span><span class="hll"><span class="linenos">18</span>		<span class="k">return</span> <span class="k">new</span> <span class="n">ConcreteProductB</span><span class="p">();</span>
+</span><span class="hll"><span class="linenos">19</span>	<span class="p">}</span>
+</span><span class="linenos">20</span>	<span class="k">return</span>  <span class="nb">NULL</span><span class="p">;</span>
+<span class="linenos">21</span><span class="p">}</span>
+</pre></div>
+</div>
+</section>
+<section id="id7">
+<h2><a class="toc-backref" href="#id20"><span class="section-number">1.6. </span>模式分析</a><a class="headerlink" href="#id7" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>将对象的创建和对象本身业务处理分离可以降低系统的耦合度，使得两者修改起来都相对容易。</p></li>
+<li><p>在调用工厂类的工厂方法时，由于工厂方法是静态方法，使用起来很方便，可通过类名直接调用，而且只需要传入一个简单的参数即可，在实际开发中，还可以在调用时将所传入的参数保存在XML等格式的配置文件中，修改参数时无须修改任何源代码。</p></li>
+<li><p>简单工厂模式最大的问题在于工厂类的职责相对过重，增加新的产品需要修改工厂类的判断逻辑，这一点与开闭原则是相违背的。</p></li>
+<li><p>简单工厂模式的要点在于：当你需要什么，只需要传入一个正确的参数，就可以获取你所需要的对象，而无须知道其创建细节。</p></li>
+</ul>
+</section>
+<section id="id8">
+<h2><a class="toc-backref" href="#id21"><span class="section-number">1.7. </span>实例</a><a class="headerlink" href="#id8" title="Permalink to this headline">¶</a></h2>
+<p>(略）</p>
+</section>
+<section id="id9">
+<h2><a class="toc-backref" href="#id22"><span class="section-number">1.8. </span>简单工厂模式的优点</a><a class="headerlink" href="#id9" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>工厂类含有必要的判断逻辑，可以决定在什么时候创建哪一个产品类的实例，客户端可以免除直接创建产品对象的责任，而仅仅“消费”产品；简单工厂模式通过这种做法实现了对责任的分割，它提供了专门的工厂类用于创建对象。</p></li>
+<li><p>客户端无须知道所创建的具体产品类的类名，只需要知道具体产品类所对应的参数即可，对于一些复杂的类名，通过简单工厂模式可以减少使用者的记忆量。</p></li>
+<li><p>通过引入配置文件，可以在不修改任何客户端代码的情况下更换和增加新的具体产品类，在一定程度上提高了系统的灵活性。</p></li>
+</ul>
+</section>
+<section id="id10">
+<h2><a class="toc-backref" href="#id23"><span class="section-number">1.9. </span>简单工厂模式的缺点</a><a class="headerlink" href="#id10" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>由于工厂类集中了所有产品创建逻辑，一旦不能正常工作，整个系统都要受到影响。</p></li>
+<li><p>使用简单工厂模式将会增加系统中类的个数，在一定程序上增加了系统的复杂度和理解难度。</p></li>
+<li><p>系统扩展困难，一旦添加新产品就不得不修改工厂逻辑，在产品类型较多时，有可能造成工厂逻辑过于复杂，不利于系统的扩展和维护。</p></li>
+<li><p>简单工厂模式由于使用了静态工厂方法，造成工厂角色无法形成基于继承的等级结构。</p></li>
+</ul>
+</section>
+<section id="id11">
+<h2><a class="toc-backref" href="#id24"><span class="section-number">1.10. </span>适用环境</a><a class="headerlink" href="#id11" title="Permalink to this headline">¶</a></h2>
+<p>在以下情况下可以使用简单工厂模式：</p>
+<ul class="simple">
+<li><p>工厂类负责创建的对象比较少：由于创建的对象较少，不会造成工厂方法中的业务逻辑太过复杂。</p></li>
+<li><p>客户端只知道传入工厂类的参数，对于如何创建对象不关心：客户端既不需要关心创建细节，甚至连类名都不需要记住，只需要知道类型所对应的参数。</p></li>
+</ul>
+</section>
+<section id="id12">
+<h2><a class="toc-backref" href="#id25"><span class="section-number">1.11. </span>模式应用</a><a class="headerlink" href="#id12" title="Permalink to this headline">¶</a></h2>
+<ol class="arabic simple">
+<li><p>JDK类库中广泛使用了简单工厂模式，如工具类java.text.DateFormat，它用于格式化一个本地日期或者时间。</p></li>
+</ol>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">public</span> <span class="n">final</span> <span class="n">static</span> <span class="n">DateFormat</span> <span class="n">getDateInstance</span><span class="p">();</span>
+<span class="n">public</span> <span class="n">final</span> <span class="n">static</span> <span class="n">DateFormat</span> <span class="n">getDateInstance</span><span class="p">(</span><span class="nb">int</span> <span class="n">style</span><span class="p">);</span>
+<span class="n">public</span> <span class="n">final</span> <span class="n">static</span> <span class="n">DateFormat</span> <span class="n">getDateInstance</span><span class="p">(</span><span class="nb">int</span> <span class="n">style</span><span class="p">,</span><span class="n">Locale</span>
+<span class="n">locale</span><span class="p">);</span>
+</pre></div>
+</div>
+<ol class="arabic simple" start="2">
+<li><p>Java加密技术</p></li>
+</ol>
+<p>获取不同加密算法的密钥生成器:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">KeyGenerator</span> <span class="n">keyGen</span><span class="o">=</span><span class="n">KeyGenerator</span><span class="o">.</span><span class="n">getInstance</span><span class="p">(</span><span class="s2">&quot;DESede&quot;</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>创建密码器:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Cipher</span> <span class="n">cp</span><span class="o">=</span><span class="n">Cipher</span><span class="o">.</span><span class="n">getInstance</span><span class="p">(</span><span class="s2">&quot;DESede&quot;</span><span class="p">);</span>
+</pre></div>
+</div>
+</section>
+<section id="id13">
+<h2><a class="toc-backref" href="#id26"><span class="section-number">1.12. </span>总结</a><a class="headerlink" href="#id13" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>创建型模式对类的实例化过程进行了抽象，能够将对象的创建与对象的使用过程分离。</p></li>
+<li><p>简单工厂模式又称为静态工厂方法模式，它属于类创建型模式。在简单工厂模式中，可以根据参数的不同返回不同类的实例。简单工厂模式专门定义一个类来负责创建其他类的实例，被创建的实例通常都具有共同的父类。</p></li>
+<li><p>简单工厂模式包含三个角色：工厂角色负责实现创建所有实例的内部逻辑；抽象产品角色是所创建的所有对象的父类，负责描述所有实例所共有的公共接口；具体产品角色是创建目标，所有创建的对象都充当这个角色的某个具体类的实例。</p></li>
+<li><p>简单工厂模式的要点在于：当你需要什么，只需要传入一个正确的参数，就可以获取你所需要的对象，而无须知道其创建细节。</p></li>
+<li><p>简单工厂模式最大的优点在于实现对象的创建和对象的使用分离，将对象的创建交给专门的工厂类负责，但是其最大的缺点在于工厂类不够灵活，增加新的具体产品需要修改工厂类的判断逻辑代码，而且产品较多时，工厂方法代码将会非常复杂。</p></li>
+<li><p>简单工厂模式适用情况包括：工厂类负责创建的对象比较少；客户端只知道传入工厂类的参数，对于如何创建对象不关心。</p></li>
+</ul>
+</section>
+</section>
+
+
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="factory_method.html" class="btn btn-neutral float-right" title="2. 工厂方法模式(Factory Method Pattern)">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="creational.html" class="btn btn-neutral" title="创建型模式"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2014, Colin http://blog.me115.com.
+    </p>
+  </div>
+
+  <a href="https://github.com/snide/sphinx_rtd_theme">Sphinx theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../',
+            VERSION:'0.1',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="../_static/documentation_options.js"></script>
+      <script type="text/javascript" src="../_static/jquery.js"></script>
+      <script type="text/javascript" src="../_static/underscore.js"></script>
+      <script type="text/javascript" src="../_static/doctools.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>
