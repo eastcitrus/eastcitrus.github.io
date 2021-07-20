@@ -1,0 +1,459 @@
+/**
+ * Site header
+ */
+.site-header {
+    border-top: 5px solid $grey-color-dark;
+    border-bottom: 1px solid $grey-color-light;
+    min-height: $site-header-height;
+    margin-bottom: 30px;
+
+    // Positioning context for the mobile navigation icon
+    position: relative;
+}
+
+.site-title {
+    font-size: 26px;
+    font-weight: 300;
+    line-height: $site-height;
+    letter-spacing: -1px;
+    margin-bottom: 0;
+    float: left;
+    text-align: center;
+
+    &,
+    &:visited {
+        color: $grey-color-dark;
+    }
+}
+
+.site-nav {
+    float: right;
+    line-height: $site-height;
+
+    .menu-icon {
+        display: none;
+    }
+
+    .page-link {
+        color: $text-color;
+        line-height: $base-line-height;
+
+        // Gaps between nav items, but not on the last one
+        &:not(:last-child) {
+            margin-right: 20px;
+        }
+    }
+
+    @include media-query($on-palm) {
+        position: absolute;
+        top: 9px;
+        right: $spacing-unit / 2;
+        background-color: $background-color;
+        border: 1px solid $grey-color-light;
+        border-radius: 5px;
+        text-align: right;
+
+        .menu-icon {
+            display: block;
+            float: right;
+            width: 36px;
+            height: 26px;
+            line-height: 0;
+            padding-top: 10px;
+            text-align: center;
+
+            > svg {
+                width: 18px;
+                height: 15px;
+
+                path {
+                    fill: $grey-color-dark;
+                }
+            }
+        }
+
+        .trigger {
+            clear: both;
+            display: none;
+        }
+
+        &:hover .trigger {
+            display: block;
+            padding-bottom: 5px;
+        }
+
+        .page-link {
+            display: block;
+            padding: 5px 10px;
+
+            &:not(:last-child) {
+                margin-right: 0;
+            }
+            margin-left: 20px;
+        }
+    }
+}
+
+.site-title #auto-read-leaf:hover {
+    cursor: pointer;
+}
+
+
+/**
+ * Site footer
+ */
+.site-footer {
+    border-top: 1px solid $grey-color-light;
+    padding: $spacing-unit 0;
+    //    background: #eeeeee;
+}
+
+.footer-heading {
+    font-size: 18px;
+    margin-bottom: $spacing-unit / 2;
+}
+
+.footer-row {
+    height: $site-height;
+    line-height: $site-height;
+    text-align: center;
+}
+
+.contact-list,
+.social-media-list {
+    list-style: none;
+    margin-left: 0;
+}
+
+.footer-col-wrapper {
+    font-size: 15px;
+    color: $grey-color;
+    margin-left: -$spacing-unit / 2;
+    @extend %clearfix;
+}
+
+.footer-col {
+    float: left;
+    margin-bottom: $spacing-unit / 2;
+    padding-left: $spacing-unit / 2;
+}
+
+.footer-col-1 {
+    width: -webkit-calc(35% - (#{$spacing-unit} / 2));
+    width:         calc(35% - (#{$spacing-unit} / 2));
+}
+
+.footer-col-2 {
+    width: -webkit-calc(20% - (#{$spacing-unit} / 2));
+    width:         calc(20% - (#{$spacing-unit} / 2));
+}
+
+.footer-col-3 {
+    width: -webkit-calc(45% - (#{$spacing-unit} / 2));
+    width:         calc(45% - (#{$spacing-unit} / 2));
+}
+
+@include media-query($on-laptop) {
+    .footer-col-1,
+    .footer-col-2 {
+        width: -webkit-calc(50% - (#{$spacing-unit} / 2));
+        width:         calc(50% - (#{$spacing-unit} / 2));
+    }
+
+    .footer-col-3 {
+        width: -webkit-calc(100% - (#{$spacing-unit} / 2));
+        width:         calc(100% - (#{$spacing-unit} / 2));
+    }
+}
+
+@include media-query($on-palm) {
+    .footer-col {
+        float: none;
+        width: -webkit-calc(100% - (#{$spacing-unit} / 2));
+        width:         calc(100% - (#{$spacing-unit} / 2));
+    }
+}
+
+
+
+/**
+ * Page content
+ */
+.page-content {
+    padding: $spacing-unit 0;
+    min-height: $page-content-min-height;
+}
+
+.page-heading {
+    font-size: 20px;
+}
+
+.post-list {
+    margin-left: 0;
+    list-style: none;
+
+    > li {
+        margin-bottom: $spacing-unit;
+    }
+}
+
+.post-meta {
+    font-size: $small-font-size;
+    color: $grey-color;
+}
+
+.post-link {
+    display: block;
+    font-size: 24px;
+}
+
+
+
+/**
+ * Posts
+ */
+.post-header {
+    margin-bottom: $spacing-unit;
+}
+
+.post-title {
+    font-size: 42px;
+    letter-spacing: -1px;
+    line-height: 1;
+
+    @include media-query($on-laptop) {
+        font-size: 36px;
+    }
+}
+
+.post-content {
+    margin-bottom: $spacing-unit;
+
+    h1 {
+        font-size: 30px;
+        line-height: 38px;
+
+        @include media-query($on-laptop) {
+            font-size: 31px;
+        }
+    }
+
+    h2 {
+        font-size: 24px;
+        line-height: 32px;
+
+        @include media-query($on-laptop) {
+            font-size: 27px;
+        }
+    }
+
+    h3 {
+        font-size: 18px;
+        line-height: 26px;
+
+        @include media-query($on-laptop) {
+            font-size: 23px;
+        }
+    }
+
+}
+
+
+//----------------------------------------------------------------------------------------------------------------------
+
+/**
+ * a no decoration
+ * @use need define the width;
+ */
+
+/*
+*   table
+*/
+tr th, tr td {
+    text-align: center;
+}
+/*
+*   ul
+*/
+ul {
+}
+
+/**
+ * define the opacity of elem, default is 0.5;
+ * @use input a value of decimal number, such as: 0.7
+ */
+@mixin  opacity($value: 0.5){
+    opacity: $value;
+    filter: alpha(opacity = $value * 100);
+}
+/**
+ * define the opacity of background;
+ * @param $color    default color is white;
+ * @param #value    default opacity is 0.5;
+ * @use opacityBg(0.7)
+ */
+@mixin  opacityBg($value: 0.5){
+    background: rgba(255, 255, 255, $value) none repeat scroll 0 0 !important;/*实现FF背景透明，文字不透明*/
+    filter: Alpha(opacity=$value*100); background:#fff;/*实现IE背景透明*/
+}
+
+/*
+*   mCSB_1_scrollbar style
+*/
+#mCSB_1_scrollbar_vertical {
+}
+#mCSB_1_container {
+    margin-right: 0;
+}
+#mCSB_1_dragger_vertical  .mCSB_dragger_bar{
+    background-color: #aaa;
+    -o-transition: background-color .2s linear;
+    -webkit-transition: background-color.2s linear;
+    -moz-transition: background-color .2s linear;
+    transition: background-color .2s linear;
+    @include opacity(0.7);
+}
+.mCSB_draggerRail {
+    background-color: #eee;
+    @include opacity(0.5);
+}
+
+/*
+*   otc
+*/
+#markdown-toc {
+    position: fixed;
+    right: 1px;
+    bottom: 60px;
+    border-radius: 0.3em;
+    box-shadow: rgba(0,0,0,0.15) 0 1px 4px;
+    box-sizing: border-box;
+    background-color: white;
+    padding: 15px;
+    z-index: 999;
+    @include opacityBg(0.7);
+}
+
+#markdown-toc:hover {
+    box-shadow: rgba(0,0,0,0.15) 0 6px 8px;
+}
+
+ul#markdown-toc {
+    list-style: none !important;
+}
+ul#markdown-toc ul{
+    list-style: none !important;
+    display: none;
+}
+ul#markdown-toc ul.active{
+    display: inline-block;
+}
+
+//此处a不要使用 >a 因为存在嵌套
+ul#markdown-toc  > li a {
+    display: block;
+    max-width: 140px;
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+ul#markdown-toc  > li  a.active {
+    color: #ff9900;
+    //border-left: solid 3px #0072c6;
+}
+
+//left
+ul#markdown-toc .fa {
+    cursor: pointer;
+    margin-top: 5px;
+    color: #aaa;
+}
+
+//validate help
+.validate-help {
+    display: inline-block;
+    margin-top: 5px;
+    margin-bottom: 10px;
+    margin-left: 10px;
+    color: #a94442;
+}
+
+/*override input style*/
+input {
+    display: inline-block;
+    height: 34px;
+    padding: 6px 12px;
+    font-size: 14px;
+    line-height: 1.42857143;
+    color: #555;
+    background-color: #fff;
+    background-image: none;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
+    box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
+    -webkit-transition: border-color ease-in-out .15s, -webkit-box-shadow ease-in-out .15s;
+    -o-transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+    transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+}
+input:focus {
+    border-color: #66afe9;
+    outline: 0;
+    -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgba(102, 175, 233, .6);
+    box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgba(102, 175, 233, .6);
+}
+
+/**
+ * define input that has-status
+ * @param $border border color
+ */
+@mixin input-status($border) {
+    border-color: $border;
+    -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
+    box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
+}
+/**
+ * define input that has-status focus
+ * @param $border border color
+ * @param $shadow shadow color
+ */
+@mixin input-status-focus($border, $shadow) {
+    border-color: $border;
+    -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075), 0 0 6px $shadow;
+    box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075), 0 0 6px $shadow;
+}
+input.has-error {
+    @include input-status(#a94442);
+}
+input.has-error:focus {
+    @include input-status-focus(#843534, #ce8483);
+}
+input.has-success {
+    @include input-status(#3c763d);
+}
+input.has-success:focus {
+    @include input-status-focus(#2b542c, #67b168);
+}
+
+/**
+ * define the gold border for img;
+ */
+.gold-img-border {
+    border: 3px solid gold;
+}
+
+.blue-img-border {
+    border: 3px solid $blue-color;
+}
+
+
+/**
+    min height for article
+ */
+article {
+    min-height: $article-min-height;
+}
+
+.post-content {
+    min-height: $article-min-height;
+}

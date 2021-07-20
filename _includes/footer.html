@@ -1,0 +1,83 @@
+<footer class="site-footer">
+
+  <a id="scroll-top" title="去顶部" class="text-center" href="#" onfocus="this.blur();">
+      <i class="fa fa-fw fa-angle-double-up"></i>
+  </a>
+
+  <!--站内搜索相关 START-->
+  <div class="cb-search-tool" style="position: fixed; top: 0px ; bottom: 0px; left: 0px; right:  0px;
+      opacity: 0.95; background-color: #111111; z-index: 9999; display: none;">
+    <input type="text" class="form-control cb-search-content" id="cb-search-content" style="position: fixed; top: 60px" placeholder="文章标题 日期 标签" >
+
+    <div style="position: fixed; top: 16px; right: 16px;">
+      <img src="/search/img/cb-close.png"  id="cb-close-btn"/>
+    </div>
+  </div>
+
+  <div style="position: fixed; right: 12px; bottom: 20px;">
+    <a id="cb-search-btn" title="双击 ctrl 搜索" style="color: #0099ff; opacity: 0.5;">
+      <i class="fa fa-fw fa-search fa-lg"></i>
+    </a>
+  </div>
+  <!--站内搜索相关 END-->
+
+  <!--[if lt IE 9]>
+  <script src="{{ site.url }}/static/libs/ie/html5shiv.js"></script>
+  <script src="{{ site.url }}/static/libs/ie/respond.min.js"></script>
+  <![endif]-->
+
+  <script src="{{ site.url }}/static/libs/jQuery/jquery-2.2.3.min.js"></script>
+  <script src="{{ site.url }}/static/libs/bootstrap/js/bootstrap.min.js"></script>
+  <script src="{{ site.url }}/static/libs/jQuery/jquery.bootstrap.min.js"></script>
+
+  <script src="{{ site.url }}/static/libs/syntaxhighlighter/scripts/shCore.js"></script>
+  <script src="{{ site.url }}/static/libs/syntaxhighlighter/src/shAutoloader.js"></script>
+  <script src="{{ site.url }}/static/libs/syntaxhighlighter/scripts/shBrushJScript.js"></script>
+  <script src="{{ site.url }}/static/libs/syntaxhighlighter/scripts/shBrushXml.js"></script>
+  <script src="{{ site.url }}/static/libs/syntaxhighlighter/scripts/shBrushJava.js"></script>
+
+  <!--UML-->
+  <script src="{{ site.url }}/static/libs/UML/js/raphael.min.js"></script>
+  <script src="{{ site.url }}/static/libs/UML/js/underscore-min.js"></script>
+  <script src="{{ site.url }}/static/libs/UML/js/sequence-diagram-min.js"></script>
+
+  <script src="{{ site.url }}/static/libs/scrollspy/scrollspy.js"></script>
+
+  <!--echarts-->
+  <script src="{{ site.url }}/static/libs/echarts/echarts.min.js"></script>
+  <script src="{{ site.url }}/static/libs/echarts/china.js"></script>
+
+  <!--zclip-->
+  <script src="{{ site.url }}/static/libs/zclip/jquery.copy.js"></script>
+
+  <!--站内搜索相关-->
+  <link rel="stylesheet" href="{{ site.url }}/search/css/cb-search.css">
+  <script src="{{ site.url }}/search/js/bootstrap3-typeahead.min.js"></script>
+  <script src="{{ site.url }}/search/js/cb-search.js"></script>
+
+  <!--math-->
+  <script type="text/x-mathjax-config">
+        MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}});
+    </script>
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+  </script>
+
+  <!--my-->
+  <script src="{{ site.url }}/static/app/js/util.js"></script>
+  <script src="{{ site.url }}/static/app/js/base.js"></script>
+  <!--<script src="{{ site.url }}/static/app/js/vue.js"></script>-->
+
+  <!-- TODO: only load in tag.html -->
+  <script src="/static/libs/tagcloud/jquery.tagcloud.js" type="text/javascript" charset="utf-8"></script>
+  <script language="javascript">
+      $.fn.tagcloud.defaults = {
+          //size: {start: 1, end: 1, unit: 'em'},
+          color: {start: '#bbbbee', end: '#0085a1'}
+      };
+      $(function () {
+          $('#tag_cloud a').tagcloud();
+          $('#dir_cloud a').tagcloud();
+      });
+  </script>
+
+</footer>
